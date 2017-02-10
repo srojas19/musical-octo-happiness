@@ -9,7 +9,7 @@
     
     <modules>
         <module>corazon-back</module>
-        <module>corazon-web</module>   
+        <module>corazon-web</module>
     </modules>
 
 	
