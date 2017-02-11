@@ -13,7 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import co.edu.uniandes.rest.restaurantes.dtos.PacienteDTO;
-import co.edu.uniandes.rest.restaurantes.dtos.PlatoEspDTO;
 import co.edu.uniandes.rest.restaurantes.exceptions.PacienteLogicException;
 import co.edu.uniandes.rest.restaurantes.exceptions.PacienteLogicException;
 
