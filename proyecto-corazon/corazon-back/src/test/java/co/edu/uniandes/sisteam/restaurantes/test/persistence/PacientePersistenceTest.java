@@ -23,8 +23,8 @@ SOFTWARE.
  */
 package co.edu.uniandes.sisteam.restaurantes.test.persistence;
 
-import co.edu.uniandes.sisteam.restaurantes.entities.SucursalEntity;
-import co.edu.uniandes.sisteam.restaurantes.persistence.SucursalPersistence;
+import co.edu.uniandes.sisteam.restaurantes.entities.PacienteEntity;
+import co.edu.uniandes.sisteam.restaurantes.persistence.PacientePersistence;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +44,7 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 @RunWith(Arquillian.class)
-public class SucursalPersistenceTest {
+public class PacientePersistenceTest {
 
     /**
      *
@@ -53,14 +53,14 @@ public class SucursalPersistenceTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(SucursalEntity.class.getPackage())
-                .addPackage(SucursalPersistence.class.getPackage())
+                .addPackage(PacienteEntity.class.getPackage())
+                .addPackage(PacientePersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
 
     @Inject
-    private SucursalPersistence sucursalPersistence;
+    private PacientePersistence pacientePersistence;
 
     @PersistenceContext
     private EntityManager em;
@@ -68,7 +68,7 @@ public class SucursalPersistenceTest {
     @Inject
     UserTransaction utx;
 
-    private List<SucursalEntity> data = new ArrayList<SucursalEntity>();
+    private List<PacienteEntity> data = new ArrayList<PacienteEntity>();
 
     /**
      * Configuración inicial de la prueba.
@@ -104,7 +104,7 @@ public class SucursalPersistenceTest {
     private void clearData() {
         em.createQuery("delete from PlatoEspEntity").executeUpdate();
         em.createQuery("delete from MesaEntity").executeUpdate();
-        em.createQuery("delete from SucursalEntity").executeUpdate();
+        em.createQuery("delete from PacienteEntity").executeUpdate();
     }
 
     /**
@@ -115,42 +115,42 @@ public class SucursalPersistenceTest {
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            SucursalEntity entity = factory.manufacturePojo(SucursalEntity.class);
+            PacienteEntity entity = factory.manufacturePojo(PacienteEntity.class);
             em.persist(entity);
             data.add(entity);
         }
     }
 
     /**
-     * Prueba para crear un Sucursal.
+     * Prueba para crear un Paciente.
      */
     @Test
-    public void createSucursalTest() {
+    public void createPacienteTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        SucursalEntity newEntity = factory.manufacturePojo(SucursalEntity.class);
+        PacienteEntity newEntity = factory.manufacturePojo(PacienteEntity.class);
 
-        SucursalEntity result = sucursalPersistence.create(newEntity);
+        PacienteEntity result = pacientePersistence.create(newEntity);
 
         Assert.assertNotNull(result);
-        SucursalEntity entity = em.find(SucursalEntity.class, result.getId());
+        PacienteEntity entity = em.find(PacienteEntity.class, result.getId());
         Assert.assertNotNull(entity);
         Assert.assertEquals(newEntity.getName(), entity.getName());
     }
 
     /**
-     * Prueba para consultar la lista de Sucursales.
+     * Prueba para consultar la lista de Pacientes.
      *
      *
      */
     @Test
-    public void getSucursalesTest() 
+    public void getPacientesTest() 
     {
-        List<SucursalEntity> list = sucursalPersistence.findAll();
+        List<PacienteEntity> list = pacientePersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
-        for (SucursalEntity ent : list) 
+        for (PacienteEntity ent : list) 
         {
             boolean found = false;
-            for (SucursalEntity entity : data) 
+            for (PacienteEntity entity : data) 
             {
                 if (ent.getId().equals(entity.getId())) 
                 {
@@ -162,65 +162,65 @@ public class SucursalPersistenceTest {
     }
 
     /**
-     * Prueba para consultar una Sucursal.
+     * Prueba para consultar una Paciente.
      */
     @Test
-    public void getSucursalTest() 
+    public void getPacienteTest() 
     {
-        SucursalEntity entity = data.get(0);
-        SucursalEntity newEntity = sucursalPersistence.find(entity.getId());
+        PacienteEntity entity = data.get(0);
+        PacienteEntity newEntity = pacientePersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
     }
 
    /**
-     * Prueba para consultar una Sucursal que existe.
+     * Prueba para consultar una Paciente que existe.
      */
     @Test
-    public void getSucursalByNameTest1() {
-        SucursalEntity entity = data.get(0);
-        SucursalEntity newEntity = sucursalPersistence.findByName(entity.getName());
+    public void getPacienteByNameTest1() {
+        PacienteEntity entity = data.get(0);
+        PacienteEntity newEntity = pacientePersistence.findByName(entity.getName());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
     }
    /**
-     * Prueba para consultar una Sucursal que no existe.
+     * Prueba para consultar una Paciente que no existe.
      */
     @Test
-    public void getSucursalByNameTest2() {
+    public void getPacienteByNameTest2() {
         
-        SucursalEntity newEntity = sucursalPersistence.findByName("");
+        PacienteEntity newEntity = pacientePersistence.findByName("");
         Assert.assertNull(newEntity);
      
     }
 
     /**
-     * Prueba para eliminar un Sucursal.
+     * Prueba para eliminar un Paciente.
      */
     @Test
-    public void deleteSucursalTest() 
+    public void deletePacienteTest() 
     {
-        SucursalEntity entity = data.get(0);
-        sucursalPersistence.delete(entity.getId());
-        SucursalEntity deleted = em.find(SucursalEntity.class, entity.getId());
+        PacienteEntity entity = data.get(0);
+        pacientePersistence.delete(entity.getId());
+        PacienteEntity deleted = em.find(PacienteEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 
     /**
-     * Prueba para actualizar un Sucursal.
+     * Prueba para actualizar un Paciente.
      */
     @Test
-    public void updateSucursalTest() 
+    public void updatePacienteTest() 
     {
-        SucursalEntity entity = data.get(0);
+        PacienteEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        SucursalEntity newEntity = factory.manufacturePojo(SucursalEntity.class);
+        PacienteEntity newEntity = factory.manufacturePojo(PacienteEntity.class);
 
         newEntity.setId(entity.getId());
 
-        sucursalPersistence.update(newEntity);
+        pacientePersistence.update(newEntity);
 
-        SucursalEntity resp = em.find(SucursalEntity.class, entity.getId());
+        PacienteEntity resp = em.find(PacienteEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getName(), resp.getName());
     }

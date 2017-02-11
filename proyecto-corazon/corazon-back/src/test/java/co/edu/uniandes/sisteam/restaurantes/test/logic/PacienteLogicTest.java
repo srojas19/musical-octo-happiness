@@ -23,18 +23,14 @@ SOFTWARE.
  */
 package co.edu.uniandes.sisteam.restaurantes.test.logic;
 
-import co.edu.uniandes.sisteam.restaurantes.api.IMesaLogic;
 import co.edu.uniandes.sisteam.restaurantes.api.IPlatoEspLogic;
-import co.edu.uniandes.sisteam.restaurantes.api.ISucursalLogic;
-import co.edu.uniandes.sisteam.restaurantes.ejbs.MesaLogic;
+import co.edu.uniandes.sisteam.restaurantes.api.IPacienteLogic;
 import co.edu.uniandes.sisteam.restaurantes.ejbs.PlatoEspLogic;
-import co.edu.uniandes.sisteam.restaurantes.ejbs.SucursalLogic;
-import co.edu.uniandes.sisteam.restaurantes.entities.MesaEntity;
+import co.edu.uniandes.sisteam.restaurantes.ejbs.PacienteLogic;
 import co.edu.uniandes.sisteam.restaurantes.entities.PlatoEspEntity;
-import co.edu.uniandes.sisteam.restaurantes.entities.SucursalEntity;
-import co.edu.uniandes.sisteam.restaurantes.persistence.MesaPersistence;
+import co.edu.uniandes.sisteam.restaurantes.entities.PacienteEntity;
 import co.edu.uniandes.sisteam.restaurantes.persistence.PlatoEspPersistence;
-import co.edu.uniandes.sisteam.restaurantes.persistence.SucursalPersistence;
+import co.edu.uniandes.sisteam.restaurantes.persistence.PacientePersistence;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +55,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  */
 @RunWith(Arquillian.class)
-public class SucursalLogicTest {
+public class PacienteLogicTest {
 
     /**
      *
@@ -70,13 +66,13 @@ public class SucursalLogicTest {
      *
      */
     @Inject
-    private ISucursalLogic sucursalLogic;
+    private IPacienteLogic pacienteLogic;
 
-    /**
-     *
-     */
-    @Inject
-    private MesaPersistence mesaPersistence;
+//    /**
+//     *
+//     */
+//    @Inject
+//    private MesaPersistence mesaPersistence;
 
     /**
      *
@@ -99,7 +95,7 @@ public class SucursalLogicTest {
     /**
      *
      */
-    private List<SucursalEntity> data = new ArrayList<SucursalEntity>();
+    private List<PacienteEntity> data = new ArrayList<PacienteEntity>();
 
     /**
      *
@@ -107,14 +103,14 @@ public class SucursalLogicTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(SucursalEntity.class.getPackage())
-                .addPackage(SucursalLogic.class.getPackage())
-                .addPackage(ISucursalLogic.class.getPackage())
-                .addPackage(SucursalPersistence.class.getPackage())
-                .addPackage(MesaPersistence.class.getPackage())
-                .addPackage(MesaEntity.class.getPackage())
-                .addPackage(MesaLogic.class.getPackage())
-                .addPackage(IMesaLogic.class.getPackage())
+                .addPackage(PacienteEntity.class.getPackage())
+                .addPackage(PacienteLogic.class.getPackage())
+                .addPackage(IPacienteLogic.class.getPackage())
+                .addPackage(PacientePersistence.class.getPackage())
+//                .addPackage(MesaPersistence.class.getPackage())
+//                .addPackage(MesaEntity.class.getPackage())
+//                .addPackage(MesaLogic.class.getPackage())
+//                .addPackage(IMesaLogic.class.getPackage())
                 .addPackage(PlatoEspPersistence.class.getPackage())
                 .addPackage(PlatoEspEntity.class.getPackage())
                 .addPackage(PlatoEspLogic.class.getPackage())
@@ -153,7 +149,7 @@ public class SucursalLogicTest {
     private void clearData() {
         em.createQuery("delete from PlatoEspEntity").executeUpdate();
         em.createQuery("delete from MesaEntity").executeUpdate();
-        em.createQuery("delete from SucursalEntity").executeUpdate();
+        em.createQuery("delete from PacienteEntity").executeUpdate();
     }
 
     /**
@@ -166,7 +162,7 @@ public class SucursalLogicTest {
 
         for (int i = 0; i < 3; i++) 
         {
-            SucursalEntity entity = factory.manufacturePojo(SucursalEntity.class);
+            PacienteEntity entity = factory.manufacturePojo(PacienteEntity.class);
             
 
             em.persist(entity);
@@ -175,86 +171,37 @@ public class SucursalLogicTest {
     }
 
     /**
-     * Prueba para crear un Sucursal
+     * Prueba para crear un Paciente
      *
      *
      */
     @Test
-    public void createSucursalTest() throws NotSupportedException, Exception {
-        SucursalEntity newEntity = factory.manufacturePojo(SucursalEntity.class);
-        System.out.println("1 " + newEntity.getMesas().size());
-        System.out.println("1 " + newEntity.getPlatosEsp().size());
-        SucursalEntity result = sucursalLogic.createSucursal(newEntity);
+    public void createPacienteTest() throws NotSupportedException, Exception {
+        PacienteEntity newEntity = factory.manufacturePojo(PacienteEntity.class);    
+        PacienteEntity result = pacienteLogic.createPaciente(newEntity);
         Assert.assertNotNull(result);
-        System.out.println("2 " + result.getMesas().size());
-        System.out.println("2 " + result.getPlatosEsp().size());
-        SucursalEntity entity = em.find(SucursalEntity.class, result.getId());
-        System.out.println("3 " + result.getMesas().size());
-        System.out.println("3 " + result.getPlatosEsp().size());
-
         
-        //mesas
-        TypedQuery q = em.createQuery("select d from MesaEntity d  where d.sucursal.id = :sucursalId", MesaEntity.class);
-        q = q.setParameter("sucursalId", result.getId());
-        
-        List<MesaEntity> listMesas = (List<MesaEntity>) q.getResultList();
-
-        System.out.println("4 " + listMesas.size());
-        listMesas = mesaPersistence.findAll();
-
-        for (MesaEntity d : listMesas) 
-        {
-            System.out.println(d.getName() + " " + d.getSucursal().getId());
-        }
-        
-        
-        //platosEsp
-        TypedQuery q2 = em.createQuery("select d from PlatoEspEntity d  where d.sucursal.id = :sucursalId", PlatoEspEntity.class);
-        q2 = q2.setParameter("sucursalId", result.getId());
-        List<PlatoEspEntity> listPlatosEsp = (List<PlatoEspEntity>) q2.getResultList();
-
-        System.out.println("4 " + listPlatosEsp.size());
-        listPlatosEsp = platoEspPersistence.findAll();
-        
-        for (PlatoEspEntity d: listPlatosEsp)
-        {
-            System.out.println(d.getName()+" "+d.getSucursal().getId());
-            
-        }
-
+        PacienteEntity entity = em.find(PacienteEntity.class, result.getId());
         
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         
-        //mesas
-        entity.setMesas(listMesas);
-
-        Assert.assertNotNull(entity.getMesas());
-        Assert.assertNotNull(result.getMesas());
-        Assert.assertEquals(result.getMesas().size(), entity.getMesas().size());
-
-        //platosEsp
-        entity.setPlatosEsp(listPlatosEsp);
-
-        Assert.assertNotNull(entity.getPlatosEsp());
-        Assert.assertNotNull(result.getPlatosEsp());
-        Assert.assertEquals(result.getPlatosEsp().size(), entity.getPlatosEsp().size());
-
+        
         
     }
 
     /**
-     * Prueba para consultar la lista de Sucursales
+     * Prueba para consultar la lista de Pacientes
      *
      *
      */
     @Test
-    public void getSucursalesTest() {
-        List<SucursalEntity> list = sucursalLogic.getSucursales();
+    public void getPacientesTest() {
+        List<PacienteEntity> list = pacienteLogic.getPacientes();
         Assert.assertEquals(data.size(), list.size());
-        for (SucursalEntity entity : list) {
+        for (PacienteEntity entity : list) {
             boolean found = false;
-            for (SucursalEntity storedEntity : data) {
+            for (PacienteEntity storedEntity : data) {
                 if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
                 }
@@ -264,47 +211,47 @@ public class SucursalLogicTest {
     }
 
     /**
-     * Prueba para consultar un Sucursal
+     * Prueba para consultar un Paciente
      *
      *
      */
     @Test
-    public void getSucursalTest() {
-        SucursalEntity entity = data.get(0);
-        SucursalEntity resultEntity = sucursalLogic.getSucursal(entity.getId());
+    public void getPacienteTest() {
+        PacienteEntity entity = data.get(0);
+        PacienteEntity resultEntity = pacienteLogic.getPaciente(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getName(), resultEntity.getName());
         Assert.assertEquals(entity.getId(), resultEntity.getId());
     }
 
     /**
-     * Prueba para eliminar un Sucursal
+     * Prueba para eliminar un Paciente
      *
      *
      */
     @Test
-    public void deleteSucursalTest() {
-        SucursalEntity entity = data.get(1);
-        sucursalLogic.deleteSucursal(entity.getId());
-        SucursalEntity deleted = em.find(SucursalEntity.class, entity.getId());
+    public void deletePacienteTest() {
+        PacienteEntity entity = data.get(1);
+        pacienteLogic.deletePaciente(entity.getId());
+        PacienteEntity deleted = em.find(PacienteEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 
     /**
-     * Prueba para actualizar un Sucursal
+     * Prueba para actualizar un Paciente
      *
      *
      */
     @Test
-    public void updateSucursalTest() {
-        SucursalEntity entity = data.get(0);
-        SucursalEntity pojoEntity = factory.manufacturePojo(SucursalEntity.class);
+    public void updatePacienteTest() {
+        PacienteEntity entity = data.get(0);
+        PacienteEntity pojoEntity = factory.manufacturePojo(PacienteEntity.class);
 
         pojoEntity.setId(entity.getId());
 
-        sucursalLogic.updateSucursal(pojoEntity);
+        pacienteLogic.updatePaciente(pojoEntity);
 
-        SucursalEntity resp = em.find(SucursalEntity.class, entity.getId());
+        PacienteEntity resp = em.find(PacienteEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());

@@ -4,20 +4,20 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
-import co.edu.uniandes.rest.restaurantes.exceptions.SucursalLogicException;
+import co.edu.uniandes.rest.restaurantes.exceptions.PacienteLogicException;
 
 /**
- * Convertidor de Excepciones SucursalLogicException a mensajes REST.
+ * Convertidor de Excepciones PacienteLogicException a mensajes REST.
  */
 @Provider
-public class SucursalLogicExceptionMapper implements ExceptionMapper<SucursalLogicException> {
+public class PacienteLogicExceptionMapper implements ExceptionMapper<PacienteLogicException> {
 
 	/**
 	 * Generador de una respuesta a partir de una excepción
 	 * @param ex excecpión a convertir a una respuesta REST
 	 */
 	@Override
-	public Response toResponse(SucursalLogicException ex) {
+	public Response toResponse(PacienteLogicException ex) {
 		// retorna una respuesta
 		return Response
 				.status(Response.Status.NOT_FOUND)	// estado HTTP 404

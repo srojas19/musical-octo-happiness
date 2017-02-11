@@ -1,9 +1,9 @@
 package co.edu.uniandes.rest.restaurantes.exceptions;
 
 /**
- * Representa las excepciones de la lógica de SucursalLogic 
+ * Representa las excepciones de la lógica de PacienteLogic 
  */
-public class SucursalLogicException extends Exception {
+public class PacienteLogicException extends Exception {
 
 	/**
 	 * versión usada en la serialización de la clase
@@ -13,14 +13,14 @@ public class SucursalLogicException extends Exception {
 	/**
 	 * Constructor por defecto
 	 */
-	public SucursalLogicException() {
+	public PacienteLogicException() {
 	}
 
 	/**
 	 * Constructor con un mensaje
 	 * @param message mensaje de la excepción
 	 */
-	public SucursalLogicException(String message) {
+	public PacienteLogicException(String message) {
 		super(message);
 	}
 
@@ -28,7 +28,7 @@ public class SucursalLogicException extends Exception {
 	 * Constructor con una causa
 	 * @param cause causa de la excepción. Usada para generar la traza.
 	 */
-	public SucursalLogicException(Throwable cause) {
+	public PacienteLogicException(Throwable cause) {
 		super(cause);
 	}
 
@@ -37,7 +37,7 @@ public class SucursalLogicException extends Exception {
 	 * @param message mensaje de la excepción
 	 * @param cause causa de la excepción. Usada para generar la traza.
 	 */
-	public SucursalLogicException(String message, Throwable cause) {
+	public PacienteLogicException(String message, Throwable cause) {
 		super(message, cause);
 	}
 

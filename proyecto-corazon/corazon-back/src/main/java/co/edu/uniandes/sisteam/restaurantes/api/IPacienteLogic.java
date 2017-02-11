@@ -23,16 +23,16 @@ SOFTWARE.
  */
 package co.edu.uniandes.sisteam.restaurantes.api;
 
-import co.edu.uniandes.sisteam.restaurantes.entities.SucursalEntity;
+import co.edu.uniandes.sisteam.restaurantes.entities.PacienteEntity;
 import co.edu.uniandes.sisteam.restaurantes.exceptions.BusinessLogicException;
 import java.util.List;
 
-public interface ISucursalLogic {
+public interface IPacienteLogic {
    
-    public List<SucursalEntity> getSucursales();
-    public SucursalEntity getSucursal(Long id);
-    public SucursalEntity getSucursalByName(String name) ;
-    public SucursalEntity createSucursal(SucursalEntity entity) throws BusinessLogicException; 
-    public SucursalEntity updateSucursal(SucursalEntity entity);
-    public void deleteSucursal(Long id);
+    public List<PacienteEntity> getPacientes();
+    public PacienteEntity getPaciente(Long id);
+    public PacienteEntity getPacienteByName(String name) ;
+    public PacienteEntity createPaciente(PacienteEntity entity) throws BusinessLogicException; 
+    public PacienteEntity updatePaciente(PacienteEntity entity);
+    public void deletePaciente(Long id);
 }

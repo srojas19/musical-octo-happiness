@@ -26,7 +26,7 @@ package co.edu.uniandes.sisteam.restaurantes.persistence;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import co.edu.uniandes.sisteam.restaurantes.entities.SucursalEntity;
+import co.edu.uniandes.sisteam.restaurantes.entities.PacienteEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,53 +34,53 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 @Stateless
-public class SucursalPersistence {
+public class PacientePersistence {
 
-    private static final Logger LOGGER = Logger.getLogger(SucursalPersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(PacientePersistence.class.getName());
 
     @PersistenceContext(unitName = "SisteamPU")
     protected EntityManager em;
 
-    public SucursalEntity find(Long id) {
-        LOGGER.log(Level.INFO, "Consultando sucursal con id={0}", id);
-        return em.find(SucursalEntity.class, id);
+    public PacienteEntity find(Long id) {
+        LOGGER.log(Level.INFO, "Consultando paciente con id={0}", id);
+        return em.find(PacienteEntity.class, id);
     }
 
-    public SucursalEntity findByName(String name) {
-        LOGGER.log(Level.INFO, "Consultando sucursal con name = {0}", name);
-        TypedQuery<SucursalEntity> q
-                = em.createQuery("select u from SucursalEntity u where u.name = :name", SucursalEntity.class);
+    public PacienteEntity findByName(String name) {
+        LOGGER.log(Level.INFO, "Consultando paciente con name = {0}", name);
+        TypedQuery<PacienteEntity> q
+                = em.createQuery("select u from PacienteEntity u where u.name = :name", PacienteEntity.class);
         q = q.setParameter("name", name);
 
-        List<SucursalEntity> sucursalesSimilarName = q.getResultList();
-        if (sucursalesSimilarName.isEmpty()) {
+        List<PacienteEntity> pacientesSimilarName = q.getResultList();
+        if (pacientesSimilarName.isEmpty()) {
             return null;
         } else {
-            return sucursalesSimilarName.get(0);
+            return pacientesSimilarName.get(0);
         }
     }
 
-    public List<SucursalEntity> findAll() {
-        LOGGER.info("Consultando todos las sucursales");
-        Query q = em.createQuery("select u from SucursalEntity u");
+    public List<PacienteEntity> findAll() {
+        LOGGER.info("Consultando todos las pacientes");
+        Query q = em.createQuery("select u from PacienteEntity u");
         return q.getResultList();
     }
 
-    public SucursalEntity create(SucursalEntity entity) {
-        LOGGER.info("Creando una sucursal nueva " + entity.getName());
+    public PacienteEntity create(PacienteEntity entity) {
+        LOGGER.info("Creando una paciente nueva " + entity.getName());
         em.persist(entity);
 
         return entity;
     }
 
-    public SucursalEntity update(SucursalEntity entity) {
-        LOGGER.log(Level.INFO, "Actualizando sucursal con id={0}", entity.getId());
+    public PacienteEntity update(PacienteEntity entity) {
+        LOGGER.log(Level.INFO, "Actualizando paciente con id={0}", entity.getId());
         return em.merge(entity);
     }
 
     public void delete(Long id) {
-        LOGGER.log(Level.INFO, "Borrando sucursal con id={0}", id);
-        SucursalEntity entity = em.find(SucursalEntity.class, id);
+        LOGGER.log(Level.INFO, "Borrando paciente con id={0}", id);
+        PacienteEntity entity = em.find(PacienteEntity.class, id);
         em.remove(entity);
     }
 }
