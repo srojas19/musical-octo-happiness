@@ -7,14 +7,12 @@
         
         <jta-data-source>java:app/jdbc/restaurantes</jta-data-source>
         <class>co.edu.uniandes.sisteam.restaurantes.entities.BaseEntity</class>
-        <class>co.edu.uniandes.sisteam.restaurantes.entities.ClienteEntity</class>
-        <class>co.edu.uniandes.sisteam.restaurantes.entities.DomicilioEntity</class>
-        <class>co.edu.uniandes.sisteam.restaurantes.entities.MDPEntity</class>
         <class>co.edu.uniandes.sisteam.restaurantes.entities.MesaEntity</class>
-        <class>co.edu.uniandes.sisteam.restaurantes.entities.PlatoEntity</class>
         <class>co.edu.uniandes.sisteam.restaurantes.entities.PlatoEspEntity</class>
         <class>co.edu.uniandes.sisteam.restaurantes.entities.ReservaEntity</class>
         <class>co.edu.uniandes.sisteam.restaurantes.entities.SucursalEntity</class>
+        <class>co.edu.uniandes.sisteam.restaurantes.entities.PacienteEntity</class>
+        
         <properties>
             <property name="eclipselink.logging.level" value="FINE"/>
             <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>

@@ -3,14 +3,12 @@
     <persistence-unit name="SisteamPU" transaction-type="JTA">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         
-        <class>co.edu.uniandes.sisteam.restaurantes.entities.ClienteEntity</class>
-        <class>co.edu.uniandes.sisteam.restaurantes.entities.DomicilioEntity</class>
-        <class>co.edu.uniandes.sisteam.restaurantes.entities.MDPEntity</class>
         <class>co.edu.uniandes.sisteam.restaurantes.entities.MesaEntity</class>
-        <class>co.edu.uniandes.sisteam.restaurantes.entities.PlatoEntity</class>
         <class>co.edu.uniandes.sisteam.restaurantes.entities.PlatoEspEntity</class>
         <class>co.edu.uniandes.sisteam.restaurantes.entities.ReservaEntity</class>
         <class>co.edu.uniandes.sisteam.restaurantes.entities.SucursalEntity</class>
+        <class>co.edu.uniandes.sisteam.restaurantes.entities.PacienteEntity</class>
+        
         
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <shared-cache-mode>NONE</shared-cache-mode>

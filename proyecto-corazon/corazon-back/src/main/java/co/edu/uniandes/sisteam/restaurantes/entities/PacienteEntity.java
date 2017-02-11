@@ -54,7 +54,6 @@ public class PacienteEntity extends BaseEntity implements Serializable {
    
      
     private Long idSmartphone;
-    private String name;
     private String apellido;
     private String diagnostico;
 
@@ -91,15 +90,7 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     public void setIdSmartphone(Long idSmartphone) {
         this.idSmartphone = idSmartphone;
     }
-
-    public String getNombre() {
-        return name;
-    }
-
-    public void setNombre(String name) {
-        this.name = name;
-    }
-
+    
     public String getApellido() {
         return apellido;
     }
