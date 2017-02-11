@@ -74,8 +74,8 @@ public class PacienteResource {
      *
      */
     @GET
-    public List<PacienteDTO> getPacientes() {
-
+    public List<PacienteDTO> getPacientes() { 
+        
         return listEntity2DTO(pacienteLogic.getPacientes());
     }
 
