@@ -48,7 +48,7 @@ public class PacienteDTO {
      */
     public PacienteDTO(PacienteEntity entity) {
         if (entity != null) {
-            this.id = entity.get();
+            this.id = entity.getId();
             this.idSmartphone = entity.getIdSmartphone();
             this.name = entity.getName();
             this.apellido = entity.getApellido();

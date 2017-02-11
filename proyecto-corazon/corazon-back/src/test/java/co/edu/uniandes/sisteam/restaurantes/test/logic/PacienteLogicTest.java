@@ -23,13 +23,9 @@ SOFTWARE.
  */
 package co.edu.uniandes.sisteam.restaurantes.test.logic;
 
-import co.edu.uniandes.sisteam.restaurantes.api.IPlatoEspLogic;
 import co.edu.uniandes.sisteam.restaurantes.api.IPacienteLogic;
-import co.edu.uniandes.sisteam.restaurantes.ejbs.PlatoEspLogic;
 import co.edu.uniandes.sisteam.restaurantes.ejbs.PacienteLogic;
-import co.edu.uniandes.sisteam.restaurantes.entities.PlatoEspEntity;
 import co.edu.uniandes.sisteam.restaurantes.entities.PacienteEntity;
-import co.edu.uniandes.sisteam.restaurantes.persistence.PlatoEspPersistence;
 import co.edu.uniandes.sisteam.restaurantes.persistence.PacientePersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,11 +70,7 @@ public class PacienteLogicTest {
 //    @Inject
 //    private MesaPersistence mesaPersistence;
 
-    /**
-     *
-     */
-    @Inject
-    private PlatoEspPersistence platoEspPersistence;
+   
 
     /**
      *
@@ -111,10 +103,7 @@ public class PacienteLogicTest {
 //                .addPackage(MesaEntity.class.getPackage())
 //                .addPackage(MesaLogic.class.getPackage())
 //                .addPackage(IMesaLogic.class.getPackage())
-                .addPackage(PlatoEspPersistence.class.getPackage())
-                .addPackage(PlatoEspEntity.class.getPackage())
-                .addPackage(PlatoEspLogic.class.getPackage())
-                .addPackage(IPlatoEspLogic.class.getPackage())
+                
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -147,8 +136,7 @@ public class PacienteLogicTest {
      *
      */
     private void clearData() {
-        em.createQuery("delete from PlatoEspEntity").executeUpdate();
-        em.createQuery("delete from MesaEntity").executeUpdate();
+       
         em.createQuery("delete from PacienteEntity").executeUpdate();
     }
 
