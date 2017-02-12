@@ -7,7 +7,10 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     
-    <modules></modules>
+    <modules>
+        <module>corazon-back</module>
+        <module>corazon-web</module>
+    </modules>
 
 	
     <properties>
