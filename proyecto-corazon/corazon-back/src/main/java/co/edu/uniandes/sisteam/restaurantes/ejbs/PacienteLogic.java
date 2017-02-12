@@ -49,7 +49,7 @@ public class PacienteLogic implements IPacienteLogic {
     @Override
     public PacienteEntity createPaciente(PacienteEntity entity) throws BusinessLogicException 
     {
-        PacienteEntity alreadyExist = getPacienteByName(entity.getName());
+        PacienteEntity alreadyExist = getPacienteByCedula(entity.getCedula());
         if (alreadyExist != null) {
             throw new BusinessLogicException("Ya existe una paciente con ese nombre");
         } else {
@@ -82,8 +82,8 @@ public class PacienteLogic implements IPacienteLogic {
     }
 
     @Override
-    public PacienteEntity getPacienteByName(String name) {
-        return persistence.findByName(name);
+    public PacienteEntity getPacienteByCedula(int cedula) {
+        return persistence.findByCedula(cedula);
     }
 
 }

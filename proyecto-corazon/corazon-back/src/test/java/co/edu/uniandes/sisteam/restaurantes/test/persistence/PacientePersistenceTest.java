@@ -102,8 +102,6 @@ public class PacientePersistenceTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from PlatoEspEntity").executeUpdate();
-        em.createQuery("delete from MesaEntity").executeUpdate();
         em.createQuery("delete from PacienteEntity").executeUpdate();
     }
 
@@ -134,7 +132,7 @@ public class PacientePersistenceTest {
         Assert.assertNotNull(result);
         PacienteEntity entity = em.find(PacienteEntity.class, result.getId());
         Assert.assertNotNull(entity);
-        Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getNombres(), entity.getNombres());
     }
 
     /**
@@ -170,26 +168,26 @@ public class PacientePersistenceTest {
         PacienteEntity entity = data.get(0);
         PacienteEntity newEntity = pacientePersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
+        Assert.assertEquals(entity.getNombres(), newEntity.getNombres());
     }
 
    /**
      * Prueba para consultar una Paciente que existe.
      */
     @Test
-    public void getPacienteByNameTest1() {
+    public void getPacienteByCedualTest1() {
         PacienteEntity entity = data.get(0);
-        PacienteEntity newEntity = pacientePersistence.findByName(entity.getName());
+        PacienteEntity newEntity = pacientePersistence.findByCedula(entity.getCedula());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
+        Assert.assertEquals(entity.getCedula(), newEntity.getCedula());
     }
    /**
      * Prueba para consultar una Paciente que no existe.
      */
     @Test
-    public void getPacienteByNameTest2() {
+    public void getPacienteByCedulaTest2() {
         
-        PacienteEntity newEntity = pacientePersistence.findByName("");
+        PacienteEntity newEntity = pacientePersistence.findByCedula(-1);
         Assert.assertNull(newEntity);
      
     }
@@ -222,6 +220,6 @@ public class PacientePersistenceTest {
 
         PacienteEntity resp = em.find(PacienteEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getName(), resp.getName());
+        Assert.assertEquals(newEntity.getNombres(), resp.getNombres());
     }
 }

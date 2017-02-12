@@ -171,7 +171,7 @@ public class PacienteLogicTest {
         
         PacienteEntity entity = em.find(PacienteEntity.class, result.getId());
         
-        Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getNombres(), entity.getNombres());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         
         
@@ -208,7 +208,7 @@ public class PacienteLogicTest {
         PacienteEntity entity = data.get(0);
         PacienteEntity resultEntity = pacienteLogic.getPaciente(entity.getId());
         Assert.assertNotNull(resultEntity);
-        Assert.assertEquals(entity.getName(), resultEntity.getName());
+        Assert.assertEquals(entity.getNombres(), resultEntity.getNombres());
         Assert.assertEquals(entity.getId(), resultEntity.getId());
     }
 
@@ -241,7 +241,7 @@ public class PacienteLogicTest {
 
         PacienteEntity resp = em.find(PacienteEntity.class, entity.getId());
 
-        Assert.assertEquals(pojoEntity.getName(), resp.getName());
+        Assert.assertEquals(pojoEntity.getNombres(), resp.getNombres());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
     }
 }

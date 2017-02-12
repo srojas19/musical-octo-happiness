@@ -35,9 +35,9 @@ public class PacienteLogicMock {
 
         if (pacientes == null) {
             pacientes = new ArrayList<>();
-            pacientes.add(new PacienteDTO(1L, 1L, "Sebastian", "Sanchez", "isquemia"));
-            pacientes.add(new PacienteDTO(2L, 2L, "Juan", "Barragan", "colesterol alto"));
-            pacientes.add(new PacienteDTO(3L, 3L, "Santiago", "Rojas", "paro cardiaco"));
+            pacientes.add(new PacienteDTO(1L, 1, "Sebastian", "Sanchez Galiano", 60, 'M'));
+           pacientes.add(new PacienteDTO(2L, 2, "Juan", "Hernandez Chavez", 70, 'M'));
+           pacientes.add(new PacienteDTO(3L, 3, "Maria", "Villareal Atuesta", 60, 'F'));
         }
         // indica que se muestren todos los mensajes
         logger.setLevel(Level.INFO);
@@ -159,10 +159,13 @@ public List<PacienteDTO> getPacientes() throws PacienteLogicException
                     // actualiza la paciente
                     logger.info("actualizando paciente " + PacienteActualizada);
                     paciente.setId(PacienteActualizada.getId());
-                    paciente.setIdSmartphone(PacienteActualizada.getIdSmartphone());
-                    paciente.setName(PacienteActualizada.getName());
-                    paciente.setApellido(PacienteActualizada.getApellido());
-                    paciente.setDiagnostico(PacienteActualizada.getDiagnostico());
+                    paciente.setCedula(PacienteActualizada.getCedula());
+                    paciente.setNombres(PacienteActualizada.getNombres());
+                    paciente.setApellidos(PacienteActualizada.getApellidos());
+                    paciente.setEdad(PacienteActualizada.getEdad());
+                    paciente.setSexo(PacienteActualizada.getSexo());
+
+                  
 
 
                     logger.info("Modificando Paciente " + paciente);

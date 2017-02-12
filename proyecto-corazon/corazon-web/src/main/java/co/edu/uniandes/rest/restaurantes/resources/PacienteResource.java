@@ -89,23 +89,24 @@ public class PacienteResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public PacienteDTO getPaciente(@PathParam("id") Long id) {
+    public PacienteDTO getPaciente(@PathParam("id") Long id) 
+    {
         return new PacienteDTO(pacienteLogic.getPaciente(id));
     }
 
-    /**
-     * Obtiene los datos de una instancia de Paciente a partir de su ID
-     *
-     * @param id Identificador de la instancia a consultar
-     * @return Instancia de PacienteDTO con los datos del Paciente
-     * consultado
-     *
-     */
-    @GET
-    @Path("/name")
-    public PacienteDTO getPacienteByName(@QueryParam("name") String name) {
-        return new PacienteDTO(pacienteLogic.getPacienteByName(name));
-    }
+//    /**
+//     * Obtiene los datos de una instancia de Paciente a partir de su ID
+//     *
+//     * @param id Identificador de la instancia a consultar
+//     * @return Instancia de PacienteDTO con los datos del Paciente
+//     * consultado
+//     *
+//     */
+//    @GET
+//    @Path("{cedula: \\d+}")
+//    public PacienteDTO getPacienteByCedula(@QueryParam("cedula") int cedula) {
+//        return new PacienteDTO(pacienteLogic.getPacienteByCedula(cedula));
+//    }
 
     /**
      * Se encarga de crear un Paciente en la base de datos

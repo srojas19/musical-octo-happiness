@@ -18,10 +18,11 @@ import java.util.List;
 public class PacienteDTO {
 
     private Long id;   
-    private Long idSmartphone;
-    private String name;
-    private String apellido;
-    private String diagnostico;
+    private int cedula;
+    private String nombres;
+    private String apellidos;
+    private int edad;
+    private char sexo;
 
     /**
      * Constructor por defecto
@@ -29,15 +30,15 @@ public class PacienteDTO {
     public PacienteDTO() {
     }
 
-    public PacienteDTO(Long id, Long idSmartphone, String name, String apellido, String diagnostico) {
+    public PacienteDTO(Long id, int cedula, String nombres, String apellidos, int edad, char sexo) {
         this.id = id;
-        this.idSmartphone = idSmartphone;
-        this.name = name;
-        this.apellido = apellido;
-        this.diagnostico = diagnostico;
+        this.cedula = cedula;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.edad = edad;
+        this.sexo = sexo;
     }
-    
-    
+  
 
     /**
      * Crea un objeto PacienteDTO a partir de un objeto PacienteEntity.
@@ -49,10 +50,12 @@ public class PacienteDTO {
     public PacienteDTO(PacienteEntity entity) {
         if (entity != null) {
             this.id = entity.getId();
-            this.idSmartphone = entity.getIdSmartphone();
-            this.name = entity.getName();
-            this.apellido = entity.getApellido();
-            this.diagnostico = entity.getDiagnostico();
+            this.cedula = entity.getCedula();
+            this.nombres = entity.getNombres();
+            this.apellidos = entity.getApellidos();
+            this.edad = entity.getEdad();
+            this.sexo = entity.getSexo();
+           
         }
     }
 
@@ -64,13 +67,28 @@ public class PacienteDTO {
      */
     public PacienteEntity toEntity() {
         PacienteEntity entity = new PacienteEntity();
+        
         entity.setId(this.getId());
-        entity.setIdSmartphone(this.getIdSmartphone());
-        entity.setName(this.getName());
-        entity.setApellido(this.getApellido());
-        entity.setDiagnostico(this.getDiagnostico());
+        entity.setCedula(this.getCedula());
+        entity.setNombres(this.getNombres());
+        entity.setApellidos(this.getApellidos());
+        entity.setEdad(this.getEdad());
+        entity.setSexo(this.getSexo());
         
         return entity;
+    }
+
+    
+    
+    /**
+     * Convierte el objeto a una cadena
+     */
+    @Override
+    public String toString() {
+        return "{ id : " + getId()
+                + ", names : \"" + getNombres()
+                + "\", apellidos : \"" + getApellidos()
+                + "\" }";
     }
 
     public Long getId() {
@@ -81,47 +99,44 @@ public class PacienteDTO {
         this.id = id;
     }
 
-    public Long getIdSmartphone() {
-        return idSmartphone;
+    public int getCedula() {
+        return cedula;
     }
 
-    public void setIdSmartphone(Long idSmartphone) {
-        this.idSmartphone = idSmartphone;
+    public void setCedula(int cedula) {
+        this.cedula = cedula;
     }
 
-    public String getName() {
-        return name;
+    public String getNombres() {
+        return nombres;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
-    public String getDiagnostico() {
-        return diagnostico;
+    public int getEdad() {
+        return edad;
     }
 
-    public void setDiagnostico(String diagnostico) {
-        this.diagnostico = diagnostico;
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
-    
-    /**
-     * Convierte el objeto a una cadena
-     */
-    @Override
-    public String toString() {
-        return "{ id : " + getId()
-                + ", name : \"" + getName()
-                + "\", apellido : \"" + getApellido()
-                + "\" }";
+
+    public char getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(char sexo) {
+        this.sexo = sexo;
     }
 
 }

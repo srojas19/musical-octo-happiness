@@ -31,7 +31,7 @@ public interface IPacienteLogic {
    
     public List<PacienteEntity> getPacientes();
     public PacienteEntity getPaciente(Long id);
-    public PacienteEntity getPacienteByName(String name) ;
+    public PacienteEntity getPacienteByCedula(int cedula) ;
     public PacienteEntity createPaciente(PacienteEntity entity) throws BusinessLogicException; 
     public PacienteEntity updatePaciente(PacienteEntity entity);
     public void deletePaciente(Long id);

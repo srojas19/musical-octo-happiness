@@ -46,28 +46,28 @@ public class PacientePersistence {
         return em.find(PacienteEntity.class, id);
     }
 
-    public PacienteEntity findByName(String name) {
-        LOGGER.log(Level.INFO, "Consultando paciente con name = {0}", name);
+    public PacienteEntity findByCedula(int cedula) {
+        LOGGER.log(Level.INFO, "Consultando paciente con cedula = {0}", cedula);
         TypedQuery<PacienteEntity> q
-                = em.createQuery("select u from PacienteEntity u where u.name = :name", PacienteEntity.class);
-        q = q.setParameter("name", name);
+                = em.createQuery("select u from PacienteEntity u where u.cedula = :cedula", PacienteEntity.class);
+        q = q.setParameter("cedula", cedula);
 
-        List<PacienteEntity> pacientesSimilarName = q.getResultList();
-        if (pacientesSimilarName.isEmpty()) {
+        List<PacienteEntity> pacientesSimilarCedula = q.getResultList();
+        if (pacientesSimilarCedula.isEmpty()) {
             return null;
         } else {
-            return pacientesSimilarName.get(0);
+            return pacientesSimilarCedula.get(0);
         }
     }
 
     public List<PacienteEntity> findAll() {
-        LOGGER.info("Consultando todos las pacientes");
+        LOGGER.info("Consultando todos los pacientes");
         Query q = em.createQuery("select u from PacienteEntity u");
         return q.getResultList();
     }
 
     public PacienteEntity create(PacienteEntity entity) {
-        LOGGER.info("Creando una paciente nueva " + entity.getName());
+        LOGGER.info("Creando un paciente nuevo " + entity.getNombres());
         em.persist(entity);
 
         return entity;

@@ -51,11 +51,11 @@ public class PacienteEntity extends BaseEntity implements Serializable {
 //    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<ReservaEntity> reservas = new ArrayList<>();
 
-   
-     
-    private Long idSmartphone;
-    private String apellido;
-    private String diagnostico;
+    private int cedula;
+    private String nombres; 
+    private String apellidos;
+    private int edad;
+    private char sexo;
 
 //    /**
 //     * Obtiene la colección de mesa.
@@ -80,34 +80,45 @@ public class PacienteEntity extends BaseEntity implements Serializable {
 //    public void add(MesaEntity mesa) {
 //        this.mesas.add(mesa);
 //    }
-    
-    
 
-    public Long getIdSmartphone() {
-        return idSmartphone;
+     public int getCedula() {
+        return cedula;
     }
 
-    public void setIdSmartphone(Long idSmartphone) {
-        this.idSmartphone = idSmartphone;
+    public void setCedula(int cedula) {
+        this.cedula = cedula;
     }
     
-    public String getApellido() {
-        return apellido;
+    public String getNombres() {
+        return nombres;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
     }
 
-    public String getDiagnostico() {
-        return diagnostico;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setDiagnostico(String diagnostico) {
-        this.diagnostico = diagnostico;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
-   
-    
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public char getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(char sexo) {
+        this.sexo = sexo;
+    }
 
 }
