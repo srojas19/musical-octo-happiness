@@ -3,6 +3,7 @@ package co.edu.uniandes.sisteam.corazon.test.logic;
 import co.edu.uniandes.sisteam.corazon.api.IPacienteLogic;
 import co.edu.uniandes.sisteam.corazon.ejbs.PacienteLogic;
 import co.edu.uniandes.sisteam.corazon.entities.PacienteEntity;
+import co.edu.uniandes.sisteam.corazon.exceptions.BusinessLogicException;
 import co.edu.uniandes.sisteam.corazon.persistence.PacientePersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +70,7 @@ public class PacienteLogicTest {
                 .addPackage(PacienteLogic.class.getPackage())
                 .addPackage(IPacienteLogic.class.getPackage())
                 .addPackage(PacientePersistence.class.getPackage())
+                .addPackage(BusinessLogicException.class.getPackage())
 //                .addPackage(MesaPersistence.class.getPackage())
 //                .addPackage(MesaEntity.class.getPackage())
 //                .addPackage(MesaLogic.class.getPackage())
@@ -121,8 +123,6 @@ public class PacienteLogicTest {
         for (int i = 0; i < 3; i++) 
         {
             PacienteEntity entity = factory.manufacturePojo(PacienteEntity.class);
-            
-
             em.persist(entity);
             data.add(entity);
         }
@@ -132,6 +132,7 @@ public class PacienteLogicTest {
      * Prueba para crear un Paciente
      *
      *
+     * @throws javax.transaction.NotSupportedException
      */
     @Test
     public void createPacienteTest() throws NotSupportedException, Exception {
