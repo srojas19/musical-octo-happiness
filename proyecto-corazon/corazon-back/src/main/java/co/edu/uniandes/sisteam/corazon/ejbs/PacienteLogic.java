@@ -51,7 +51,7 @@ public class PacienteLogic implements IPacienteLogic {
     {
         PacienteEntity alreadyExist = getPacienteByCedula(entity.getCedula());
         if (alreadyExist != null) {
-            throw new BusinessLogicException("Ya existe una paciente con ese nombre");
+            throw new BusinessLogicException("Ya existe una paciente con ese numero de cedula");
         } else {
             persistence.create(entity);
         }
