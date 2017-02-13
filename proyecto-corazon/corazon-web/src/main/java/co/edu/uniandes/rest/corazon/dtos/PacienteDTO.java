@@ -6,7 +6,7 @@
 package co.edu.uniandes.rest.corazon.dtos;
 
 import co.edu.uniandes.sisteam.corazon.entities.PacienteEntity;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Objeto de transferencia de datos de Paciente.

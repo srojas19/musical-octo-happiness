@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 import co.edu.uniandes.rest.corazon.dtos.PacienteDTO;
 import co.edu.uniandes.rest.corazon.exceptions.PacienteLogicException;
 import co.edu.uniandes.rest.corazon.exceptions.PacienteLogicException;
-import java.util.Date;
+import java.sql.Date;
 
 /*
  * pacienteLogicMock
