@@ -6,6 +6,7 @@
 package co.edu.uniandes.rest.corazon.dtos;
 
 import co.edu.uniandes.sisteam.corazon.entities.PacienteEntity;
+import java.util.Date;
 
 /**
  * Objeto de transferencia de datos de Paciente.
@@ -20,6 +21,11 @@ public class PacienteDTO {
     private String apellidos;
     private int edad;
     private char sexo;
+    
+    private String direccionResidencia;
+    private String entidadPrestadoraSalud;
+    private Date fechaNacimiento;
+    private String tipoSanguineo;
 
     /**
      * Constructor por defecto
@@ -27,16 +33,20 @@ public class PacienteDTO {
     public PacienteDTO() {
     }
 
-    public PacienteDTO(Long id, int cedula, String nombres, String apellidos, int edad, char sexo) {
+    public PacienteDTO(Long id, int cedula, String nombres, String apellidos, int edad, char sexo, String direccionResidencia, String entidadPrestadoraSalud, Date fechaNacimiento, String tipoSanguineo) {
         this.id = id;
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.edad = edad;
         this.sexo = sexo;
+        
+        this.direccionResidencia = direccionResidencia;
+        this.entidadPrestadoraSalud = entidadPrestadoraSalud;
+        this.fechaNacimiento = fechaNacimiento;
+        this.tipoSanguineo = tipoSanguineo;
     }
   
-
     /**
      * Crea un objeto PacienteDTO a partir de un objeto PacienteEntity.
      *
@@ -52,7 +62,12 @@ public class PacienteDTO {
             this.apellidos = entity.getApellidos();
             this.edad = entity.getEdad();
             this.sexo = entity.getSexo();
-           
+            
+            this.direccionResidencia = entity.getDireccionResidencia();
+            this.entidadPrestadoraSalud = entity.getEntidadPrestadoraSalud();
+            this.fechaNacimiento = entity.getFechaNacimiento();
+            this.tipoSanguineo = entity.getTipoSanguineo();
+
         }
     }
 
@@ -71,6 +86,12 @@ public class PacienteDTO {
         entity.setApellidos(this.getApellidos());
         entity.setEdad(this.getEdad());
         entity.setSexo(this.getSexo());
+        
+        
+        entity.setDireccionResidencia(this.direccionResidencia);
+        entity.setEntidadPrestadoraSalud(this.entidadPrestadoraSalud);
+        entity.setFechaNacimiento(this.fechaNacimiento);
+        entity.setTipoSanguineo(this.tipoSanguineo);
         
         return entity;
     }
@@ -135,5 +156,39 @@ public class PacienteDTO {
     public void setSexo(char sexo) {
         this.sexo = sexo;
     }
+
+    public String getDireccionResidencia() {
+        return direccionResidencia;
+    }
+
+    public void setDireccionResidencia(String direccionResidencia) {
+        this.direccionResidencia = direccionResidencia;
+    }
+
+    public String getEntidadPrestadoraSalud() {
+        return entidadPrestadoraSalud;
+    }
+
+    public void setEntidadPrestadoraSalud(String entidadPrestadoraSalud) {
+        this.entidadPrestadoraSalud = entidadPrestadoraSalud;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getTipoSanguineo() {
+        return tipoSanguineo;
+    }
+
+    public void setTipoSanguineo(String tipoSanguineo) {
+        this.tipoSanguineo = tipoSanguineo;
+    }
+    
+    
 
 }
