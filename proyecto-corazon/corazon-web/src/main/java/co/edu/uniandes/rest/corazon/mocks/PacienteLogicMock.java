@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import co.edu.uniandes.rest.corazon.dtos.PacienteDTO;
 import co.edu.uniandes.rest.corazon.exceptions.PacienteLogicException;
 import co.edu.uniandes.rest.corazon.exceptions.PacienteLogicException;
+import java.sql.Date;
 
 /*
  * pacienteLogicMock
@@ -35,9 +36,15 @@ public class PacienteLogicMock {
 
         if (pacientes == null) {
             pacientes = new ArrayList<>();
-            pacientes.add(new PacienteDTO(1L, 1, "Sebastian", "Sanchez Galiano", 60, 'M'));
-           pacientes.add(new PacienteDTO(2L, 2, "Juan", "Hernandez Chavez", 70, 'M'));
-           pacientes.add(new PacienteDTO(3L, 3, "Maria", "Villareal Atuesta", 60, 'F'));
+            pacientes.add(new PacienteDTO(1L, 1, "Sebastian", "Sanchez Galiano", 60, 'M',
+                    "Cra 7C-bis","Colsanitas", new Date(01/03/1948), "A+"));
+            
+           pacientes.add(new PacienteDTO(2L, 2, "Juan", "Hernandez Chavez", 70, 'M',
+                    "Calle50","Colsanitas", new Date(04/03/1956), "O+"));
+                   
+           pacientes.add(new PacienteDTO(3L, 3, "Maria", "Villareal Atuesta", 60, 'F',
+                    "Cra9","Famisanar", new Date(04/05/1943), "B+"));
+                   
         }
         // indica que se muestren todos los mensajes
         logger.setLevel(Level.INFO);

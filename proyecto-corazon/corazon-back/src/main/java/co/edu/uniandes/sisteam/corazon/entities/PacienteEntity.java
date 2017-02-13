@@ -27,6 +27,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
@@ -56,6 +57,11 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     private String apellidos;
     private int edad;
     private char sexo;
+    private String direccionResidencia;
+    private String entidadPrestadoraSalud;
+    private Date fechaNacimiento;
+    private String tipoSanguineo;
+    
 
 //    /**
 //     * Obtiene la colección de mesa.
@@ -120,5 +126,41 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     public void setSexo(char sexo) {
         this.sexo = sexo;
     }
+
+    public String getDireccionResidencia() {
+        return direccionResidencia;
+    }
+
+    public void setDireccionResidencia(String direccionResidencia) {
+        this.direccionResidencia = direccionResidencia;
+    }
+
+    public String getEntidadPrestadoraSalud() {
+        return entidadPrestadoraSalud;
+    }
+
+    public void setEntidadPrestadoraSalud(String entidadPrestadoraSalud) {
+        this.entidadPrestadoraSalud = entidadPrestadoraSalud;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getTipoSanguineo() {
+        return tipoSanguineo;
+    }
+
+    public void setTipoSanguineo(String tipoSanguineo) {
+        this.tipoSanguineo = tipoSanguineo;
+    }
+
+    
+    
+    
 
 }
