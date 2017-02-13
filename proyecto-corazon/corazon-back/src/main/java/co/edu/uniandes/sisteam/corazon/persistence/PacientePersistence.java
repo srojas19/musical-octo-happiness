@@ -61,7 +61,7 @@ public class PacientePersistence {
     }
 
     public List<PacienteEntity> findAll() {
-        LOGGER.info("Consultando todos los pacientes");
+    //    LOGGER.info("Consultando todos los pacientes");
         Query q = em.createQuery("select u from PacienteEntity u");
         return q.getResultList();
     }
