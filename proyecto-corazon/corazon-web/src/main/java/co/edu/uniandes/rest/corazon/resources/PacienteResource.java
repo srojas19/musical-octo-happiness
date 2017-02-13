@@ -41,6 +41,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.ws.rs.QueryParam;
 
@@ -113,11 +115,20 @@ public class PacienteResource {
      *
      * @param dto Objeto de PacienteDTO con los datos nuevos
      * @return Objeto de PacienteDTOcon los datos nuevos y su ID
+     * @throws co.edu.uniandes.sisteam.corazon.exceptions.BusinessLogicException
      *
      */
     @POST
-    public PacienteDTO createPaciente(PacienteDTO dto) throws BusinessLogicException {
-        return new PacienteDTO(pacienteLogic.createPaciente(dto.toEntity()));
+    public PacienteDTO createPaciente(PacienteDTO dto) throws PacienteLogicException  {
+        System.out.println("dto es "+ dto.toEntity());
+        PacienteDTO respuesta= dto;
+        try {
+            respuesta = new PacienteDTO(pacienteLogic.createPaciente(dto.toEntity()));
+        } catch (BusinessLogicException ex) {
+            throw new PacienteLogicException(ex.getMessage());
+        }
+        
+        return respuesta;
     }
 
     /**
