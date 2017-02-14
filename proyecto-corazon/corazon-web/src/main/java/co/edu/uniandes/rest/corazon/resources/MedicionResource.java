@@ -26,6 +26,7 @@ SOFTWARE.
 
 
 import co.edu.uniandes.rest.corazon.dtos.MedicionDTO;
+import co.edu.uniandes.rest.corazon.dtos.MedicionDetailDTO;
 import co.edu.uniandes.rest.corazon.dtos.PacienteDTO;
 import co.edu.uniandes.sisteam.corazon.api.IMedicionLogic;
 import co.edu.uniandes.sisteam.corazon.api.IPacienteLogic;
@@ -69,10 +70,10 @@ public class MedicionResource {
      * @return Lista de MedicionDTO convertida
      *
      */
-    private List<MedicionDTO> listEntity2DTO(List<MedicionEntity> entityList) {
-        List<MedicionDTO> list = new ArrayList<>();
+    private List<MedicionDetailDTO> listEntity2DTO(List<MedicionEntity> entityList) {
+        List<MedicionDetailDTO> list = new ArrayList<>();
         for (MedicionEntity entity : entityList) {
-            list.add(new MedicionDTO(entity));
+            list.add(new MedicionDetailDTO(entity));
         }
         return list;
     }
@@ -94,7 +95,7 @@ public class MedicionResource {
      *
      */
     @GET
-    public List<MedicionDTO> getMediciones() {
+    public List<MedicionDetailDTO> getMediciones() {
         existsPaciente(pacienteId);
         
         List<MedicionEntity> mediciones = medicionLogic.getMediciones(pacienteId);
@@ -113,13 +114,13 @@ public class MedicionResource {
      */
     @GET
     @Path("{medicionId: \\d+}")
-    public MedicionDTO getMedicion(@PathParam("medicionId") Long medicionId) {
+    public MedicionDetailDTO getMedicion(@PathParam("medicionId") Long medicionId) {
         existsPaciente(pacienteId);
         MedicionEntity entity = medicionLogic.getMedicion(medicionId);
         if (entity.getPaciente() != null && !pacienteId.equals(entity.getPaciente().getId())) {
             throw new WebApplicationException(404);
         }
-        return new MedicionDTO(entity);
+        return new MedicionDetailDTO(entity);
     }
 
     /**
@@ -130,9 +131,9 @@ public class MedicionResource {
      *
      */
     @POST
-    public MedicionDTO createMedicion(MedicionDTO dto) throws BusinessLogicException {
+    public MedicionDetailDTO createMedicion(MedicionDetailDTO dto) throws BusinessLogicException {
         existsPaciente(pacienteId);
-        return new MedicionDTO(medicionLogic.createMedicion(pacienteId, dto.toEntity()));
+        return new MedicionDetailDTO(medicionLogic.createMedicion(pacienteId, dto.toEntity()));
     }
 
     /**
@@ -146,12 +147,12 @@ public class MedicionResource {
      */
     @PUT
     @Path("{medicionId: \\d+}")
-    public MedicionDTO updateMedicion(@PathParam("medicionId") Long medicionId, MedicionDTO dto) {
+    public MedicionDetailDTO updateMedicion(@PathParam("medicionId") Long medicionId, MedicionDetailDTO dto) {
         existsPaciente(pacienteId);
         MedicionEntity entity = dto.toEntity();
         entity.setId(medicionId);
         MedicionEntity oldEntity = medicionLogic.getMedicion(medicionId);
-        return new MedicionDTO(medicionLogic.updateMedicion(pacienteId, entity));
+        return new MedicionDetailDTO(medicionLogic.updateMedicion(pacienteId, entity));
     }
 
     /**

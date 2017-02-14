@@ -39,7 +39,7 @@ public class MedicionPersistence {
 
     private static final Logger LOGGER = Logger.getLogger(MedicionPersistence.class.getName());
 
-    @PersistenceContext(unitName = "SisteamPU")
+    @PersistenceContext(unitName = "SisteamCorazonPU")
     protected EntityManager em;
 
     public MedicionEntity find(Long id) {
