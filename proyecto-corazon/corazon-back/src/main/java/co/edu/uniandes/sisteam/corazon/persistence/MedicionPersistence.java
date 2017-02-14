@@ -1,3 +1,5 @@
+package co.edu.uniandes.sisteam.corazon.persistence;
+
 /*
 The MIT License (MIT)
 
@@ -21,13 +23,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-package co.edu.uniandes.sisteam.corazon.persistence;
 
+import co.edu.uniandes.sisteam.corazon.entities.MedicionEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import co.edu.uniandes.sisteam.corazon.entities.MedicionEntity;
-import java.sql.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,11 +46,11 @@ public class MedicionPersistence {
         LOGGER.log(Level.INFO, "Consultando medicion con id={0}", id);
         return em.find(MedicionEntity.class, id);
     }
-    
-    public MedicionEntity findByFecha(Long pacienteId, Date medicionFecha) {
-        TypedQuery q = em.createQuery("select d from MedicionEntity d  where d.paciente.id = :pacienteId and d.fecha = :medicionFecha", MedicionEntity.class);
-        q = q.setParameter("pacienteId", pacienteId);
-        q = q.setParameter("medicionFecha", medicionFecha);
+
+    public MedicionEntity findByName(Long sucursalId, String medicionName) {
+        TypedQuery q = em.createQuery("select d from MedicionEntity d  where d.sucursal.id = :sucursalId and d.name = :medicionName", MedicionEntity.class);
+        q = q.setParameter("sucursalId", sucursalId);
+        q = q.setParameter("medicionName", medicionName);
 
         List<MedicionEntity> medicionesSimilarName = q.getResultList();
         if (medicionesSimilarName.isEmpty()) {
@@ -67,10 +67,10 @@ public class MedicionPersistence {
         return q.getResultList();
     }
 
-    public List<MedicionEntity> findAllInPaciente(Long pacienteId) {
-        LOGGER.log(Level.INFO, "Consultando todas las mediciones de la paciente id={0}", pacienteId);
-        TypedQuery q = em.createQuery("select d from MedicionEntity d  where d.paciente.id = :pacienteId", MedicionEntity.class);
-        q = q.setParameter("pacienteId", pacienteId);
+    public List<MedicionEntity> findAllInSucursal(Long sucursalId) {
+        LOGGER.log(Level.INFO, "Consultando todas las mediciones de la sucursal id={0}", sucursalId);
+        TypedQuery q = em.createQuery("select d from MedicionEntity d  where d.sucursal.id = :sucursalId", MedicionEntity.class);
+        q = q.setParameter("sucursalId", sucursalId);
         return q.getResultList();
     }
 
