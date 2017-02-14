@@ -42,7 +42,6 @@ public class MedicionEntity extends BaseEntity implements Serializable {
     @ManyToOne
     private PacienteEntity paciente;
  
-    private Long id;
     private String dictamen;
     private Date fecha;
     private Double frecuenciaCardiaca;
@@ -68,14 +67,6 @@ public class MedicionEntity extends BaseEntity implements Serializable {
      */
     public void setPaciente(PacienteEntity paciente) {
         this.paciente = paciente;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getDictamen() {
