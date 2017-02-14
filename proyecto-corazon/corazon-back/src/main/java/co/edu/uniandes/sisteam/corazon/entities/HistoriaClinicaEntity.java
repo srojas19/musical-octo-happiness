@@ -63,5 +63,16 @@ public class HistoriaClinicaEntity extends BaseEntity implements Serializable {
         this.tratamientos = tratamientos;
     }
     
+    public void addDiagnostico(DiagnosticoEntity diagnostico){
+        this.diagnosticos.add(diagnostico);
+    }
+    
+    public void addTratamiento(TratamientoEntity tratamiento){
+        this.tratamientos.add(tratamiento);
+    }
+    
+    public void addExamen(ExamenEntity examen){
+        this.examenes.add(examen);
+    }
     
 }
