@@ -5,10 +5,47 @@
  */
 package co.edu.uniandes.sisteam.corazon.entities;
 
+import java.io.Serializable;
+import java.sql.Date;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+
 /**
  *
  * @author BarraganJeronimo
  */
-class TratamientoEntity {
+@Entity
+public class TratamientoEntity extends BaseEntity implements Serializable {
+    
+    private Date fecha;
+     
+    private String descripcion;
+    
+    @ManyToOne
+    private HistoriaClinicaEntity historiaClinica;
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public HistoriaClinicaEntity getHistoriaClinica() {
+        return historiaClinica;
+    }
+
+    public void setHistoriaClinica(HistoriaClinicaEntity historiaClinica) {
+        this.historiaClinica = historiaClinica;
+    }
     
 }
