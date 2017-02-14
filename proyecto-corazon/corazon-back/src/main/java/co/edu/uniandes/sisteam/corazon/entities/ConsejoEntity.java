@@ -18,7 +18,7 @@ import javax.persistence.Temporal;
 @Entity
 public class ConsejoEntity extends BaseEntity implements Serializable {
     
-    @Temporal(javax.persistence.TemporalType.DATE)
+    //@Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
 
     private String tipo;

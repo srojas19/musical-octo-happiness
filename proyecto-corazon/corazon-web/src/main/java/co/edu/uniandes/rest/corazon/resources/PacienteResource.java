@@ -24,6 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.rest.corazon.resources;
 
 import co.edu.uniandes.rest.corazon.dtos.PacienteDTO;
+import co.edu.uniandes.rest.corazon.dtos.PacienteDetailDTO;
 import co.edu.uniandes.rest.corazon.exceptions.PacienteLogicException;
 import co.edu.uniandes.sisteam.corazon.api.IPacienteLogic;
 import co.edu.uniandes.sisteam.corazon.entities.PacienteEntity;
@@ -91,9 +92,9 @@ public class PacienteResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public PacienteDTO getPaciente(@PathParam("id") Long id) 
+    public PacienteDetailDTO getPaciente(@PathParam("id") Long id) 
     {
-        return new PacienteDTO(pacienteLogic.getPaciente(id));
+        return new PacienteDetailDTO(pacienteLogic.getPaciente(id));
     }
 
 //    /**
@@ -119,11 +120,11 @@ public class PacienteResource {
      *
      */
     @POST
-    public PacienteDTO createPaciente(PacienteDTO dto) throws PacienteLogicException  {
+    public PacienteDetailDTO createPaciente(PacienteDetailDTO dto) throws PacienteLogicException  {
         System.out.println("dto es "+ dto.toEntity());
-        PacienteDTO respuesta= dto;
+        PacienteDetailDTO respuesta= dto;
         try {
-            respuesta = new PacienteDTO(pacienteLogic.createPaciente(dto.toEntity()));
+            respuesta = new PacienteDetailDTO(pacienteLogic.createPaciente(dto.toEntity()));
         } catch (BusinessLogicException ex) {
             throw new PacienteLogicException(ex.getMessage());
         }
@@ -141,10 +142,10 @@ public class PacienteResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public PacienteDTO updatePaciente(@PathParam("id") Long id, PacienteDTO dto) {
+    public PacienteDetailDTO updatePaciente(@PathParam("id") Long id, PacienteDetailDTO dto) {
         PacienteEntity entity = dto.toEntity();
         entity.setId(id);
-        return new PacienteDTO(pacienteLogic.updatePaciente(entity));
+        return new PacienteDetailDTO(pacienteLogic.updatePaciente(entity));
     }
 
     /**

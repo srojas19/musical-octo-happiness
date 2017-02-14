@@ -3,7 +3,7 @@ package co.edu.uniandes.rest.corazon.exceptions;
 /**
  * Representa las excepciones de la lógica de CityLogic 
  */
-public class MesaLogicException extends Exception {
+public class MedicionLogicException extends Exception {
 
 	/**
 	 * versión usada en la serialización de la clase
@@ -13,14 +13,14 @@ public class MesaLogicException extends Exception {
 	/**
 	 * Constructor por defecto
 	 */
-	public MesaLogicException() {
+	public MedicionLogicException() {
 	}
 
 	/**
 	 * Constructor con un mensaje
 	 * @param message mensaje de la excepción
 	 */
-	public MesaLogicException(String message) {
+	public MedicionLogicException(String message) {
 		super(message);
 	}
 
@@ -28,7 +28,7 @@ public class MesaLogicException extends Exception {
 	 * Constructor con una causa
 	 * @param cause causa de la excepción. Usada para generar la traza.
 	 */
-	public MesaLogicException(Throwable cause) {
+	public MedicionLogicException(Throwable cause) {
 		super(cause);
 	}
 
@@ -37,7 +37,7 @@ public class MesaLogicException extends Exception {
 	 * @param message mensaje de la excepción
 	 * @param cause causa de la excepción. Usada para generar la traza.
 	 */
-	public MesaLogicException(String message, Throwable cause) {
+	public MedicionLogicException(String message, Throwable cause) {
 		super(message, cause);
 	}
 

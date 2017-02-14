@@ -3,7 +3,9 @@
   <persistence-unit name="SisteamCorazonPU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>java:app/jdbc/corazon</jta-data-source>
+    <class>co.edu.uniandes.sisteam.corazon.entities.BaseEntity</class>
     <class>co.edu.uniandes.sisteam.corazon.entities.PacienteEntity</class>
+    <class>co.edu.uniandes.sisteam.corazon.entities.MedicionEntity</class>
     <properties>
       <property name="eclipselink.logging.level" value="FINE"/>
       <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>

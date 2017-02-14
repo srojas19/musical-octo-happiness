@@ -37,9 +37,9 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class PacienteEntity extends BaseEntity implements Serializable {
 
-//    @PodamExclude
-//    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<MesaEntity> mesas = new ArrayList<>();
+    @PodamExclude
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MedicionEntity> mediciones = new ArrayList<>();
 //    
 //    @PodamExclude
 //    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -63,29 +63,29 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     private String tipoSanguineo;
     
 
-//    /**
-//     * Obtiene la colección de mesa.
-//     * @return colección mesa. 
-//     */
-//    public List<MesaEntity> getMesas() {
-//        return mesas;
-//    }
-//
-//    /**
-//     * Establece el valor de la colección de mesa.
-//     * @param mesas nuevo valor de la colección. 
-//     */
-//    public void setMesas(List<MesaEntity> mesas) {
-//        this.mesas = mesas;
-//    }
+    /**
+     * Obtiene la colección de medicion.
+     * @return colección medicion. 
+     */
+    public List<MedicionEntity> getMediciones() {
+        return mediciones;
+    }
+
+    /**
+     * Establece el valor de la colección de medicion.
+     * @param mediciones nuevo valor de la colección. 
+     */
+    public void setMediciones(List<MedicionEntity> mediciones) {
+        this.mediciones = mediciones;
+    }
     
-//    /**
-//     * Establece el valor de la colección de mesa.
-//     * @param mesas nuevo valor de la colección. 
-//     */
-//    public void add(MesaEntity mesa) {
-//        this.mesas.add(mesa);
-//    }
+    /**
+     * Establece el valor de la colección de medicion.
+     * @param mediciones nuevo valor de la colección. 
+     */
+    public void add(MedicionEntity medicion) {
+        this.mediciones.add(medicion);
+    }
 
      public int getCedula() {
         return cedula;
