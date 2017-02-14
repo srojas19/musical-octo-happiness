@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -17,11 +19,12 @@ import uk.co.jemos.podam.common.PodamExclude;
  *
  * @author BarraganJeronimo
  */
+@Entity
 public class MedicoEntity extends BaseEntity implements Serializable {
 
     private int cedula;
     private String tarjetaProfesional;
-    private String nombres;   
+    private String nombres;
     private boolean especialista;
     private String apellidos;
     private char sexo;
@@ -29,16 +32,24 @@ public class MedicoEntity extends BaseEntity implements Serializable {
     private Date fechaNacimiento;
 
     @PodamExclude
+    @OneToMany(mappedBy = "medicoTratante")
+    private List<PacienteEntity> pacientesTratando = new ArrayList<>();
+
+    @PodamExclude
+    @ManyToMany(mappedBy = "medicos")
+    private List<PacienteEntity> pacientes = new ArrayList<>();
+
+    @PodamExclude
     @OneToMany(mappedBy = "medico")
-    private List<MedicoTratanteEntity> pacientesTratando =new ArrayList<>();
-    
-    @PodamExclude
-    @OneToMany(mappedBy = "realizadoPor")
-    private List<ConsejoEntity> consejosRealizados=new ArrayList<>();
-    
-    @PodamExclude
-    @OneToMany(mappedBy = "medicoResponsable")
-    private List<CitaMedicaEntity> citasRealizadas=new ArrayList<>();
+    private List<ConsejoEntity> consejosRealizados = new ArrayList<>();
+
+    public boolean isEspecialista() {
+        return especialista;
+    }
+
+    public void setEspecialista(boolean especialista) {
+        this.especialista = especialista;
+    }
 
     public int getCedula() {
         return cedula;
@@ -88,18 +99,6 @@ public class MedicoEntity extends BaseEntity implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public List<MedicoTratanteEntity> getPacientesTratando() {
-        return pacientesTratando;
-    }
-
-    public void setPacientesTratando(List<MedicoTratanteEntity> pacientesTratando) {
-        this.pacientesTratando = pacientesTratando;
-    }
-
-    public void addpacientesTratando(MedicoTratanteEntity pacienteTratando) {
-        this.pacientesTratando.add(pacienteTratando);
-    }
-
     public List<ConsejoEntity> getConsejosRealizados() {
         return consejosRealizados;
     }
@@ -112,15 +111,20 @@ public class MedicoEntity extends BaseEntity implements Serializable {
         this.consejosRealizados.add(consejosRealizado);
     }
 
-    public List<CitaMedicaEntity> getCitasRealizadas() {
-        return citasRealizadas;
+    public List<PacienteEntity> getPacientesTratando() {
+        return pacientesTratando;
     }
 
-    public void setCitasRealizadas(List<CitaMedicaEntity> citasRealizadas) {
-        this.citasRealizadas = citasRealizadas;
+    public void setPacientesTratando(List<PacienteEntity> pacientesTratando) {
+        this.pacientesTratando = pacientesTratando;
     }
 
-    public void addCitasRealizadas(CitaMedicaEntity citaRealizada) {
-        this.citasRealizadas.add(citaRealizada);
+    public List<PacienteEntity> getPacientes() {
+        return pacientes;
     }
+
+    public void setPacientes(List<PacienteEntity> pacientes) {
+        this.pacientes = pacientes;
+    }
+
 }

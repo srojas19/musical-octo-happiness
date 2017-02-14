@@ -30,7 +30,10 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 
@@ -86,6 +89,23 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     public void add(MedicionEntity medicion) {
         this.mediciones.add(medicion);
     }
+    
+    //Relaciones con Medico
+    
+    @ManyToOne
+    private MedicoEntity medicoTratante;
+    
+    @ManyToMany(mappedBy = "pacientes")
+    private List<MedicoEntity> medicos = new ArrayList<>();
+    
+    
+    //Relaciones con MarcaPasos
+    @OneToOne(mappedBy = "paciente")
+    private MarcapasosEntity marcapasos;
+
+    
+    
+    
 
      public int getCedula() {
         return cedula;
@@ -159,7 +179,29 @@ public class PacienteEntity extends BaseEntity implements Serializable {
         this.tipoSanguineo = tipoSanguineo;
     }
 
-    
+    public MedicoEntity getMedicoTratante() {
+        return medicoTratante;
+    }
+
+    public void setMedicoTratante(MedicoEntity medicoTratante) {
+        this.medicoTratante = medicoTratante;
+    }
+
+    public List<MedicoEntity> getMedicos() {
+        return medicos;
+    }
+
+    public void setMedicos(List<MedicoEntity> medicos) {
+        this.medicos = medicos;
+    }
+
+    public MarcapasosEntity getMarcapasos() {
+        return marcapasos;
+    }
+
+    public void setMarcapasos(MarcapasosEntity marcapasos) {
+        this.marcapasos = marcapasos;
+    }
     
     
 

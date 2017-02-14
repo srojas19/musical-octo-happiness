@@ -6,6 +6,13 @@
     <class>co.edu.uniandes.sisteam.corazon.entities.BaseEntity</class>
     <class>co.edu.uniandes.sisteam.corazon.entities.PacienteEntity</class>
     <class>co.edu.uniandes.sisteam.corazon.entities.MedicionEntity</class>
+    <class>co.edu.uniandes.sisteam.corazon.entities.MedicoEntity</class>
+    <class>co.edu.uniandes.sisteam.corazon.entities.ConsejoEntity</class>
+    <class>co.edu.uniandes.sisteam.corazon.entities.DiagnosticoEntity</class>
+    <class>co.edu.uniandes.sisteam.corazon.entities.ExamenEntity</class>
+    <class>co.edu.uniandes.sisteam.corazon.entities.HistoriaClinicaEntity</class>
+    <class>co.edu.uniandes.sisteam.corazon.entities.MarcapasosEntity</class>
+    <class>co.edu.uniandes.sisteam.corazon.entities.TratamientoEntity</class>
     <properties>
       <property name="eclipselink.logging.level" value="FINE"/>
       <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>

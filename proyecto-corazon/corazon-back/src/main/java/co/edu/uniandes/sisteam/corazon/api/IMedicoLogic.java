@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.sisteam.corazon.api;
 
+import co.edu.uniandes.sisteam.corazon.entities.ConsejoEntity;
 import co.edu.uniandes.sisteam.corazon.entities.MedicoEntity;
 import co.edu.uniandes.sisteam.corazon.entities.PacienteEntity;
 import co.edu.uniandes.sisteam.corazon.exceptions.BusinessLogicException;
@@ -24,11 +25,10 @@ public interface IMedicoLogic {
 
     public List<MedicoEntity> getAllMedicos();
 
-    public List<PacienteEntity> getPacientes();
-
     public MedicoEntity createMedico(MedicoEntity entity) throws BusinessLogicException;
 
     public MedicoEntity updateMedico(MedicoEntity entity) throws BusinessLogicException;
+    
 
     public void deleteMedico(Long medicoid);
 

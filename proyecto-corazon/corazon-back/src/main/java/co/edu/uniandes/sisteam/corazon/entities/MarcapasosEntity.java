@@ -7,6 +7,8 @@ package co.edu.uniandes.sisteam.corazon.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -14,7 +16,8 @@ import uk.co.jemos.podam.common.PodamExclude;
  *
  * @author BarraganJeronimo
  */
-class Marcapasos extends BaseEntity implements Serializable {
+@Entity
+public class MarcapasosEntity extends BaseEntity implements Serializable {
 
     @PodamExclude
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -33,6 +36,11 @@ class Marcapasos extends BaseEntity implements Serializable {
     private Double voltaje;
     
     private Double frecuenciaElectrica;
+    
+    @OneToOne(mappedBy = "marcapasos")
+    private PacienteEntity paciente;
+
+    
 
     
     public Date getFechaImplante() {
@@ -89,6 +97,14 @@ class Marcapasos extends BaseEntity implements Serializable {
 
     public void setFrecuenciaElectrica(Double frecuenciaElectrica) {
         this.frecuenciaElectrica = frecuenciaElectrica;
+    }
+    
+    public PacienteEntity getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(PacienteEntity paciente) {
+        this.paciente = paciente;
     }
 
 }
