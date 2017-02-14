@@ -52,6 +52,9 @@ public class PacienteEntity extends BaseEntity implements Serializable {
 //    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<ReservaEntity> reservas = new ArrayList<>();
 
+    
+    private HistoriaClinicaEntity historiaClinica;
+    
     private int cedula;
     private String nombres; 
     private String apellidos;
@@ -157,6 +160,14 @@ public class PacienteEntity extends BaseEntity implements Serializable {
 
     public void setTipoSanguineo(String tipoSanguineo) {
         this.tipoSanguineo = tipoSanguineo;
+    }
+
+    public HistoriaClinicaEntity getHistoriaClinica() {
+        return historiaClinica;
+    }
+
+    public void setHistoriaClinica(HistoriaClinicaEntity historiaClinica) {
+        this.historiaClinica = historiaClinica;
     }
 
     
