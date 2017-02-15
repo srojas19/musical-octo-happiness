@@ -43,7 +43,7 @@ public class MedicoEntity extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "medico")
     private List<ConsejoEntity> consejosRealizados = new ArrayList<>();
 
-    public boolean isEspecialista() {
+    public boolean getEspecialista() {
         return especialista;
     }
 
