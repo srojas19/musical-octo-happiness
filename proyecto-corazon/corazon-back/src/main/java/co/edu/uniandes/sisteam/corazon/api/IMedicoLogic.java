@@ -5,9 +5,7 @@
  */
 package co.edu.uniandes.sisteam.corazon.api;
 
-import co.edu.uniandes.sisteam.corazon.entities.ConsejoEntity;
 import co.edu.uniandes.sisteam.corazon.entities.MedicoEntity;
-import co.edu.uniandes.sisteam.corazon.entities.PacienteEntity;
 import co.edu.uniandes.sisteam.corazon.exceptions.BusinessLogicException;
 import java.util.List;
 
@@ -29,7 +27,6 @@ public interface IMedicoLogic {
 
     public MedicoEntity updateMedico(MedicoEntity entity) throws BusinessLogicException;
     
-
     public void deleteMedico(Long medicoid);
 
 }

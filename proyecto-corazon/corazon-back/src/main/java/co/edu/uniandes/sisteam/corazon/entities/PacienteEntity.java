@@ -182,7 +182,7 @@ public class PacienteEntity extends BaseEntity implements Serializable {
         this.tipoSanguineo = tipoSanguineo;
     }
 
-<<<<<<< HEAD
+
     public MedicoEntity getMedicoTratante() {
         return medicoTratante;
     }
@@ -206,7 +206,7 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     public void setMarcapasos(MarcapasosEntity marcapasos) {
         this.marcapasos = marcapasos;
     }
-=======
+
     public HistoriaClinicaEntity getHistoriaClinica() {
         return historiaClinica;
     }
@@ -215,9 +215,7 @@ public class PacienteEntity extends BaseEntity implements Serializable {
         this.historiaClinica = historiaClinica;
     }
 
-    
->>>>>>> 75e5c2d7b1f7ce6ec78cfbff017e0b6d3a46bbf0
-    
+
     
 
 }

@@ -32,7 +32,7 @@ public class MarcapasosPersistence {
         return em.find(MarcapasosEntity.class, id);
     }
 
-    public MarcapasosEntity findByNumeroSerie(int numeroSerie) {
+    public MarcapasosEntity findByNumeroSerie(String numeroSerie) {
         LOGGER.log(Level.INFO, "Consultando marcapasos con numeroSerie= {0}", numeroSerie);
         TypedQuery<MarcapasosEntity> q
          = em.createQuery("select u from MarcapasosEntity u where u.numeroSerie= :numeroSerie", MarcapasosEntity.class);
@@ -46,19 +46,6 @@ public class MarcapasosPersistence {
         }
     }
 
-    public MarcapasosEntity findByTarjetaProfesional(String nTarjetaProfesional) {
-        LOGGER.log(Level.INFO, "Consultando marcapasos con número de tarjeta profecional = {0}", nTarjetaProfesional);
-        TypedQuery<MarcapasosEntity> q
-         = em.createQuery("select u from MarcapasosEntity u where u.tarjetaProfesional = :nTarjetaProfesional", MarcapasosEntity.class);
-        q = q.setParameter("nTarjetaProfesional", nTarjetaProfesional);
-
-        List<MarcapasosEntity> marcapasoss = q.getResultList();
-        if (marcapasoss.isEmpty()) {
-            return null;
-        } else {
-            return marcapasoss.get(0);
-        }
-    }
 
     public List<MarcapasosEntity> findAll() {
         LOGGER.info("Consultando todos los marcapasoss");

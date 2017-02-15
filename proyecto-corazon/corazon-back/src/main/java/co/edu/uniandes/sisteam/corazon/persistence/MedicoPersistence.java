@@ -67,7 +67,7 @@ public class MedicoPersistence {
     }
 
     public MedicoEntity create(MedicoEntity entity) {
-        LOGGER.info("Creando un medico nuevo " + entity.getNombres());
+        LOGGER.log(Level.INFO, "Creando un medico nuevo {0}", entity.getNombres());
         em.persist(entity);
 
         return entity;
