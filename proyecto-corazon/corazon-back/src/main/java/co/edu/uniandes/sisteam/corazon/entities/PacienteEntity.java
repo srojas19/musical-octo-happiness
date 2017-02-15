@@ -43,19 +43,22 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MedicionEntity> mediciones = new ArrayList<>();
-//    
-//    @PodamExclude
-//    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<PlatoEspEntity> platosEsp = new ArrayList<>();
-//     
-//    @PodamExclude
-//    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<DomicilioEntity> domicilios = new ArrayList<>();
-    
-//    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<ReservaEntity> reservas = new ArrayList<>();
 
+    //Relaciones con Medico
     
+    @ManyToOne
+    private MedicoEntity medicoTratante;
+    
+    @ManyToMany(mappedBy = "pacientes")
+    private List<MedicoEntity> medicos = new ArrayList<>();
+    
+    
+    //Relaciones con MarcaPasos
+    @OneToOne(mappedBy = "paciente")
+    private MarcapasosEntity marcapasos;
+    
+    //Relaciones con HistoriaClinica
+    @OneToOne(mappedBy = "paciente")
     private HistoriaClinicaEntity historiaClinica;
     
     private int cedula;
@@ -92,20 +95,6 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     public void add(MedicionEntity medicion) {
         this.mediciones.add(medicion);
     }
-    
-    //Relaciones con Medico
-    
-    @ManyToOne
-    private MedicoEntity medicoTratante;
-    
-    @ManyToMany(mappedBy = "pacientes")
-    private List<MedicoEntity> medicos = new ArrayList<>();
-    
-    
-    //Relaciones con MarcaPasos
-    @OneToOne(mappedBy = "paciente")
-    private MarcapasosEntity marcapasos;
-
     
     
     

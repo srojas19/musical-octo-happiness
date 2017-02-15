@@ -24,6 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.rest.corazon.dtos;
 
 
+import co.edu.uniandes.sisteam.corazon.entities.HistoriaClinicaEntity;
 import co.edu.uniandes.sisteam.corazon.entities.MedicionEntity;
 import co.edu.uniandes.sisteam.corazon.entities.PacienteEntity;
 import java.util.ArrayList;
@@ -35,6 +36,9 @@ public class PacienteDetailDTO extends PacienteDTO {
 
     // relación  cero o muchos con mediciones 
     private List<MedicionDTO> mediciones = new ArrayList<>();
+    
+    // relacion una a uno con hitoriaClinica
+    private HistoriaClinicaDTO historiaClinica;
     
 
     public PacienteDetailDTO() {
@@ -51,11 +55,15 @@ public class PacienteDetailDTO extends PacienteDTO {
      */
     public PacienteDetailDTO(PacienteEntity entity) {
         super(entity);
+        
         List<MedicionEntity> medicionesList = entity.getMediciones();
         for (MedicionEntity medicion : medicionesList) 
         {
             this.mediciones.add(new MedicionDTO(medicion));
         }
+        
+        HistoriaClinicaEntity hist = entity.getHistoriaClinica();
+        this.historiaClinica = new HistoriaClinicaDTO(hist);
         
     }
 
@@ -68,12 +76,18 @@ public class PacienteDetailDTO extends PacienteDTO {
      */
     @Override
     public PacienteEntity toEntity() {
+        
         PacienteEntity entity = super.toEntity();
-         List<MedicionDTO> mediciones = this.getMediciones();
+        
+        List<MedicionDTO> mediciones = this.getMediciones();
         for (MedicionDTO medicion : this.mediciones) 
         {         
             entity.getMediciones().add(medicion.toEntity());
         }
+        
+        HistoriaClinicaDTO hist = this.getHistoriaClinica();
+        entity.setHistoriaClinica(historiaClinica.toEntity());
+        
         
         return entity;
     }
@@ -91,4 +105,14 @@ public class PacienteDetailDTO extends PacienteDTO {
     public void setMediciones(List<MedicionDTO> mediciones) {
         this.mediciones = mediciones;
     }
+
+    public HistoriaClinicaDTO getHistoriaClinica() {
+        return historiaClinica;
+    }
+
+    public void setHistoriaClinica(HistoriaClinicaDTO historiaClinica) {
+        this.historiaClinica = historiaClinica;
+    }
+    
+    
 }
