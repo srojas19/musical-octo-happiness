@@ -17,8 +17,8 @@ import java.sql.Date;
 public class EmergenciaDTO {
     
     private Long id;
-    private String gps;
-    
+    private double latitud;
+    private double longitud;
     
     
     /**
@@ -27,16 +27,18 @@ public class EmergenciaDTO {
     public EmergenciaDTO() {
 	}
 
-    public EmergenciaDTO(Long id, String dictamen){
+    public EmergenciaDTO(Long id, double latitud, double longitud){
         this.id = id;
-        this.gps = gps;
+        this.latitud = latitud;
+        this.longitud = longitud;
         
     }
     
     public EmergenciaDTO(EmergenciaEntity entity) {
         if (entity != null) {
             this.id = entity.getId();
-            this.gps = entity.getGps();
+            this.latitud = entity.getLatitud();
+            this.longitud = entity.getLongitud();
            
         }
     }
@@ -50,7 +52,8 @@ public class EmergenciaDTO {
     public EmergenciaEntity toEntity() {
         EmergenciaEntity entity = new EmergenciaEntity();
         entity.setId(this.getId());
-        entity.setGps(this.getGps());
+        entity.setLatitud(this.getLatitud());
+        entity.setLongitud(this.getLongitud());
         
         return entity;
     }
@@ -63,14 +66,23 @@ public class EmergenciaDTO {
         this.id = id;
     }
 
-    public String getGps() {
-        return gps;
+    public double getLatitud() {
+        return latitud;
     }
 
-    public void setGps(String gps) {
-        this.gps = gps;
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
     }
 
+    public double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
+    }
+
+   
     
 
 }

@@ -43,7 +43,8 @@ public class EmergenciaEntity extends BaseEntity implements Serializable {
     @OneToOne
     private MedicionEntity medicion;
  
-   private String gps;
+   private double latitud;
+   private double longitud;
 
     public MedicionEntity getMedicion() {
         return medicion;
@@ -53,13 +54,23 @@ public class EmergenciaEntity extends BaseEntity implements Serializable {
         this.medicion = medicion;
     }
 
-    public String getGps() {
-        return gps;
+    public double getLatitud() {
+        return latitud;
     }
 
-    public void setGps(String gps) {
-        this.gps = gps;
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
     }
+
+    public double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
+    }
+
+   
     
    
 

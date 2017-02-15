@@ -67,10 +67,10 @@ public class MedicionPersistence {
         return q.getResultList();
     }
 
-    public List<MedicionEntity> findAllInSucursal(Long sucursalId) {
-        LOGGER.log(Level.INFO, "Consultando todas las mediciones de la sucursal id={0}", sucursalId);
-        TypedQuery q = em.createQuery("select d from MedicionEntity d  where d.sucursal.id = :sucursalId", MedicionEntity.class);
-        q = q.setParameter("sucursalId", sucursalId);
+    public List<MedicionEntity> findAllForPaciente(Long pacienteId) {
+        LOGGER.log(Level.INFO, "Consultando todas las mediciones del paciente pacienteId={0}", pacienteId);
+        TypedQuery q = em.createQuery("select d from MedicionEntity d  where d.paciente.id = :pacienteId", MedicionEntity.class);
+        q = q.setParameter("pacienteId", pacienteId);
         return q.getResultList();
     }
 
