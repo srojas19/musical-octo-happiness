@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.rest.corazon.dtos;
 
+import co.edu.uniandes.sisteam.corazon.entities.MarcapasosEntity;
 import java.util.Date;
 
 /**
@@ -12,29 +13,63 @@ import java.util.Date;
  * @author BarraganJeronimo
  */
 public class MarcapasosDTO {
-    
-    
+
     private Date fechaImplante;
 
     private Date finVidaUtil;
-    
+
     private String fechaImplanteS;
 
     private String finVidaUtilS;
-    
+
     private String marca;
-    
+
     private String modelo;
-    
+
     private String numeroSerie;
-    
+
     private Double voltaje;
-    
+
     private Double frecuenciaElectrica;
+
+    public MarcapasosDTO(Date fechaImplante, Date finVidaUtil, String marca, String modelo, String numeroSerie, Double voltaje, Double frecuenciaElectrica) {
+        this.fechaImplante = fechaImplante;
+        this.finVidaUtil = finVidaUtil;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.numeroSerie = numeroSerie;
+        this.voltaje = voltaje;
+        this.frecuenciaElectrica = frecuenciaElectrica;
+    }
+
+    public MarcapasosDTO() {
+    }
+
+    public MarcapasosDTO(MarcapasosEntity entity) {
+
+        if (entity != null) {
+            this.fechaImplante = entity.getFechaImplante();
+            this.finVidaUtil = entity.getFinVidaUtil();
+            this.marca = entity.getMarca();
+            this.modelo = entity.getModelo();
+            this.numeroSerie = entity.getNumeroSerie();
+            this.voltaje = entity.getVoltaje();
+            this.frecuenciaElectrica = entity.getFrecuenciaElectrica();
+        }
+
+    }
     
-    
-    
-    
+    public MarcapasosEntity toEntity(){
+        MarcapasosEntity entity= new MarcapasosEntity();
+        entity.setFechaImplante(fechaImplante);
+        entity.setFinVidaUtil(finVidaUtil);
+        entity.setFrecuenciaElectrica(frecuenciaElectrica);
+        entity.setMarca(marca);
+        entity.setModelo(modelo);
+        entity.setNumeroSerie(numeroSerie);
+        entity.setVoltaje(voltaje);      
+        return entity;
+    }
 
     public Date getFechaImplante() {
         return fechaImplante;
@@ -107,9 +142,5 @@ public class MarcapasosDTO {
     public void setFrecuenciaElectrica(Double frecuenciaElectrica) {
         this.frecuenciaElectrica = frecuenciaElectrica;
     }
-    
-    
-    
-    
-    
+
 }

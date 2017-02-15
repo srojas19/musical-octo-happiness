@@ -29,22 +29,49 @@ public class MedicoDetailDTO extends MedicoDTO {
 
     public MedicoDetailDTO(MedicoEntity entity) {
         super(entity);
-        List<ConsejoEntity> consejosEntityRealizados =entity.getConsejosRealizados();
-        
-        for (ConsejoEntity consejoRealizado : consejosEntityRealizados) {
-            this.consejosRealizados.add(new ConsejoDTO(consejoRealizado));
+
+        if (entity != null) {
+            List<ConsejoEntity> consejosEntityRealizados = entity.getConsejosRealizados();
+
+            for (ConsejoEntity consejoRealizado : consejosEntityRealizados) {
+                this.consejosRealizados.add(new ConsejoDTO(consejoRealizado));
+            }
+            List<PacienteEntity> pacientesEntity = entity.getPacientes();
+            for (PacienteEntity paciente : pacientesEntity) {
+                this.pacientes.add(new PacienteDTO(paciente));
+            }
+
+            List<PacienteEntity> pacientesTratandoEntity = entity.getPacientesTratando();
+
+            for (PacienteEntity pacienteEntity : pacientesTratandoEntity) {
+                this.pacientesTratando.add(new PacienteDTO(pacienteEntity));
+            }
         }
-        List<PacienteEntity> pacientesEntity = entity.getPacientes();
-        for (PacienteEntity paciente : pacientesEntity) {
-            this.pacientes.add(new PacienteDTO(paciente));
+
+    }
+
+    public MedicoEntity toEntity() {
+
+        MedicoEntity entity = super.toEntity();
+
+        List<ConsejoDTO> consejosRealizados = this.consejosRealizados;
+
+        for (ConsejoDTO consejoRealizado : consejosRealizados) {
+            entity.getConsejosRealizados().add(consejoRealizado.toEntity());
+        }
+        List<PacienteDTO> pacientes = this.pacientes;
+        for (PacienteDTO paciente : pacientes) {
+           entity.getPacientes().add(paciente.toEntity());
+        }
+
+        List<PacienteDTO> pacientesTratando = this.pacientesTratando;
+
+        for (PacienteDTO pacienteEntity : pacientesTratando) {
+           entity.getPacientesTratando().add(pacienteEntity.toEntity());
         }
         
-        List<PacienteEntity> pacientesTratandoEntity = entity.getPacientesTratando();
-        
-        for (PacienteEntity pacienteEntity : pacientesTratandoEntity) {
-            this.pacientesTratando.add(new PacienteDTO(pacienteEntity));
-        }
-             
+        return entity;
+
     }
 
     public List<PacienteDTO> getPacientesTratando() {

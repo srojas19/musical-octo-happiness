@@ -13,7 +13,7 @@ import java.util.Date;
  * @author BarraganJeronimo
  */
 public class MedicoDTO {
-    
+
     private int cedula;
     private String tarjetaProfesional;
     private String nombres;
@@ -24,7 +24,8 @@ public class MedicoDTO {
     private String fechaNacimientoS;
 
     /**
-     * Constructor 
+     * Constructor
+     *
      * @param cedula
      * @param tarjetaProfesional
      * @param nombres
@@ -42,39 +43,36 @@ public class MedicoDTO {
         this.sexo = sexo;
     }
 
-    
     /**
      * Constructor por defecto
      */
     public MedicoDTO() {
     }
-    
-    
-    
-    
+
     /**
      * Constructor apartir de entity
+     *
      * @param entity
      */
     public MedicoDTO(MedicoEntity entity) {
-        super();
-        this.cedula = entity.getCedula();
-        this.tarjetaProfesional = entity.getTarjetaProfesional();
-        this.nombres = entity.getNombres();
-        this.especialista = entity.getEspecialista();
-        this.apellidos = entity.getApellidos();
-        this.sexo = entity.getSexo();
+        if (entity != null) {
+            this.cedula = entity.getCedula();
+            this.tarjetaProfesional = entity.getTarjetaProfesional();
+            this.nombres = entity.getNombres();
+            this.especialista = entity.getEspecialista();
+            this.apellidos = entity.getApellidos();
+            this.sexo = entity.getSexo();
+        }
     }
-    
+
     /**
      * Convertir a MedicoEntity
-     * 
+     *
      * @return MedicoEntity
-     */   
-    
-    public MedicoEntity toEntity(){
-        
-        MedicoEntity entity= new MedicoEntity();
+     */
+    public MedicoEntity toEntity() {
+
+        MedicoEntity entity = new MedicoEntity();
         entity.setApellidos(apellidos);
         entity.setCedula(cedula);
         entity.setEspecialista(especialista);
@@ -82,9 +80,9 @@ public class MedicoDTO {
         entity.setNombres(nombres);
         entity.setSexo(sexo);
         entity.setTarjetaProfesional(tarjetaProfesional);
-      
+
         return entity;
-        
+
     }
 
     /**
@@ -214,8 +212,5 @@ public class MedicoDTO {
     public void setFechaNacimientoS(String fechaNacimientoS) {
         this.fechaNacimientoS = fechaNacimientoS;
     }
-    
-    
-    
-    
+
 }
