@@ -15,7 +15,7 @@ import java.sql.Date;
  */
 public class PacienteDTO {
     
-    private HistoriaClinicaDTO historiaClinica;
+    
 
     private Long id;   
     private int cedula;
@@ -33,7 +33,7 @@ public class PacienteDTO {
      * Constructor por defecto
      */
     public PacienteDTO() {
-        this.historiaClinica = new HistoriaClinicaDTO();
+        
     }
 
     public PacienteDTO(Long id, int cedula, String nombres, String apellidos,
@@ -51,7 +51,7 @@ public class PacienteDTO {
         this.entidadPrestadoraSalud = entidadPrestadoraSalud;
         this.fechaNacimiento = fechaNacimiento;
         this.tipoSanguineo = tipoSanguineo;
-        this.historiaClinica = historiaClinica;
+   
     }
   
     /**
@@ -73,7 +73,7 @@ public class PacienteDTO {
             this.direccionResidencia = entity.getDireccionResidencia();
             this.entidadPrestadoraSalud = entity.getEntidadPrestadoraSalud();
             this.fechaNacimiento = entity.getFechaNacimiento();
-            this.tipoSanguineo = entity.getTipoSanguineo();            
+            this.tipoSanguineo = entity.getTipoSanguineo();
         }
     }
 

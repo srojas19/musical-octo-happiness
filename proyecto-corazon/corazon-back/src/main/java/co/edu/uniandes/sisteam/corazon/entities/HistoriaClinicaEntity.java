@@ -19,7 +19,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class HistoriaClinicaEntity extends BaseEntity implements Serializable {
 
-    @OneToOne(mappedBy = "historiaClinica")
+    @OneToOne
     private PacienteEntity paciente;
 
     @OneToMany(mappedBy = "historiaClinica")
@@ -74,5 +74,7 @@ public class HistoriaClinicaEntity extends BaseEntity implements Serializable {
     public void addExamen(ExamenEntity examen){
         this.examenes.add(examen);
     }
+    
+   
     
 }
