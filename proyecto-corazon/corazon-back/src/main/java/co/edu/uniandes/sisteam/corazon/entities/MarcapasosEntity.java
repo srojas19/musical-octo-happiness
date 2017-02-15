@@ -37,7 +37,7 @@ public class MarcapasosEntity extends BaseEntity implements Serializable {
     
     private Double frecuenciaElectrica;
     
-    @OneToOne(mappedBy = "marcapasos")
+    @OneToOne
     private PacienteEntity paciente;
 
     
