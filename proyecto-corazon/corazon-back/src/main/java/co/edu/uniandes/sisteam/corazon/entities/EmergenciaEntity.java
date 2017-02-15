@@ -21,18 +21,46 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-package co.edu.uniandes.sisteam.corazon.api;
+package co.edu.uniandes.sisteam.corazon.entities;
 
-
-import co.edu.uniandes.sisteam.corazon.entities.MedicionEntity;
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import uk.co.jemos.podam.common.PodamExclude;
+import javax.persistence.ManyToOne;
 
-public interface IMedicionLogic {
-  
-    public List<MedicionEntity> getMediciones(Long pacienteid);
-    public MedicionEntity getMedicion(Long medicionid);
-    public MedicionEntity createMedicion(Long pacienteid, MedicionEntity entity);
-    public MedicionEntity updateMedicion(Long pacienteid, MedicionEntity entity);
-    public void deleteMedicion(Long id);
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+
+@Entity
+public class EmergenciaEntity extends BaseEntity implements Serializable {
     
+    @PodamExclude
+    @OneToOne
+    private MedicionEntity medicion;
+ 
+   private String gps;
+
+    public MedicionEntity getMedicion() {
+        return medicion;
+    }
+
+    public void setMedicion(MedicionEntity medicion) {
+        this.medicion = medicion;
+    }
+
+    public String getGps() {
+        return gps;
+    }
+
+    public void setGps(String gps) {
+        this.gps = gps;
+    }
+    
+   
+
 }

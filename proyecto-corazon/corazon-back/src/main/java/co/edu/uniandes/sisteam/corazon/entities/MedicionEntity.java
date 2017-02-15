@@ -33,6 +33,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 import javax.persistence.ManyToOne;
 
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 
 @Entity
@@ -41,6 +42,10 @@ public class MedicionEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @ManyToOne
     private PacienteEntity paciente;
+    
+    //Relaciones con HistoriaClinica
+    @OneToOne(mappedBy = "medicion")
+    private EmergenciaEntity emergencia;
  
     private String dictamen;
     private Date fecha;
@@ -109,4 +114,13 @@ public class MedicionEntity extends BaseEntity implements Serializable {
         this.nivelEstres = nivelEstres;
     }
 
+    public EmergenciaEntity getEmergencia() {
+        return emergencia;
+    }
+
+    public void setEmergencia(EmergenciaEntity emergencia) {
+        this.emergencia = emergencia;
+    }
+
+    
 }
