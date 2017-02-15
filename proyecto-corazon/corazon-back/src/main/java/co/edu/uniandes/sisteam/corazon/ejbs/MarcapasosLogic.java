@@ -7,8 +7,10 @@ package co.edu.uniandes.sisteam.corazon.ejbs;
 
 import co.edu.uniandes.sisteam.corazon.api.IMarcapasosLogic;
 import co.edu.uniandes.sisteam.corazon.entities.MarcapasosEntity;
+import co.edu.uniandes.sisteam.corazon.entities.PacienteEntity;
 import co.edu.uniandes.sisteam.corazon.exceptions.BusinessLogicException;
 import co.edu.uniandes.sisteam.corazon.persistence.MarcapasosPersistence;
+import co.edu.uniandes.sisteam.corazon.persistence.PacientePersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -23,6 +25,9 @@ public class MarcapasosLogic implements IMarcapasosLogic{
     
     @Inject
     private MarcapasosPersistence persistence;
+    
+    @Inject
+    private PacientePersistence paciente;
   
     
       
@@ -42,12 +47,17 @@ public class MarcapasosLogic implements IMarcapasosLogic{
     }
 
     @Override
-    public MarcapasosEntity createMarcapasos(MarcapasosEntity entity) throws BusinessLogicException {
+    public MarcapasosEntity createMarcapasos(MarcapasosEntity entity,Long id) throws BusinessLogicException {
         
         MarcapasosEntity alreadyExist = getMarcapasosNumeroSerie(entity.getNumeroSerie());
+        PacienteEntity existe = paciente.find(id);
         if (alreadyExist != null) {
             throw new BusinessLogicException("Ya existe un marcapasos con ese numero de serie");
-        } else {
+        } 
+        if (existe == null) {
+            throw new BusinessLogicException("No exite cliente con esa identificacion: " +id );
+        }else {
+            entity.setPaciente(existe);
             persistence.create(entity);
         }
         return entity;

@@ -9,8 +9,7 @@ package co.edu.uniandes.rest.corazon.exceptions;
  *
  * @author BarraganJeronimo
  */
-public class ReservaLogicException  extends Exception  {
-    
+public class MedicoLogicException extends Exception {
     
     /**
 	 * versión usada en la serialización de la clase
@@ -20,14 +19,14 @@ public class ReservaLogicException  extends Exception  {
 	/**
 	 * Constructor por defecto
 	 */
-	public ReservaLogicException() {
+	public MedicoLogicException() {
 	}
 
 	/**
 	 * Constructor con un mensaje
 	 * @param message mensaje de la excepción
 	 */
-	public ReservaLogicException(String message) {
+	public MedicoLogicException(String message) {
 		super(message);
 	}
 
@@ -35,7 +34,7 @@ public class ReservaLogicException  extends Exception  {
 	 * Constructor con una causa
 	 * @param cause causa de la excepción. Usada para generar la traza.
 	 */
-	public ReservaLogicException(Throwable cause) {
+	public MedicoLogicException(Throwable cause) {
 		super(cause);
 	}
 
@@ -44,8 +43,7 @@ public class ReservaLogicException  extends Exception  {
 	 * @param message mensaje de la excepción
 	 * @param cause causa de la excepción. Usada para generar la traza.
 	 */
-	public ReservaLogicException(String message, Throwable cause) {
+	public MedicoLogicException(String message, Throwable cause) {
 		super(message, cause);
 	}
-    
 }

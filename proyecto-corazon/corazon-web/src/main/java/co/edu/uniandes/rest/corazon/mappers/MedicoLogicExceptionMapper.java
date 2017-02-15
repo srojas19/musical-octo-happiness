@@ -5,33 +5,27 @@
  */
 package co.edu.uniandes.rest.corazon.mappers;
 
-import co.edu.uniandes.rest.corazon.exceptions.ReservaLogicException;
-import javax.ws.rs.ext.ExceptionMapper;
+import co.edu.uniandes.rest.corazon.exceptions.MedicoLogicException;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.Provider;
+import javax.ws.rs.ext.ExceptionMapper;
 
 /**
  *
  * @author BarraganJeronimo
  */
-@Provider
-public class ReservaLogicExceptionMapper implements ExceptionMapper<ReservaLogicException>{
+public class MedicoLogicExceptionMapper implements ExceptionMapper<MedicoLogicException>{
     
     /**
 	 * Generador de una respuesta a partir de una excepción
 	 * @param ex excecpión a convertir a una respuesta REST
-     * @return 
 	 */
 	@Override
-	public Response toResponse(ReservaLogicException ex) {
+	public Response toResponse(MedicoLogicException ex) {
 		// retorna una respuesta
 		return Response
 				.status(Response.Status.NOT_FOUND)	// estado HTTP 404
 				.entity(ex.getMessage())			// mensaje adicional
 				.type("text/plain")
 				.build();
-            
 	}
-    
-    
 }

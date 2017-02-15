@@ -21,7 +21,7 @@ public interface IMarcapasosLogic {
 
     public MarcapasosEntity getMarcapasosNumeroSerie(String numeroSerie);
 
-    public MarcapasosEntity createMarcapasos(MarcapasosEntity entity) throws BusinessLogicException;
+    public MarcapasosEntity createMarcapasos(MarcapasosEntity entity, Long idPaciente) throws BusinessLogicException;
 
     public MarcapasosEntity updateMarcapasos(MarcapasosEntity entity)throws BusinessLogicException;
    
