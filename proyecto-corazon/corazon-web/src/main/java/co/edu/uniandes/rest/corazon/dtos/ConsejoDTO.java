@@ -40,7 +40,9 @@ public class ConsejoDTO {
 
     public ConsejoEntity toEntity() {
         ConsejoEntity entity = new ConsejoEntity();
-        entity.setId(this.getId());
+        if (id != null) {
+            entity.setId(this.getId());
+        }
         entity.setFecha(this.getFecha());
         entity.setTipo(this.getTipo());
         entity.setDescripcion(this.getDescripcion());
@@ -79,5 +81,4 @@ public class ConsejoDTO {
         this.descripcion = descripcion;
     }
 
-    
 }
