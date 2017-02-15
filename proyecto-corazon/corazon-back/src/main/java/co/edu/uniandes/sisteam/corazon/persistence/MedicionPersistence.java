@@ -47,9 +47,9 @@ public class MedicionPersistence {
         return em.find(MedicionEntity.class, id);
     }
 
-    public MedicionEntity findByName(Long sucursalId, String medicionName) {
-        TypedQuery q = em.createQuery("select d from MedicionEntity d  where d.sucursal.id = :sucursalId and d.name = :medicionName", MedicionEntity.class);
-        q = q.setParameter("sucursalId", sucursalId);
+    public MedicionEntity findByPacienteID(Long pacienteId, String medicionName) {
+        TypedQuery q = em.createQuery("select d from MedicionEntity d  where d.paciente.id = :pacienteId and d.name = :medicionName", MedicionEntity.class);
+        q = q.setParameter("pacienteId", pacienteId);
         q = q.setParameter("medicionName", medicionName);
 
         List<MedicionEntity> medicionesSimilarName = q.getResultList();
