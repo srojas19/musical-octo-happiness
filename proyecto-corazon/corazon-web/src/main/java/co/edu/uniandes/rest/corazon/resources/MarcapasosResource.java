@@ -28,7 +28,8 @@ import javax.ws.rs.core.MediaType;
  *
  * @author BarraganJeronimo
  */
-@Path("/pacientes")
+@Path("/marcapasos")
+
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class MarcapasosResource {
@@ -52,12 +53,21 @@ public class MarcapasosResource {
         return list;
     }
     
+    /**
+     *
+     * @return
+     */
     @GET
     public List<MarcapasosDTO> getMarcapasos() { 
         
         return listEntity2DTO(marcapasosLogic.getAllMarcapasos());
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     @GET
     @Path("{id: \\d+}")
     public MarcapasosDetailDTO getMedico(@PathParam("id") Long id) 
@@ -65,22 +75,35 @@ public class MarcapasosResource {
         return new MarcapasosDetailDTO(marcapasosLogic.getMarcapasosId(id));
     }
     
+    /**
+     *
+     * @param dto
+     * @param id
+     * @return
+     * @throws MarcapasosLogicException
+     */
     @POST
-    @Path("{id: \\d+}")
-    public MarcapasosDetailDTO createMarcapasos(MarcapasosDetailDTO dto, Long idMarcapasos) throws MarcapasosLogicException  {
-        System.out.println("dto es "+ dto.toEntity());
+    @Path("{idPaciente: \\d+}")
+    public MarcapasosDetailDTO createMarcapasos(MarcapasosDetailDTO dto,@PathParam("idPaciente")  Long idPaciente) throws MarcapasosLogicException  {
+      // System.out.println("dto es "+ dto.toEntity());
         MarcapasosDetailDTO respuesta= dto;
         
         try {
-            respuesta = new MarcapasosDetailDTO(marcapasosLogic.createMarcapasos(dto.toEntity(),idMarcapasos));
+            respuesta = new MarcapasosDetailDTO(marcapasosLogic.createMarcapasos(dto.toEntity(),idPaciente));
         } catch (BusinessLogicException ex) {
             throw new MarcapasosLogicException(ex.getMessage());
         }
-        
-        
+     
         return respuesta;
     }
     
+    /**
+     *
+     * @param id
+     * @param dto
+     * @return
+     * @throws MarcapasosLogicException
+     */
     @PUT
     @Path("{id: \\d+}")
     public MarcapasosDetailDTO updateMarcapasos(@PathParam("id") Long id, MarcapasosDetailDTO dto) throws MarcapasosLogicException {
@@ -93,7 +116,10 @@ public class MarcapasosResource {
         }
     }
     
-    
+    /**
+     *
+     * @param id
+     */
     @DELETE
     @Path("{id: \\d+}")
     public void deleteMarcapasos(@PathParam("id") Long id) {

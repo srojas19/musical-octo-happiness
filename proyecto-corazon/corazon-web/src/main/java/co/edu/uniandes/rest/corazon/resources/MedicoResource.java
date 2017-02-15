@@ -11,10 +11,11 @@ import co.edu.uniandes.rest.corazon.exceptions.MedicoLogicException;
 import co.edu.uniandes.sisteam.corazon.api.IMedicoLogic;
 import co.edu.uniandes.sisteam.corazon.entities.MedicoEntity;
 import co.edu.uniandes.sisteam.corazon.exceptions.BusinessLogicException;
-
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -31,12 +32,14 @@ import javax.ws.rs.core.MediaType;
  *
  * @author BarraganJeronimo
  */
+@Path("/medicos")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class MedicoResource {
-    
-     @Inject
+
+    @Inject
     private IMedicoLogic medicoLogic;
-    
-    
+
     /**
      * Convierte una lista de MedicoEntity a una lista de MedicoDTO.
      *
@@ -51,51 +54,69 @@ public class MedicoResource {
         }
         return list;
     }
-    
+
     @GET
-    public List<MedicoDTO> getMedico() { 
-        
+    public List<MedicoDTO> getMedico() {
+
         return listEntity2DTO(medicoLogic.getAllMedicos());
     }
-    
+
     @GET
     @Path("{id: \\d+}")
-    public MedicoDetailDTO getMedico(@PathParam("id") Long id) 
-    {
+    public MedicoDetailDTO getMedico(@PathParam("id") Long id) {
         return new MedicoDetailDTO(medicoLogic.getMedicoId(id));
     }
-    
+
     @POST
-    public MedicoDetailDTO createMedico(MedicoDetailDTO dto) throws MedicoLogicException  {
-        System.out.println("dto es "+ dto.toEntity());
-        MedicoDetailDTO respuesta= dto;      
+    public MedicoDetailDTO createMedico(MedicoDetailDTO dto) throws MedicoLogicException {
+       
         try {
-            respuesta = new MedicoDetailDTO(medicoLogic.createMedico(dto.toEntity()));
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            if (dto.getFechaNacimientoS() != null) {
+                Date nFecha;
+                try {
+                    nFecha = sdf.parse(dto.getFechaNacimientoS());
+                    dto.setFechaNacimiento(nFecha);
+                } catch (ParseException ex) {
+                    throw new MedicoLogicException("" + ex.getMessage());
+                }
+            }
+
+          return new MedicoDetailDTO(medicoLogic.createMedico(dto.toEntity()));
         } catch (BusinessLogicException ex) {
             throw new MedicoLogicException(ex.getMessage());
         }
-        
-        
-        return respuesta;
+
+       
     }
-    
+
     @PUT
     @Path("{id: \\d+}")
     public MedicoDetailDTO updateMedico(@PathParam("id") Long id, MedicoDetailDTO dto) throws MedicoLogicException {
-        MedicoEntity entity = dto.toEntity();
-        entity.setId(id);
         try {
-            return new MedicoDetailDTO(medicoLogic.updateMedico(entity));
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            if (dto.getFechaNacimientoS() != null) {
+                Date nFecha;
+                try {
+                    nFecha = sdf.parse(dto.getFechaNacimientoS());
+                    dto.setFechaNacimiento(nFecha);
+                } catch (ParseException ex) {
+                    throw new MedicoLogicException("" + ex.getMessage());
+                }
+            }
+     
+          MedicoDetailDTO resp= new MedicoDetailDTO(medicoLogic.createMedico(dto.toEntity()));
+          resp.setId(id);
+          return resp;
         } catch (BusinessLogicException ex) {
-             throw new MedicoLogicException(ex.getMessage());
+            throw new MedicoLogicException(ex.getMessage());
         }
     }
-    
-    
+
     @DELETE
     @Path("{id: \\d+}")
     public void deleteMedico(@PathParam("id") Long id) {
         medicoLogic.deleteMedico(id);
     }
-    
+
 }

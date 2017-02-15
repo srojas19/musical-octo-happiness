@@ -14,6 +14,8 @@ import java.util.Date;
  */
 public class MedicoDTO {
 
+    private long id;
+
     private int cedula;
     private String tarjetaProfesional;
     private String nombres;
@@ -80,6 +82,7 @@ public class MedicoDTO {
         entity.setNombres(nombres);
         entity.setSexo(sexo);
         entity.setTarjetaProfesional(tarjetaProfesional);
+        entity.setId(id);
 
         return entity;
 
@@ -211,6 +214,14 @@ public class MedicoDTO {
      */
     public void setFechaNacimientoS(String fechaNacimientoS) {
         this.fechaNacimientoS = fechaNacimientoS;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
 }

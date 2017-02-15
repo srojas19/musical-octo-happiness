@@ -14,6 +14,8 @@ import java.util.Date;
  */
 public class MarcapasosDTO {
 
+    private long id;
+
     private Date fechaImplante;
 
     private Date finVidaUtil;
@@ -58,16 +60,17 @@ public class MarcapasosDTO {
         }
 
     }
-    
-    public MarcapasosEntity toEntity(){
-        MarcapasosEntity entity= new MarcapasosEntity();
+
+    public MarcapasosEntity toEntity() {
+        MarcapasosEntity entity = new MarcapasosEntity();
         entity.setFechaImplante(fechaImplante);
         entity.setFinVidaUtil(finVidaUtil);
         entity.setFrecuenciaElectrica(frecuenciaElectrica);
         entity.setMarca(marca);
         entity.setModelo(modelo);
         entity.setNumeroSerie(numeroSerie);
-        entity.setVoltaje(voltaje);      
+        entity.setVoltaje(voltaje);
+        entity.setId(id);
         return entity;
     }
 
@@ -141,6 +144,14 @@ public class MarcapasosDTO {
 
     public void setFrecuenciaElectrica(Double frecuenciaElectrica) {
         this.frecuenciaElectrica = frecuenciaElectrica;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
 }
