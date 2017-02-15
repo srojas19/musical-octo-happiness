@@ -23,6 +23,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+import co.edu.uniandes.sisteam.corazon.entities.EmergenciaEntity;
 import co.edu.uniandes.sisteam.corazon.entities.MedicionEntity;
 import java.util.ArrayList;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -33,6 +34,9 @@ public class MedicionDetailDTO extends MedicionDTO {
 
     @PodamExclude
     private PacienteDTO paciente;
+    
+    // relacion una a uno con emergencia
+    private EmergenciaDTO emergencia;
 
     /**
      *
@@ -54,6 +58,9 @@ public class MedicionDetailDTO extends MedicionDTO {
         if (entity.getPaciente() != null) {
             this.paciente = new PacienteDTO(entity.getPaciente());
         }
+        
+        EmergenciaEntity emer = entity.getEmergencia();
+        this.emergencia = new EmergenciaDTO(emer);
     }
 
     /**
@@ -66,9 +73,15 @@ public class MedicionDetailDTO extends MedicionDTO {
     @Override
     public MedicionEntity toEntity() {
         MedicionEntity entity = super.toEntity();
+        
         if (this.getPaciente() != null) {
             entity.setPaciente(this.getPaciente().toEntity());
         }
+        
+        EmergenciaDTO emer = this.getEmergencia();
+        entity.setEmergencia(emer.toEntity());
+        
+        
         return entity;
     }
 
@@ -91,5 +104,15 @@ public class MedicionDetailDTO extends MedicionDTO {
     public void setPaciente(PacienteDTO paciente) {
         this.paciente = paciente;
     }
+
+    public EmergenciaDTO getEmergencia() {
+        return emergencia;
+    }
+
+    public void setEmergencia(EmergenciaDTO emergencia) {
+        this.emergencia = emergencia;
+    }
+    
+    
 
 }
