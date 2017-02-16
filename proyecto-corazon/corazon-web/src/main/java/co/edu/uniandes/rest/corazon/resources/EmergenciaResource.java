@@ -25,6 +25,7 @@ SOFTWARE.
  */
 
 
+import co.edu.uniandes.rest.corazon.dtos.EmergenciaDTO;
 import co.edu.uniandes.rest.corazon.dtos.EmergenciaDetailDTO;
 import co.edu.uniandes.rest.corazon.dtos.MedicionDTO;
 import co.edu.uniandes.rest.corazon.dtos.MedicionDetailDTO;
@@ -53,6 +54,7 @@ import javax.ws.rs.WebApplicationException;
 
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+
 @Path("/pacientes/{pacienteId: \\d+}/mediciones/{medicionId: \\d+}/emergencia")
 public class EmergenciaResource {
 
@@ -80,22 +82,22 @@ public class EmergenciaResource {
      * @return Lista de EmergenciaDTO convertida
      *
      */
-    private List<EmergenciaDetailDTO> listEntity2DTO(List<EmergenciaEntity> entityList) {
-        List<EmergenciaDetailDTO> list = new ArrayList<>();
+    private List<EmergenciaDTO> listEntity2DTO(List<EmergenciaEntity> entityList) {
+        List<EmergenciaDTO> list = new ArrayList<>();
         for (EmergenciaEntity entity : entityList) {
-            list.add(new EmergenciaDetailDTO(entity));
+            list.add(new EmergenciaDTO(entity));
         }
         return list;
     }
 
-    public void existsMedicion(Long medicionId) {
-        MedicionDTO medicion = new MedicionDTO(medicionLogic.getMedicion(medicionId));
-        if (medicion == null) {
-            throw new WebApplicationException(404);
-        }
-        
-        
-    }
+//    public void existsMedicion(Long medicionId) {
+//        MedicionDTO medicion = new MedicionDTO(medicionLogic.getMedicion(medicionId));
+//        if (medicion == null) {
+//            throw new WebApplicationException(404);
+//        }
+//        
+//        
+//    }
 
     /**
      * Obtiene los datos de una instancia de Emergencia a partir de su ID
@@ -107,12 +109,21 @@ public class EmergenciaResource {
      */
     @GET
     @Path("{emergenciaId: \\d+}")
-    public EmergenciaDetailDTO getEmergencia(@PathParam("emergenciaId") Long emergenciaId) {
-        existsMedicion(medicionId);
+    public EmergenciaDTO getEmergencia(@PathParam("emergenciaId") Long emergenciaId) {
+     //   existsMedicion(medicionId);
         EmergenciaEntity entity = emergenciaLogic.getEmergencia(emergenciaId);
         if (entity.getMedicion()!= null && !medicionId.equals(entity.getMedicion().getId())) {
             throw new WebApplicationException(404);
         }
-        return new EmergenciaDetailDTO(entity);
+        return new EmergenciaDTO(entity);
+    }
+    
+    @POST
+    public EmergenciaDTO getEmergencia(EmergenciaDTO entity) {
+     //   existsMedicion(medicionId);
+        EmergenciaDTO respuesta= entity;
+        respuesta = new EmergenciaDTO(emergenciaLogic.createEmergenciaMedicion(entity.toEntity(), medicionId));
+        
+        return respuesta;
     }
 }

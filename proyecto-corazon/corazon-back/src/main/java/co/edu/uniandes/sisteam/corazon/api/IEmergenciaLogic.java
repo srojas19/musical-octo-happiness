@@ -19,6 +19,7 @@ public interface IEmergenciaLogic {
     
     public EmergenciaEntity getEmergencia(Long id);
     public EmergenciaEntity getEmergenciaMedicion(Long idMedicion);
+   public EmergenciaEntity createEmergenciaMedicion(EmergenciaEntity entity,Long idMedicion);
     
     
 }

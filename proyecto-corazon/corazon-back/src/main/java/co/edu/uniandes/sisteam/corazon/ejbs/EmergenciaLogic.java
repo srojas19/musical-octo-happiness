@@ -76,5 +76,14 @@ public class EmergenciaLogic implements IEmergenciaLogic {
             throw new IllegalArgumentException("La Emergencia no existe");
         }
     }
+
+    @Override
+    public EmergenciaEntity createEmergenciaMedicion(EmergenciaEntity entity, Long idMedicion) {
+        MedicionEntity medicion = medicionLogic.getMedicion(idMedicion);
+        entity.setMedicion(medicion);
+        persistence.create(entity);
+        return entity;
+    }
+    
 }
 

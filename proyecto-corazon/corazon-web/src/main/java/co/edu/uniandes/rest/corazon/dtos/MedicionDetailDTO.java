@@ -79,9 +79,9 @@ public class MedicionDetailDTO extends MedicionDTO {
         if (this.getPaciente() != null) {
             entity.setPaciente(this.getPaciente().toEntity());
         }
-        if(this.getEmergencia()!=null){
-        EmergenciaDTO emer = this.getEmergencia();
-        entity.setEmergencia(emer.toEntity());
+        if (this.getEmergencia() != null) {
+            EmergenciaDTO emer = this.getEmergencia();
+            entity.setEmergencia(emer.toEntity());
         }
 
         return entity;

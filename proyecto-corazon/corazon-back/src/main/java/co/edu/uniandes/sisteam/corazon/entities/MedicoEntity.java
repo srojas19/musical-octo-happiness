@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -36,7 +37,7 @@ public class MedicoEntity extends BaseEntity implements Serializable {
     private List<PacienteEntity> pacientesTratando = new ArrayList<>();
 
     @PodamExclude
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     private List<PacienteEntity> pacientes = new ArrayList<>();
 
     @PodamExclude

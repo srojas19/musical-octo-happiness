@@ -49,7 +49,7 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     @ManyToOne 
     private MedicoEntity medicoTratante;
     
-    @ManyToMany (mappedBy = "pacientes")
+    @ManyToMany(mappedBy = "pacientes", cascade = CascadeType.PERSIST)
     private List<MedicoEntity> medicos = new ArrayList<>();
     
     
@@ -58,6 +58,7 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     private MarcapasosEntity marcapasos;
     
     //Relaciones con HistoriaClinica
+    
     @OneToOne(mappedBy = "paciente")
     private HistoriaClinicaEntity historiaClinica;
     
