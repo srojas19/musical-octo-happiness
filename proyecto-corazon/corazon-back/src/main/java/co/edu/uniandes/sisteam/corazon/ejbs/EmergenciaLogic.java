@@ -55,9 +55,8 @@ public class EmergenciaLogic implements IEmergenciaLogic {
      *
      */
     @Override
-    public EmergenciaEntity getEmergenciaMedicion(Long idMedicion) {
-        MedicionEntity medicion = medicionLogic.getMedicion(idMedicion);
-        return medicion.getEmergencia();
+    public List<EmergenciaEntity> getEmergenciaMedicion(Long idMedicion) {
+        return persistence.findAllInMedicion(idMedicion);
     }
 
     /**
@@ -77,11 +76,10 @@ public class EmergenciaLogic implements IEmergenciaLogic {
         }
     }
 
-    @Override
-    public EmergenciaEntity createEmergenciaMedicion(EmergenciaEntity entity, Long idMedicion) {
-        MedicionEntity medicion = medicionLogic.getMedicion(idMedicion);
-        entity.setMedicion(medicion);
-        persistence.create(entity);
+   @Override
+    public EmergenciaEntity createEmergencia(Long medicionId, EmergenciaEntity entity) {
+        entity.setMedicion(medicionId);
+        entity = persistence.create(entity);
         return entity;
     }
     

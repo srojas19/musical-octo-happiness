@@ -38,14 +38,9 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class MedicionEntity extends BaseEntity implements Serializable {
+
+    private Long pacienteId;
     
-    @PodamExclude
-    @ManyToOne
-    private PacienteEntity paciente;
-    
-    //Relaciones con HistoriaClinica
-    @OneToOne(mappedBy = "medicion")
-    private EmergenciaEntity emergencia;
  
     private String dictamen;
     private Date fecha;
@@ -54,25 +49,27 @@ public class MedicionEntity extends BaseEntity implements Serializable {
     private int nivelEstres;
     
     /**
-     * Obtiene el atributo paciente.
+     * Obtiene el atributo pacienteId.
      *
-     * @return atributo paciente.
+     * @return atributo pacienteId.
      *
      */
-    public PacienteEntity getPaciente() 
+    public Long getPacienteId() 
     {
-        return paciente;
+        return pacienteId;
     }
 
     /**
-     * Establece el valor del atributo paciente.
+     * Establece el valor del atributo pacienteId.
      *
-     * @param paciente nuevo valor del atributo
+     * @param pacienteId nuevo valor del atributo
      *
      */
-    public void setPaciente(PacienteEntity paciente) {
-        this.paciente = paciente;
+    public void setPacienteId(Long pacienteId) {
+        this.pacienteId = pacienteId;
     }
+    
+    
 
     public String getDictamen() {
         return dictamen;
@@ -113,14 +110,4 @@ public class MedicionEntity extends BaseEntity implements Serializable {
     public void setNivelEstres(int nivelEstres) {
         this.nivelEstres = nivelEstres;
     }
-
-    public EmergenciaEntity getEmergencia() {
-        return emergencia;
-    }
-
-    public void setEmergencia(EmergenciaEntity emergencia) {
-        this.emergencia = emergencia;
-    }
-
-    
 }

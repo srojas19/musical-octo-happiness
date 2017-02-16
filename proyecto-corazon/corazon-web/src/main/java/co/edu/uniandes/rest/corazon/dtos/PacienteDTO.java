@@ -24,6 +24,8 @@ public class PacienteDTO {
     private int edad;
     private char sexo;
     
+
+    
     private String direccionResidencia;
     private String entidadPrestadoraSalud;
     private Date fechaNacimiento;

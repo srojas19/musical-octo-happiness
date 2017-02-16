@@ -19,6 +19,7 @@ public class EmergenciaDTO {
     private Long id;
     private double latitud;
     private double longitud;
+    private Long medicionId;
     
     
     /**
@@ -27,10 +28,11 @@ public class EmergenciaDTO {
     public EmergenciaDTO() {
 	}
 
-    public EmergenciaDTO(Long id, double latitud, double longitud){
+    public EmergenciaDTO(Long id, double latitud, double longitud, Long medicionId){
         this.id = id;
         this.latitud = latitud;
         this.longitud = longitud;
+        this.medicionId = medicionId;
         
     }
     
@@ -39,6 +41,7 @@ public class EmergenciaDTO {
             this.id = entity.getId();
             this.latitud = entity.getLatitud();
             this.longitud = entity.getLongitud();
+            this.medicionId = entity.getMedicion();
            
         }
     }
@@ -54,6 +57,7 @@ public class EmergenciaDTO {
         entity.setId(this.getId());
         entity.setLatitud(this.getLatitud());
         entity.setLongitud(this.getLongitud());
+        entity.setMedicion(this.getMedicionId()); 
         
         return entity;
     }
@@ -80,6 +84,14 @@ public class EmergenciaDTO {
 
     public void setLongitud(double longitud) {
         this.longitud = longitud;
+    }
+
+    public Long getMedicionId() {
+        return medicionId;
+    }
+
+    public void setMedicionId(Long medicionId) {
+        this.medicionId = medicionId;
     }
 
    

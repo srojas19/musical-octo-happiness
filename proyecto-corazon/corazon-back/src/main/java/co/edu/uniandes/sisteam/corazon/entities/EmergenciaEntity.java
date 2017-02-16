@@ -39,19 +39,18 @@ import javax.persistence.OneToOne;
 @Entity
 public class EmergenciaEntity extends BaseEntity implements Serializable {
     
-    @PodamExclude
-    @OneToOne
-    private MedicionEntity medicion;
+    
+    private Long medicionId;
  
    private double latitud;
    private double longitud;
 
-    public MedicionEntity getMedicion() {
-        return medicion;
+    public Long getMedicion() {
+        return medicionId;
     }
 
-    public void setMedicion(MedicionEntity medicion) {
-        this.medicion = medicion;
+    public void setMedicion(Long medicion) {
+        this.medicionId = medicionId;
     }
 
     public double getLatitud() {

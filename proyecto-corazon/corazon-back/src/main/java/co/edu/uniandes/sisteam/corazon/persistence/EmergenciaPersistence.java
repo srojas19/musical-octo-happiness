@@ -56,7 +56,7 @@ public class EmergenciaPersistence {
 
     public List<EmergenciaEntity> findAllInMedicion(Long medicionId) {
         LOGGER.log(Level.INFO, "Consultando todas las emergencias de la medicion id={0}", medicionId);
-        TypedQuery q = em.createQuery("select d from EmergenciaEntity d  where d.medicion.id = :medicionId", EmergenciaEntity.class);
+        TypedQuery q = em.createQuery("select d from EmergenciaEntity d  where d.medicionId = :medicionId", EmergenciaEntity.class);
         q = q.setParameter("medicionId", medicionId);
         return q.getResultList();
     }

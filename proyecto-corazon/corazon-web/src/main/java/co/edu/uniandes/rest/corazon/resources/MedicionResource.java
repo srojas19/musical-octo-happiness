@@ -59,8 +59,6 @@ public class MedicionResource {
     @Inject
     private IPacienteLogic pacienteLogic;
 
-    @PathParam("pacienteId")
-    private Long pacienteId;
 
     /**
      * Convierte una lista de MedicionEntity a una lista de
@@ -78,67 +76,71 @@ public class MedicionResource {
         return list;
      }
 
-//    public void existsPaciente(Long pacienteId) {
-//        PacienteDTO paciente = new PacienteDTO(pacienteLogic.getPaciente(pacienteId));
-//        if (paciente == null) {
-//            throw new WebApplicationException(404);
-//        }
-//    }
+    public void existsPaciente(Long pacienteId) 
+    {
+        PacienteDTO paciente = new PacienteDTO(pacienteLogic.getPaciente(pacienteId));
+        if (paciente == null) {
+            throw new WebApplicationException(404);
+        }
+    }
 
     /**
      * Obtiene los datos de los Mediciones de una compañía a partir del ID de
      * la Paciente
      *
      *
+     * @param pacienteId
      * @return Lista de MedicionDTO con los datos del Medicion
      * consultado
      *
      */
     @GET
-    public List<MedicionDTO> getMediciones() {
-    //   existsPaciente(pacienteId);
-        
-        List<MedicionEntity> mediciones = medicionLogic.getMediciones(pacienteId);
+    public List<MedicionDTO> getMediciones(@PathParam("pacienteId") Long pacienteId) {
+    
+        List<MedicionEntity> mediciones = medicionLogic.getMedicionesDePaciente(pacienteId);
 
         return listEntity2DTO(mediciones);
     }
-
-    /**
-     * Obtiene los datos de una instancia de Medicion a partir de su ID
-     * asociado a un Paciente
+    
+    
+      /**
+     * Obtiene los datos de los Mediciones de una compañía a partir del ID de
+     * la Paciente
      *
-     * @param medicionId Identificador de la instancia a consultar
-     * @return Instancia de MedicionDTO con los datos del Medicion
+     *
+     * @param pacienteId
+     * @return Lista de MedicionDTO con los datos del Medicion
      * consultado
      *
      */
     @GET
-    @Path("{medicionId: \\d+}")
-    public MedicionDTO getMedicion(@PathParam("medicionId") Long medicionId) {
-      //  existsPaciente(pacienteId);
-        MedicionEntity entity = medicionLogic.getMedicion(medicionId);
-        if (entity.getPaciente() != null && !pacienteId.equals(entity.getPaciente().getId())) {
-            throw new WebApplicationException(404);
-        }
-        return new MedicionDTO(entity);
+    @Path("/todas")
+    public List<MedicionDTO> getMedicionesTodas() {
+    
+        List<MedicionEntity> mediciones = medicionLogic.getMedicionesTodas();
+
+        return listEntity2DTO(mediciones);
     }
+
 
     /**
      * Asocia un Medicion existente a un Paciente
      *
      * @param dto Objeto de MedicionDTO con los datos nuevos
+     * @param pacienteId
      * @return Objeto de MedicionDTOcon los datos nuevos y su ID.
      *
      */
     @POST
-    public MedicionDTO createMedicion(MedicionDTO dto) throws BusinessLogicException {
-       //existsPaciente(pacienteId);
+    public MedicionDTO createMedicion(MedicionDTO dto,@PathParam("pacienteId") Long pacienteId) throws BusinessLogicException {
+       existsPaciente(pacienteId);
         return new MedicionDTO(medicionLogic.createMedicion(pacienteId, dto.toEntity()));
     }
 
     /**
      * Actualiza la información de una instancia de Medicion.
      *
+     * @param pacienteId
      * @param medicionId Identificador de la instancia de Medicion a
      * modificar
      * @param dto Instancia de MedicionDTO con los nuevos datos.
@@ -147,7 +149,7 @@ public class MedicionResource {
      */
     @PUT
     @Path("{medicionId: \\d+}")
-    public MedicionDTO updateMedicion(@PathParam("medicionId") Long medicionId, MedicionDTO dto) {
+    public MedicionDTO updateMedicion(@PathParam("pacienteId") Long pacienteId,@PathParam("medicionId") Long medicionId, MedicionDTO dto) {
     //    existsPaciente(pacienteId);
         MedicionEntity entity = dto.toEntity();
         entity.setId(medicionId);
@@ -168,23 +170,7 @@ public class MedicionResource {
         medicionLogic.deleteMedicion(medicionId);
     }
     
-    
-    /**
-     * Obtiene los datos de una instancia de Medicion a partir de su ID
-     * asociado a un Paciente
-     *
-     * @param medicionId Identificador de la instancia a consultar
-     * @return Instancia de MedicionDTO con los datos del Medicion
-     * consultado
-     *
-     */
-    @GET
-    @Path("{medicionId: \\d+}/get2")
-    public MedicionDTO getMedicion2(@PathParam("medicionId") Long medicionId) {
-       
-        MedicionEntity entity = medicionLogic.getMedicion(medicionId);
-       
-        return new MedicionDTO(entity);
-    }
+//    
+//    
 
 }

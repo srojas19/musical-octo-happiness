@@ -29,8 +29,9 @@ import java.util.List;
 
 public interface IMedicionLogic {
   
-    public List<MedicionEntity> getMediciones(Long pacienteid);
+    public List<MedicionEntity> getMedicionesDePaciente(Long pacienteid);
     public MedicionEntity getMedicion(Long medicionid);
+    public List<MedicionEntity> getMedicionesTodas();
     public MedicionEntity createMedicion(Long pacienteid, MedicionEntity entity);
     public MedicionEntity updateMedicion(Long pacienteid, MedicionEntity entity);
     public void deleteMedicion(Long id);

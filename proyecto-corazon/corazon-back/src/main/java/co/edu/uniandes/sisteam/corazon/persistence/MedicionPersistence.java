@@ -47,20 +47,6 @@ public class MedicionPersistence {
         return em.find(MedicionEntity.class, id);
     }
 
-    public MedicionEntity findByPacienteID(Long pacienteId, String medicionName) {
-        TypedQuery q = em.createQuery("select d from MedicionEntity d  where d.paciente.id = :pacienteId and d.name = :medicionName", MedicionEntity.class);
-        q = q.setParameter("pacienteId", pacienteId);
-        q = q.setParameter("medicionName", medicionName);
-
-        List<MedicionEntity> medicionesSimilarName = q.getResultList();
-        if (medicionesSimilarName.isEmpty()) {
-            return null;
-        } else {
-            return medicionesSimilarName.get(0);
-        }
-
-    }
-
     public List<MedicionEntity> findAll() {
         LOGGER.info("Consultando todas las mediciones");
         Query q = em.createQuery("select u from MedicionEntity u");
@@ -69,7 +55,7 @@ public class MedicionPersistence {
 
     public List<MedicionEntity> findAllForPaciente(Long pacienteId) {
         LOGGER.log(Level.INFO, "Consultando todas las mediciones del paciente pacienteId={0}", pacienteId);
-        TypedQuery q = em.createQuery("select d from MedicionEntity d  where d.paciente.id = :pacienteId", MedicionEntity.class);
+        TypedQuery q = em.createQuery("select d from MedicionEntity d  where d.pacienteId = :pacienteId", MedicionEntity.class);
         q = q.setParameter("pacienteId", pacienteId);
         return q.getResultList();
     }

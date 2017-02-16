@@ -53,9 +53,22 @@ public class MedicionLogic implements IMedicionLogic {
      *
      */
     @Override
-    public List<MedicionEntity> getMediciones(Long pacienteid) {
-        PacienteEntity paciente = pacienteLogic.getPaciente(pacienteid);
-        return paciente.getMediciones();
+    public List<MedicionEntity> getMedicionesDePaciente(Long pacienteid) {
+        
+        return persistence.findAllForPaciente(pacienteid);
+    }
+    
+     /**
+     * Obtiene la lista de los registros de Medicion que pertenecen a una
+     * Paciente.
+     *
+     * @param pacienteid id de la Paciente la cual es padre de las Mediciones.
+     * @return Colección de objetos de MedicionEntity.
+     *
+     */
+    @Override
+    public List<MedicionEntity> getMedicionesTodas() {
+        return persistence.findAll();
     }
 
     /**
@@ -85,9 +98,8 @@ public class MedicionLogic implements IMedicionLogic {
      */
     @Override
     public MedicionEntity createMedicion(Long pacienteid, MedicionEntity entity) {
-        PacienteEntity paciente = pacienteLogic.getPaciente(pacienteid);
-        //paciente.add(entity);
-        entity.setPaciente(paciente);
+
+        entity.setPacienteId(pacienteid);
         entity = persistence.create(entity);
         return entity;
     }
@@ -103,8 +115,8 @@ public class MedicionLogic implements IMedicionLogic {
      */
     @Override
     public MedicionEntity updateMedicion(Long pacienteid, MedicionEntity entity) {
-        PacienteEntity paciente = pacienteLogic.getPaciente(pacienteid);
-        entity.setPaciente(paciente);
+  
+        entity.setPacienteId(pacienteid);
         return persistence.update(entity);
     }
 

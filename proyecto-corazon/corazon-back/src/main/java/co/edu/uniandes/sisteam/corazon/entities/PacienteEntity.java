@@ -40,12 +40,8 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class PacienteEntity extends BaseEntity implements Serializable {
 
-    @PodamExclude
-    @OneToMany(mappedBy = "paciente", orphanRemoval = true)
-    private List<MedicionEntity> mediciones = new ArrayList<>();
 
     //Relaciones con Medico
-    
     @ManyToOne 
     private MedicoEntity medicoTratante;
     
@@ -54,12 +50,18 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     
     
     //Relaciones con MarcaPasos
-    @OneToOne(mappedBy = "paciente")
+    @OneToOne(mappedBy = "paciente",cascade = CascadeType.PERSIST)
     private MarcapasosEntity marcapasos;
+    
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)
+    private List<ConsejoEntity> consejosrecibidos = new ArrayList<>();
+
     
     //Relaciones con HistoriaClinica
     
-    @OneToOne(mappedBy = "paciente")
+   @OneToOne(mappedBy = "paciente",cascade = CascadeType.ALL)
     private HistoriaClinicaEntity historiaClinica;
     
     private int cedula;
@@ -73,32 +75,8 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     private String tipoSanguineo;
     
 
-    /**
-     * Obtiene la colección de medicion.
-     * @return colección medicion. 
-     */
-    public List<MedicionEntity> getMediciones() {
-        return mediciones;
-    }
-
-    /**
-     * Establece el valor de la colección de medicion.
-     * @param mediciones nuevo valor de la colección. 
-     */
-    public void setMediciones(List<MedicionEntity> mediciones) {
-        this.mediciones = mediciones;
-    }
     
-    /**
-     * Establece el valor de la colección de medicion.
-     * @param mediciones nuevo valor de la colección. 
-     */
-    public void add(MedicionEntity medicion) {
-        this.mediciones.add(medicion);
-    }
-    
-    
-    
+        
 
      public int getCedula() {
         return cedula;
@@ -205,6 +183,13 @@ public class PacienteEntity extends BaseEntity implements Serializable {
         this.historiaClinica = historiaClinica;
     }
 
+    public List<ConsejoEntity> getConsejosrecibidos() {
+        return consejosrecibidos;
+    }
+
+    public void setConsejosrecibidos(List<ConsejoEntity> consejosrecibidos) {
+        this.consejosrecibidos = consejosrecibidos;
+    }
 
     
 

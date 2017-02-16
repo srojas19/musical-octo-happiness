@@ -26,9 +26,7 @@ SOFTWARE.
 
 
 import co.edu.uniandes.rest.corazon.dtos.EmergenciaDTO;
-import co.edu.uniandes.rest.corazon.dtos.EmergenciaDetailDTO;
 import co.edu.uniandes.rest.corazon.dtos.MedicionDTO;
-import co.edu.uniandes.rest.corazon.dtos.MedicionDetailDTO;
 import co.edu.uniandes.rest.corazon.dtos.PacienteDTO;
 import co.edu.uniandes.sisteam.corazon.api.IEmergenciaLogic;
 import co.edu.uniandes.sisteam.corazon.api.IMedicionLogic;
@@ -51,11 +49,12 @@ import javax.ws.rs.core.MediaType;
 
 import java.util.ArrayList;
 import javax.ws.rs.WebApplicationException;
+import static org.springframework.util.StringUtils.split;
 
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 
-@Path("/pacientes/{pacienteId: \\d+}/mediciones/{medicionId: \\d+}/emergencia")
+@Path("pacientes/{pacienteId: \\d+}/mediciones/{medicionId: \\d+}/emergencia")
 public class EmergenciaResource {
 
     @Inject
@@ -67,12 +66,8 @@ public class EmergenciaResource {
 
     @Inject
     private IPacienteLogic pacienteLogic;
-
-    @PathParam("pacienteId")
-    private Long pacienteId;
     
-    @PathParam("medicionId")
-    private Long medicionId;
+    
 
     /**
      * Convierte una lista de EmergenciaEntity a una lista de
@@ -90,40 +85,44 @@ public class EmergenciaResource {
         return list;
     }
 
-//    public void existsMedicion(Long medicionId) {
-//        MedicionDTO medicion = new MedicionDTO(medicionLogic.getMedicion(medicionId));
-//        if (medicion == null) {
-//            throw new WebApplicationException(404);
-//        }
-//        
-//        
-//    }
+    
+    public void existsMedicion(Long medicionId) 
+    {
+        MedicionDTO medicion = new MedicionDTO(medicionLogic.getMedicion(medicionId));
+        if (medicion == null) {
+            throw new WebApplicationException(404);
+        }
+        
+        
+    }
 
     /**
      * Obtiene los datos de una instancia de Emergencia a partir de su ID
      *
+     * @param medicionId
      * @param emergenciaId Identificador de la instancia a consultar
      * @return Instancia de EmergenciaDTO con los datos del Emergencia
      * consultado
      *
      */
-    @GET
-    @Path("{emergenciaId: \\d+}")
-    public EmergenciaDTO getEmergencia(@PathParam("emergenciaId") Long emergenciaId) {
-     //   existsMedicion(medicionId);
-        EmergenciaEntity entity = emergenciaLogic.getEmergencia(emergenciaId);
-        if (entity.getMedicion()!= null && !medicionId.equals(entity.getMedicion().getId())) {
-            throw new WebApplicationException(404);
-        }
-        return new EmergenciaDTO(entity);
+    @Path("{emergenciaId}")
+   @GET
+    public EmergenciaDTO getEmergencia(@PathParam("medicionId") Long medicionId, @PathParam("emergenciaId") Long emergenciaId) {
+    
+        System.out.println("Esta es el id Sebas" + medicionId + "emergenciaId "+ emergenciaId);
+        
+       
+        List<EmergenciaEntity> entity = emergenciaLogic.getEmergenciaMedicion(medicionId);
+       
+        return new EmergenciaDTO(entity.get(0));
     }
     
-    @POST
-    public EmergenciaDTO getEmergencia(EmergenciaDTO entity) {
-     //   existsMedicion(medicionId);
-        EmergenciaDTO respuesta= entity;
-        respuesta = new EmergenciaDTO(emergenciaLogic.createEmergenciaMedicion(entity.toEntity(), medicionId));
+   
+   
+   @POST
+    public EmergenciaDTO createEmergenciaMedicion( @PathParam("medicionId") Long medicionId,EmergenciaDTO dto) throws BusinessLogicException {        
         
-        return respuesta;
+                
+        return new EmergenciaDTO(emergenciaLogic.createEmergencia(medicionId, dto.toEntity()));
     }
 }

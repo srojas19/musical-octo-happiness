@@ -33,8 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class PacienteDetailDTO extends PacienteDTO {
 
-    // relación  cero o muchos con mediciones 
-    private List<MedicionDTO> mediciones = new ArrayList<>();
+  
 
     // relacion una a uno con hitoriaClinica
     private HistoriaClinicaDTO historiaClinica;
@@ -54,14 +53,10 @@ public class PacienteDetailDTO extends PacienteDTO {
     public PacienteDetailDTO(PacienteEntity entity) {
         super(entity);
 
-        List<MedicionEntity> medicionesList = entity.getMediciones();
-        for (MedicionEntity medicion : medicionesList) {
-            this.mediciones.add(new MedicionDTO(medicion));
-        }
+   
 
 //        HistoriaClinicaEntity hist = entity.getHistoriaClinica();
 //        this.historiaClinica = new HistoriaClinicaDTO(hist);
-
     }
 
     /**
@@ -76,34 +71,14 @@ public class PacienteDetailDTO extends PacienteDTO {
 
         PacienteEntity entity = super.toEntity();
 
-        if (this.getMediciones() != null) {
-            List<MedicionDTO> mediciones = this.getMediciones();
-            for (MedicionDTO medicion : this.mediciones) {
-                entity.getMediciones().add(medicion.toEntity());
-            }
-        }
-
 //        if (this.getHistoriaClinica() != null) {
 //            HistoriaClinicaDTO hist = this.getHistoriaClinica();
 //            entity.setHistoriaClinica(historiaClinica.toEntity());
 //        }
-
         return entity;
     }
 
-    /**
-     * @return the mediciones
-     */
-    public List<MedicionDTO> getMediciones() {
-        return mediciones;
-    }
-
-    /**
-     * @param mediciones the mediciones to set
-     */
-    public void setMediciones(List<MedicionDTO> mediciones) {
-        this.mediciones = mediciones;
-    }
+   
 
     public HistoriaClinicaDTO getHistoriaClinica() {
         return historiaClinica;

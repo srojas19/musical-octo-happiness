@@ -8,6 +8,7 @@ package co.edu.uniandes.sisteam.corazon.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -22,13 +23,13 @@ public class HistoriaClinicaEntity extends BaseEntity implements Serializable {
     @OneToOne
     private PacienteEntity paciente;
 
-    @OneToMany(mappedBy = "historiaClinica")
+    @OneToMany(mappedBy = "historiaClinica",cascade = CascadeType.ALL)
     private List<DiagnosticoEntity> diagnosticos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "historiaClinica")
+    @OneToMany(mappedBy = "historiaClinica",cascade = CascadeType.ALL)
     private List<ExamenEntity> examenes = new ArrayList<>();
 
-    @OneToMany(mappedBy = "historiaClinica")
+    @OneToMany(mappedBy = "historiaClinica",cascade = CascadeType.ALL)
     private List<TratamientoEntity> tratamientos = new ArrayList<>();
 
     public PacienteEntity getPaciente() {

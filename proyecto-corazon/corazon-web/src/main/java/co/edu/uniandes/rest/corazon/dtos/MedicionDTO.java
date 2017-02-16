@@ -21,6 +21,9 @@ public class MedicionDTO {
     private Double frecuenciaCardiaca;
     private Double presionSanguinea;
     private int nivelEstres;
+    private Long pacienteId;
+
+    
     
     
     /**
@@ -29,13 +32,14 @@ public class MedicionDTO {
     public MedicionDTO() {
 	}
 
-    public MedicionDTO(Long id, String dictamen, Date fecha, Double frecuenciaCardiaca, Double presionSanguinea, int nivelEstres) {
+    public MedicionDTO(Long id, String dictamen, Date fecha, Double frecuenciaCardiaca, Double presionSanguinea, int nivelEstres,Long pacienteId) {
         this.id = id;
         this.dictamen = dictamen;
         this.fecha = fecha;
         this.frecuenciaCardiaca = frecuenciaCardiaca;
         this.presionSanguinea = presionSanguinea;
         this.nivelEstres = nivelEstres;
+        this.pacienteId=pacienteId;
     }
     
     public MedicionDTO(MedicionEntity entity) {
@@ -46,6 +50,7 @@ public class MedicionDTO {
             this.frecuenciaCardiaca = entity.getFrecuenciaCardiaca();
             this.presionSanguinea = entity.getPresionSanguinea();
             this.nivelEstres = entity.getNivelEstres();
+            this.pacienteId = entity.getPacienteId();
 
         }
     }
@@ -64,6 +69,7 @@ public class MedicionDTO {
         entity.setFrecuenciaCardiaca(this.getFrecuenciaCardiaca());
         entity.setPresionSanguinea(this.getPresionSanguinea());
         entity.setNivelEstres(this.getNivelEstres());
+        entity.setPacienteId(this.getPacienteId());
         return entity;
     }
 
@@ -114,5 +120,11 @@ public class MedicionDTO {
     public void setNivelEstres(int nivelEstres) {
         this.nivelEstres = nivelEstres;
     }
+public Long getPacienteId() {
+        return pacienteId;
+    }
 
+    public void setPacienteId(Long pacienteId) {
+        this.pacienteId = pacienteId;
+    }
 }
