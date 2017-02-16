@@ -70,4 +70,34 @@ public class HistoriaClinicaLogic implements IHistoriaClinicaLogic {
         return historiaClinicaPersistence.find(id);
     }
 
+    @Override
+    public void deleteTratamientoPaciente(Long idTratamiento) {
+        tratamientoPersistence.delete(idTratamiento);
+    }
+
+    @Override
+    public void deleteExamenPaciente(Long idExamen) {
+        examenPersistence.delete(idExamen);
+    }
+
+    @Override
+    public void deleteDiagnosticoPaciente(Long idDiagnostico) {
+        diagnosticoPersistence.delete(idDiagnostico);
+    }
+
+    @Override
+    public TratamientoEntity getTratamientoPaciente(Long idTratamiento) {
+        return tratamientoPersistence.find(idTratamiento);
+    }
+
+    @Override
+    public ExamenEntity getExamenPaciente(Long idExamen) {
+        return examenPersistence.find(idExamen);
+    }
+
+    @Override
+    public DiagnosticoEntity getDiagnosticoPaciente(Long idDiagnostico) {
+        return diagnosticoPersistence.find(idDiagnostico);
+    }
+
 }

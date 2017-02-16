@@ -16,6 +16,7 @@ import co.edu.uniandes.sisteam.corazon.entities.HistoriaClinicaEntity;
 import co.edu.uniandes.sisteam.corazon.entities.TratamientoEntity;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -34,11 +35,11 @@ import javax.ws.rs.core.MediaType;
 public class HistoriaClinicaResource {
     
     @Inject
-    private IHistoriaClinicaLogic HistoriaClinicaLogic;
+    private IHistoriaClinicaLogic historiaClinicaLogic;
     
     @GET
     public HistoriaClinicaDTO getHistoriaClinicaPaciente(@PathParam("idPaciente") Long idPaciente){
-        HistoriaClinicaEntity entity = HistoriaClinicaLogic.getHistoriaClinicaPaciente(idPaciente);
+        HistoriaClinicaEntity entity = historiaClinicaLogic.getHistoriaClinicaPaciente(idPaciente);
         if(entity == null){
             throw new WebApplicationException(404);
         }
@@ -49,7 +50,7 @@ public class HistoriaClinicaResource {
     @Path("tratamiento")
     public TratamientoDTO addTratamientoPaciente(@PathParam("idPaciente") Long idPaciente, TratamientoDTO dto){
         TratamientoEntity entity = dto.toEntity();
-        TratamientoEntity respuesta = HistoriaClinicaLogic.addTratamientoPaciente(idPaciente, entity);
+        TratamientoEntity respuesta = historiaClinicaLogic.addTratamientoPaciente(idPaciente, entity);
         return new TratamientoDTO(respuesta);
     }
     
@@ -57,7 +58,7 @@ public class HistoriaClinicaResource {
     @Path("examen")
     public ExamenDTO addExamenPaciente(@PathParam("idPaciente") Long idPaciente, ExamenDTO dto){
         ExamenEntity entity = dto.toEntity();
-        ExamenEntity respuesta = HistoriaClinicaLogic.addExamenPaciente(idPaciente, entity);
+        ExamenEntity respuesta = historiaClinicaLogic.addExamenPaciente(idPaciente, entity);
         return new ExamenDTO(respuesta);
     }
     
@@ -65,7 +66,40 @@ public class HistoriaClinicaResource {
     @Path("diagnostico")
     public DiagnosticoDTO addDiagnosticoPaciente(@PathParam("idPaciente") Long idPaciente, DiagnosticoDTO dto){
         DiagnosticoEntity entity = dto.toEntity();
-        DiagnosticoEntity respuesta = HistoriaClinicaLogic.addDiagnosticoPaciente(idPaciente, entity);
+        DiagnosticoEntity respuesta = historiaClinicaLogic.addDiagnosticoPaciente(idPaciente, entity);
         return new DiagnosticoDTO(respuesta);
+    }
+    
+    @DELETE
+    @Path("diagnostico/{idDignostico: \\d+}")
+    public void deleteDiagnosticoPaciente(@PathParam("idDiagnostico") Long idDiagnostico){
+        if(historiaClinicaLogic.getDiagnosticoPaciente(idDiagnostico)==null){
+            throw new WebApplicationException("El diagnostico no existe", 404);
+        }
+        else{
+            historiaClinicaLogic.deleteDiagnosticoPaciente(idDiagnostico);
+        }
+    }
+    
+    @DELETE
+    @Path("examen/{idExamen: \\d+}")
+    public void deleteExamenPaciente(@PathParam("idExamen") Long idExamen){
+        if(historiaClinicaLogic.getExamenPaciente(idExamen)==null){
+            throw new WebApplicationException("El examen no existe", 404);
+        }
+        else{
+            historiaClinicaLogic.deleteExamenPaciente(idExamen);
+        }
+    }
+    
+    @DELETE
+    @Path("tratamiento/{idTratamiento: \\d+}")
+    public void deleteTratamientoPaciente(@PathParam("idTratamiento") Long idTratamiento){
+        if(historiaClinicaLogic.getDiagnosticoPaciente(idTratamiento)==null){
+            throw new WebApplicationException("El tratamiento no existe", 404);
+        }
+        else{
+            historiaClinicaLogic.deleteTratamientoPaciente(idTratamiento);
+        }
     }
 }
