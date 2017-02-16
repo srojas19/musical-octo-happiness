@@ -18,9 +18,17 @@ public interface IHistoriaClinicaLogic {
     
     public HistoriaClinicaEntity getHistoriaClinica(Long id);
     public HistoriaClinicaEntity getHistoriaClinicaPaciente(Long idPaciente);
+    
     public TratamientoEntity addTratamientoPaciente(Long idPaciente, TratamientoEntity tratamiento);
     public ExamenEntity addExamenPaciente(Long idPaciente, ExamenEntity examen);
     public DiagnosticoEntity addDiagnosticoPaciente(Long idPaciente, DiagnosticoEntity diagnostico);
     
+    public void deleteTratamientoPaciente(Long idTratamiento);
+    public void deleteExamenPaciente(Long idExamen);
+    public void deleteDiagnosticoPaciente(Long idDiagnostico);
+    
+    public TratamientoEntity getTratamientoPaciente(Long idTratamiento);
+    public ExamenEntity getExamenPaciente(Long idExamen);
+    public DiagnosticoEntity getDiagnosticoPaciente(Long idDiagnostico);
     
 }
