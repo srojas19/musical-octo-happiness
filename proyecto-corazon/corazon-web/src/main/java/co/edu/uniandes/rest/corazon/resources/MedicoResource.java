@@ -63,8 +63,8 @@ public class MedicoResource {
 
     @GET
     @Path("{id: \\d+}")
-    public MedicoDTO getMedico(@PathParam("id") Long id) {
-        return new MedicoDTO(medicoLogic.getMedicoId(id));
+    public MedicoDetailDTO getMedico(@PathParam("id") Long id) {
+        return new MedicoDetailDTO(medicoLogic.getMedicoId(id));
     }
 
     @POST

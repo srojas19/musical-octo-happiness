@@ -47,7 +47,7 @@ public class MedicoPersistence {
     }
 
     public MedicoEntity findByTarjetaProfesional(String nTarjetaProfesional) {
-        LOGGER.log(Level.INFO, "Consultando medico con número de tarjeta profecional = {0}", nTarjetaProfesional);
+        LOGGER.log(Level.INFO, "Consultando medico con número de tarjeta profesional = {0}", nTarjetaProfesional);
         TypedQuery<MedicoEntity> q
          = em.createQuery("select u from MedicoEntity u where u.tarjetaProfesional = :nTarjetaProfesional", MedicoEntity.class);
         q = q.setParameter("nTarjetaProfesional", nTarjetaProfesional);

@@ -76,14 +76,14 @@ public class MedicionResource {
             list.add(new MedicionDetailDTO(entity));
         }
         return list;
-    }
+     }
 
-    public void existsPaciente(Long pacienteId) {
-        PacienteDTO paciente = new PacienteDTO(pacienteLogic.getPaciente(pacienteId));
-        if (paciente == null) {
-            throw new WebApplicationException(404);
-        }
-    }
+//    public void existsPaciente(Long pacienteId) {
+//        PacienteDTO paciente = new PacienteDTO(pacienteLogic.getPaciente(pacienteId));
+//        if (paciente == null) {
+//            throw new WebApplicationException(404);
+//        }
+//    }
 
     /**
      * Obtiene los datos de los Mediciones de una compañía a partir del ID de
@@ -96,7 +96,7 @@ public class MedicionResource {
      */
     @GET
     public List<MedicionDetailDTO> getMediciones() {
-        existsPaciente(pacienteId);
+    //   existsPaciente(pacienteId);
         
         List<MedicionEntity> mediciones = medicionLogic.getMediciones(pacienteId);
 
@@ -115,7 +115,7 @@ public class MedicionResource {
     @GET
     @Path("{medicionId: \\d+}")
     public MedicionDetailDTO getMedicion(@PathParam("medicionId") Long medicionId) {
-        existsPaciente(pacienteId);
+      //  existsPaciente(pacienteId);
         MedicionEntity entity = medicionLogic.getMedicion(medicionId);
         if (entity.getPaciente() != null && !pacienteId.equals(entity.getPaciente().getId())) {
             throw new WebApplicationException(404);
@@ -132,7 +132,7 @@ public class MedicionResource {
      */
     @POST
     public MedicionDetailDTO createMedicion(MedicionDetailDTO dto) throws BusinessLogicException {
-        existsPaciente(pacienteId);
+       //existsPaciente(pacienteId);
         return new MedicionDetailDTO(medicionLogic.createMedicion(pacienteId, dto.toEntity()));
     }
 
@@ -148,7 +148,7 @@ public class MedicionResource {
     @PUT
     @Path("{medicionId: \\d+}")
     public MedicionDetailDTO updateMedicion(@PathParam("medicionId") Long medicionId, MedicionDetailDTO dto) {
-        existsPaciente(pacienteId);
+    //    existsPaciente(pacienteId);
         MedicionEntity entity = dto.toEntity();
         entity.setId(medicionId);
         MedicionEntity oldEntity = medicionLogic.getMedicion(medicionId);
@@ -164,7 +164,7 @@ public class MedicionResource {
     @DELETE
     @Path("{medicionId: \\d+}")
     public void deleteMedicion(@PathParam("medicionId") Long medicionId) {
-        existsPaciente(pacienteId);
+     //   existsPaciente(pacienteId);
         medicionLogic.deleteMedicion(medicionId);
     }
     

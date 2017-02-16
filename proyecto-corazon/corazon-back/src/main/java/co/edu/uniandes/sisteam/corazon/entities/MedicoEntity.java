@@ -32,15 +32,15 @@ public class MedicoEntity extends BaseEntity implements Serializable {
     private Date fechaNacimiento;
 
     @PodamExclude
-    @OneToMany(mappedBy = "medicoTratante")
+    @OneToMany (mappedBy = "medicoTratante")
     private List<PacienteEntity> pacientesTratando = new ArrayList<>();
 
     @PodamExclude
-    @ManyToMany(mappedBy = "medicos")
+    @ManyToMany
     private List<PacienteEntity> pacientes = new ArrayList<>();
 
     @PodamExclude
-    @OneToMany(mappedBy = "medico")
+    @OneToMany
     private List<ConsejoEntity> consejosRealizados = new ArrayList<>();
 
     public boolean getEspecialista() {

@@ -41,15 +41,15 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class PacienteEntity extends BaseEntity implements Serializable {
 
     @PodamExclude
-    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "paciente", orphanRemoval = true)
     private List<MedicionEntity> mediciones = new ArrayList<>();
 
     //Relaciones con Medico
     
-    @ManyToOne
+    @ManyToOne 
     private MedicoEntity medicoTratante;
     
-    @ManyToMany //(mappedBy = "pacientes")
+    @ManyToMany (mappedBy = "pacientes")
     private List<MedicoEntity> medicos = new ArrayList<>();
     
     
@@ -58,7 +58,7 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     private MarcapasosEntity marcapasos;
     
     //Relaciones con HistoriaClinica
-    @OneToOne
+    @OneToOne(mappedBy = "paciente")
     private HistoriaClinicaEntity historiaClinica;
     
     private int cedula;

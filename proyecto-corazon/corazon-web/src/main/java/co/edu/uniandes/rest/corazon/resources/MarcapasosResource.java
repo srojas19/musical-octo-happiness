@@ -70,12 +70,12 @@ public class MarcapasosResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public MarcapasosDetailDTO getMedico(@PathParam("id") Long id) 
+    public MarcapasosDetailDTO getMarcapaso(@PathParam("id") Long id) 
     {
         return new MarcapasosDetailDTO(marcapasosLogic.getMarcapasosId(id));
     }
     
-    /**
+   /**
      *
      * @param dto
      * @param id
