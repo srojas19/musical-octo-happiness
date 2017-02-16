@@ -1,4 +1,5 @@
 package co.edu.uniandes.rest.corazon.dtos;
+
 /*
 The MIT License (MIT)
 
@@ -22,7 +23,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-
 import co.edu.uniandes.sisteam.corazon.entities.EmergenciaEntity;
 import co.edu.uniandes.sisteam.corazon.entities.MedicionEntity;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class MedicionDetailDTO extends MedicionDTO {
 
     @PodamExclude
     private PacienteDTO paciente;
-    
+
     // relacion una a uno con emergencia
     private EmergenciaDTO emergencia;
 
@@ -46,8 +46,8 @@ public class MedicionDetailDTO extends MedicionDTO {
     }
 
     /**
-     * Crea un objeto MedicionDetailDTO a partir de un objeto MedicionEntity incluyendo
-     * los atributos de MedicionDTO.
+     * Crea un objeto MedicionDetailDTO a partir de un objeto MedicionEntity
+     * incluyendo los atributos de MedicionDTO.
      *
      * @param entity Entidad MedicionEntity desde la cual se va a crear el nuevo
      * objeto.
@@ -58,14 +58,16 @@ public class MedicionDetailDTO extends MedicionDTO {
         if (entity.getPaciente() != null) {
             this.paciente = new PacienteDTO(entity.getPaciente());
         }
-        
-        EmergenciaEntity emer = entity.getEmergencia();
-        this.emergencia = new EmergenciaDTO(emer);
+
+        if (entity.getEmergencia() != null) {
+            EmergenciaEntity emer = entity.getEmergencia();
+            this.emergencia = new EmergenciaDTO(emer);
+        }
     }
 
     /**
-     * Convierte un objeto MedicionDetailDTO a MedicionEntity incluyendo los atributos
-     * de MedicionDTO.
+     * Convierte un objeto MedicionDetailDTO a MedicionEntity incluyendo los
+     * atributos de MedicionDTO.
      *
      * @return objeto MedicionEntity.
      *
@@ -73,15 +75,15 @@ public class MedicionDetailDTO extends MedicionDTO {
     @Override
     public MedicionEntity toEntity() {
         MedicionEntity entity = super.toEntity();
-        
+
         if (this.getPaciente() != null) {
             entity.setPaciente(this.getPaciente().toEntity());
         }
-        
+        if(this.getEmergencia()!=null){
         EmergenciaDTO emer = this.getEmergencia();
         entity.setEmergencia(emer.toEntity());
-        
-        
+        }
+
         return entity;
     }
 
@@ -112,7 +114,5 @@ public class MedicionDetailDTO extends MedicionDTO {
     public void setEmergencia(EmergenciaDTO emergencia) {
         this.emergencia = emergencia;
     }
-    
-    
 
 }
