@@ -27,21 +27,17 @@ SOFTWARE.
 
 import co.edu.uniandes.rest.corazon.dtos.EmergenciaDTO;
 import co.edu.uniandes.rest.corazon.dtos.MedicionDTO;
-import co.edu.uniandes.rest.corazon.dtos.PacienteDTO;
 import co.edu.uniandes.sisteam.corazon.api.IEmergenciaLogic;
 import co.edu.uniandes.sisteam.corazon.api.IMedicionLogic;
 import co.edu.uniandes.sisteam.corazon.api.IPacienteLogic;
 import co.edu.uniandes.sisteam.corazon.entities.EmergenciaEntity;
-import co.edu.uniandes.sisteam.corazon.entities.MedicionEntity;
 import co.edu.uniandes.sisteam.corazon.exceptions.BusinessLogicException;
 import java.util.List;
 import javax.inject.Inject;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -49,7 +45,6 @@ import javax.ws.rs.core.MediaType;
 
 import java.util.ArrayList;
 import javax.ws.rs.WebApplicationException;
-import static org.springframework.util.StringUtils.split;
 
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -105,16 +100,16 @@ public class EmergenciaResource {
      * consultado
      *
      */
-    @Path("{emergenciaId}")
+   @Path("{emergenciaId}")
    @GET
-    public EmergenciaDTO getEmergencia(@PathParam("medicionId") Long medicionId, @PathParam("emergenciaId") Long emergenciaId) {
+    public List<EmergenciaDTO> getEmergencia(@PathParam("medicionId") Long medicionId, @PathParam("emergenciaId") Long emergenciaId) {
     
         System.out.println("Esta es el id Sebas" + medicionId + "emergenciaId "+ emergenciaId);
         
        
         List<EmergenciaEntity> entity = emergenciaLogic.getEmergenciaMedicion(medicionId);
        
-        return new EmergenciaDTO(entity.get(0));
+        return listEntity2DTO(entity);
     }
     
    

@@ -20,7 +20,7 @@ public class HistoriaClinicaDTO {
 
     private Long id;
 
-    private PacienteDTO paciente;
+    private Long idPaciente;
 
     private List<ExamenDTO> examenes = new ArrayList<>();
 
@@ -34,7 +34,7 @@ public class HistoriaClinicaDTO {
     public HistoriaClinicaDTO(HistoriaClinicaEntity entity) {
         if (entity != null) {
             id = entity.getId();
-            paciente = new PacienteDTO(entity.getPaciente());
+            idPaciente = entity.getIdPaciente();
 
             for (ExamenEntity examen : entity.getExamenes()) {
                 examenes.add(new ExamenDTO(examen));
@@ -61,12 +61,12 @@ public class HistoriaClinicaDTO {
         this.id = id;
     }
 
-    public PacienteDTO getPaciente() {
-        return paciente;
+    public Long getPaciente() {
+        return idPaciente;
     }
 
-    public void setPaciente(PacienteDTO paciente) {
-        this.paciente = paciente;
+    public void setPaciente(Long idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
     public List<ExamenDTO> getExamenes() {

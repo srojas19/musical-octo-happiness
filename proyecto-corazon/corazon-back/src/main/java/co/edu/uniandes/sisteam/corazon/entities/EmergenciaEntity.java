@@ -50,7 +50,7 @@ public class EmergenciaEntity extends BaseEntity implements Serializable {
     }
 
     public void setMedicion(Long medicion) {
-        this.medicionId = medicionId;
+        this.medicionId = medicion;
     }
 
     public double getLatitud() {

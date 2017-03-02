@@ -45,12 +45,11 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     @ManyToOne 
     private MedicoEntity medicoTratante;
     
-    @ManyToMany(mappedBy = "pacientes", cascade = CascadeType.PERSIST)
+    @ManyToMany
     private List<MedicoEntity> medicos = new ArrayList<>();
-    
-    
+        
     //Relaciones con MarcaPasos
-    @OneToOne(mappedBy = "paciente",cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "paciente")
     private MarcapasosEntity marcapasos;
     
     
@@ -58,11 +57,6 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)
     private List<ConsejoEntity> consejosrecibidos = new ArrayList<>();
 
-    
-    //Relaciones con HistoriaClinica
-    
-   @OneToOne(mappedBy = "paciente",cascade = CascadeType.ALL)
-    private HistoriaClinicaEntity historiaClinica;
     
     private int cedula;
     private String nombres; 
@@ -175,13 +169,6 @@ public class PacienteEntity extends BaseEntity implements Serializable {
         this.marcapasos = marcapasos;
     }
 
-    public HistoriaClinicaEntity getHistoriaClinica() {
-        return historiaClinica;
-    }
-
-    public void setHistoriaClinica(HistoriaClinicaEntity historiaClinica) {
-        this.historiaClinica = historiaClinica;
-    }
 
     public List<ConsejoEntity> getConsejosrecibidos() {
         return consejosrecibidos;

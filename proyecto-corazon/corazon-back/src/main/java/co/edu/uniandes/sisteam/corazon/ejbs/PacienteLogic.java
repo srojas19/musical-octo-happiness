@@ -1,8 +1,10 @@
 package co.edu.uniandes.sisteam.corazon.ejbs;
 
 import co.edu.uniandes.sisteam.corazon.api.IPacienteLogic;
+import co.edu.uniandes.sisteam.corazon.entities.HistoriaClinicaEntity;
 import co.edu.uniandes.sisteam.corazon.entities.PacienteEntity;
 import co.edu.uniandes.sisteam.corazon.exceptions.BusinessLogicException;
+import co.edu.uniandes.sisteam.corazon.persistence.HistoriaClinicaPersistence;
 import co.edu.uniandes.sisteam.corazon.persistence.PacientePersistence;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -14,6 +16,8 @@ public class PacienteLogic implements IPacienteLogic {
 
     @Inject
     private PacientePersistence persistence;
+    @Inject
+    private HistoriaClinicaPersistence persistenceHC;
 
     /**
      * Obtiene la lista de los registros de Paciente.
@@ -54,6 +58,9 @@ public class PacienteLogic implements IPacienteLogic {
             throw new BusinessLogicException("Ya existe una paciente con ese numero de cedula");
         } else {
             persistence.create(entity);
+            HistoriaClinicaEntity hCEntity= new HistoriaClinicaEntity();
+            hCEntity.setIdPaciente(entity.getId());
+            persistenceHC.create(hCEntity);
         }
         return entity;
     }

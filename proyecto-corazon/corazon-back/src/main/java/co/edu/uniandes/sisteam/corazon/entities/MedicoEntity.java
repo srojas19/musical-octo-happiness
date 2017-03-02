@@ -37,7 +37,7 @@ public class MedicoEntity extends BaseEntity implements Serializable {
     private List<PacienteEntity> pacientesTratando = new ArrayList<>();
 
     @PodamExclude
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy ="medicos")
     private List<PacienteEntity> pacientes = new ArrayList<>();
 
     @PodamExclude
