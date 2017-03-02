@@ -50,23 +50,24 @@ public class MedicoDetailDTO extends MedicoDTO {
 
     }
 
+    @Override
     public MedicoEntity toEntity() {
 
         MedicoEntity entity = super.toEntity();
 
-        List<ConsejoDTO> consejosRealizados = this.consejosRealizados;
+        List<ConsejoDTO> consejosRealizados2 = this.consejosRealizados;
 
-        for (ConsejoDTO consejoRealizado : consejosRealizados) {
+        for (ConsejoDTO consejoRealizado : consejosRealizados2) {
             entity.getConsejosRealizados().add(consejoRealizado.toEntity());
         }
-        List<PacienteDTO> pacientes = this.pacientes;
-        for (PacienteDTO paciente : pacientes) {
+        List<PacienteDTO> pacientes2 = this.pacientes;
+        for (PacienteDTO paciente : pacientes2) {
            entity.getPacientes().add(paciente.toEntity());
         }
 
-        List<PacienteDTO> pacientesTratando = this.pacientesTratando;
+        List<PacienteDTO> pacientesTratando2 = this.pacientesTratando;
 
-        for (PacienteDTO pacienteEntity : pacientesTratando) {
+        for (PacienteDTO pacienteEntity : pacientesTratando2) {
            entity.getPacientesTratando().add(pacienteEntity.toEntity());
         }
         

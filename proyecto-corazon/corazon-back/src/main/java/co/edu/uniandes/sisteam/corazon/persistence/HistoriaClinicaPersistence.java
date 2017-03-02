@@ -24,7 +24,7 @@ public class HistoriaClinicaPersistence {
     protected EntityManager em;
 
     public HistoriaClinicaEntity getHistoriaClinicaPaciente(Long idPaciente) {
-        TypedQuery q = em.createQuery("select u from HistoriaClinicaEntity u where u.idPaciente = :idPaciente", HistoriaClinicaEntity.class);
+        TypedQuery q = em.createQuery("select u from HistoriaClinicaEntity u where u.paciente.id = :idPaciente", HistoriaClinicaEntity.class);
         q = q.setParameter("idPaciente", idPaciente);
         List<HistoriaClinicaEntity> similarName = q.getResultList();
         if (similarName.isEmpty()) {

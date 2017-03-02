@@ -35,4 +35,5 @@ public interface IPacienteLogic {
     public PacienteEntity createPaciente(PacienteEntity entity) throws BusinessLogicException; 
     public PacienteEntity updatePaciente(PacienteEntity entity);
     public void deletePaciente(Long id);
+    public void crearHistoriaClinicaPaciente(PacienteEntity entity);
 }

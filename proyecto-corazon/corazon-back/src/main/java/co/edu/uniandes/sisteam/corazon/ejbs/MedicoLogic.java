@@ -7,11 +7,14 @@ package co.edu.uniandes.sisteam.corazon.ejbs;
 
 import co.edu.uniandes.sisteam.corazon.api.IMedicoLogic;
 import co.edu.uniandes.sisteam.corazon.entities.MedicoEntity;
+import co.edu.uniandes.sisteam.corazon.entities.PacienteEntity;
 import co.edu.uniandes.sisteam.corazon.exceptions.BusinessLogicException;
 import co.edu.uniandes.sisteam.corazon.persistence.MedicoPersistence;
+import co.edu.uniandes.sisteam.corazon.persistence.PacientePersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import org.springframework.objenesis.instantiator.perc.PercInstantiator;
 
 /**
  *
@@ -22,6 +25,9 @@ public class MedicoLogic implements IMedicoLogic {
 
     @Inject
     private MedicoPersistence persistence;
+    
+    @Inject
+    private PacientePersistence persistencePa;
 
     @Override
     public MedicoEntity getMedicoId(Long medicoId) {
@@ -78,6 +84,15 @@ public class MedicoLogic implements IMedicoLogic {
     @Override
     public void deleteMedico(Long medicoid) {
         persistence.delete(medicoid);
+    }
+
+    @Override
+    public void agregarPacienteMedico(Long medicoid, Long idPaciente) {
+      PacienteEntity paciente = persistencePa.find(idPaciente);
+      MedicoEntity medico = persistence.find(medicoid);
+      medico.addPacienteTrantando(paciente);
+      persistence.update(medico);
+    
     }
 
 }

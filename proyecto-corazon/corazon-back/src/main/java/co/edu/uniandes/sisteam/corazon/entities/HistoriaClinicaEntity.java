@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -20,9 +21,8 @@ import javax.persistence.OneToOne;
 @Entity
 public class HistoriaClinicaEntity extends BaseEntity implements Serializable {
 
-    private Long idPaciente;
-
-    
+    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
+    private PacienteEntity paciente;
 
     @OneToMany(mappedBy = "historiaClinica",cascade = CascadeType.ALL)
     private List<DiagnosticoEntity> diagnosticos = new ArrayList<>();
@@ -33,6 +33,13 @@ public class HistoriaClinicaEntity extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "historiaClinica",cascade = CascadeType.ALL)
     private List<TratamientoEntity> tratamientos = new ArrayList<>();
 
+    public PacienteEntity getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(PacienteEntity paciente) {
+        this.paciente = paciente;
+    }
 
     public List<DiagnosticoEntity> getDiagnosticos() {
         return diagnosticos;
@@ -69,13 +76,7 @@ public class HistoriaClinicaEntity extends BaseEntity implements Serializable {
     public void addExamen(ExamenEntity examen){
         this.examenes.add(examen);
     }
-    public Long getIdPaciente() {
-        return idPaciente;
-    }
-
-    public void setIdPaciente(Long idPaciente) {
-        this.idPaciente = idPaciente;
-    }
+    
    
     
 }

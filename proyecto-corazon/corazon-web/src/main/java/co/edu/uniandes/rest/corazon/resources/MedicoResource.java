@@ -7,6 +7,7 @@ package co.edu.uniandes.rest.corazon.resources;
 
 import co.edu.uniandes.rest.corazon.dtos.MedicoDetailDTO;
 import co.edu.uniandes.rest.corazon.dtos.MedicoDTO;
+import co.edu.uniandes.rest.corazon.dtos.PacienteDTO;
 import co.edu.uniandes.rest.corazon.exceptions.MedicoLogicException;
 import co.edu.uniandes.sisteam.corazon.api.IMedicoLogic;
 import co.edu.uniandes.sisteam.corazon.entities.MedicoEntity;
@@ -66,7 +67,8 @@ public class MedicoResource {
     public MedicoDetailDTO getMedico(@PathParam("id") Long id) {
         return new MedicoDetailDTO(medicoLogic.getMedicoId(id));
     }
-
+    
+    
     @POST
     public MedicoDetailDTO createMedico(MedicoDetailDTO dto) throws MedicoLogicException {
        
@@ -89,6 +91,19 @@ public class MedicoResource {
 
        
     }
+    
+    @POST
+    @Path("{id: \\d+}/agregarPaciente")
+    public MedicoDetailDTO addPaciente(@PathParam("id") Long id,PacienteDTO dto) throws MedicoLogicException {
+       
+       medicoLogic.agregarPacienteMedico(id, dto.getId());
+        
+
+    return getMedico(id);
+        
+    }
+    
+    
 
     @PUT
     @Path("{id: \\d+}")

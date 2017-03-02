@@ -35,9 +35,6 @@ public class PacienteDetailDTO extends PacienteDTO {
 
   
 
-    // relacion una a uno con hitoriaClinica
-    private HistoriaClinicaDTO historiaClinica;
-
     public PacienteDetailDTO() {
         super();
     }
@@ -78,14 +75,5 @@ public class PacienteDetailDTO extends PacienteDTO {
         return entity;
     }
 
-   
-
-    public HistoriaClinicaDTO getHistoriaClinica() {
-        return historiaClinica;
-    }
-
-    public void setHistoriaClinica(HistoriaClinicaDTO historiaClinica) {
-        this.historiaClinica = historiaClinica;
-    }
 
 }

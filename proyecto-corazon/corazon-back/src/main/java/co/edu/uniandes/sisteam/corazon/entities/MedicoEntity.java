@@ -111,6 +111,10 @@ public class MedicoEntity extends BaseEntity implements Serializable {
     public void addConsejosRealizados(ConsejoEntity consejosRealizado) {
         this.consejosRealizados.add(consejosRealizado);
     }
+    
+    public void addPacienteTrantando(PacienteEntity paciente) {
+        this.pacientesTratando.add(paciente);
+    }
 
     public List<PacienteEntity> getPacientesTratando() {
         return pacientesTratando;

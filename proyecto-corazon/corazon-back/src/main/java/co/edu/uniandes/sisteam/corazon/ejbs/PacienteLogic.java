@@ -38,6 +38,7 @@ public class PacienteLogic implements IPacienteLogic {
      * consultado.
      *
      */
+    @Override
     public PacienteEntity getPaciente(Long id) {
         return persistence.find(id);
     }
@@ -54,15 +55,13 @@ public class PacienteLogic implements IPacienteLogic {
     public PacienteEntity createPaciente(PacienteEntity entity) throws BusinessLogicException 
     {
         PacienteEntity alreadyExist = getPacienteByCedula(entity.getCedula());
+        PacienteEntity resp =null;
         if (alreadyExist != null) {
             throw new BusinessLogicException("Ya existe una paciente con ese numero de cedula");
         } else {
-            persistence.create(entity);
-            HistoriaClinicaEntity hCEntity= new HistoriaClinicaEntity();
-            hCEntity.setIdPaciente(entity.getId());
-            persistenceHC.create(hCEntity);
+            resp = persistence.create(entity);           
         }
-        return entity;
+        return resp;
     }
 
     /**
@@ -91,6 +90,13 @@ public class PacienteLogic implements IPacienteLogic {
     @Override
     public PacienteEntity getPacienteByCedula(int cedula) {
         return persistence.findByCedula(cedula);
+    }
+
+    @Override
+    public void crearHistoriaClinicaPaciente(PacienteEntity entity) {
+            HistoriaClinicaEntity hCEntity= new HistoriaClinicaEntity();
+            hCEntity.setPaciente(entity);
+            persistenceHC.create(hCEntity);    
     }
 
 }

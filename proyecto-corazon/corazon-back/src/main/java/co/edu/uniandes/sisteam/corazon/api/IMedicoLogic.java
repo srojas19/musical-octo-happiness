@@ -27,6 +27,9 @@ public interface IMedicoLogic {
 
     public MedicoEntity updateMedico(MedicoEntity entity) throws BusinessLogicException;
     
+    public void agregarPacienteMedico(Long medicoid,Long idPaciente);
+    
+    
     public void deleteMedico(Long medicoid);
 
 }

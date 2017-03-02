@@ -128,7 +128,7 @@ public class PacienteResource {
         } catch (BusinessLogicException ex) {
             throw new PacienteLogicException(ex.getMessage());
         }
-        
+        pacienteLogic.crearHistoriaClinicaPaciente(respuesta.toEntity());
         return respuesta;
     }
 
