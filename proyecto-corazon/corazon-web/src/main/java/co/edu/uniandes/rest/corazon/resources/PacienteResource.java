@@ -23,8 +23,9 @@ SOFTWARE.
  */
 package co.edu.uniandes.rest.corazon.resources;
 
+
 import co.edu.uniandes.rest.corazon.dtos.PacienteDTO;
-import co.edu.uniandes.rest.corazon.dtos.PacienteDTO;
+import co.edu.uniandes.rest.corazon.dtos.PacienteDetailDTO;
 import co.edu.uniandes.rest.corazon.exceptions.PacienteLogicException;
 import co.edu.uniandes.sisteam.corazon.api.IPacienteLogic;
 import co.edu.uniandes.sisteam.corazon.entities.PacienteEntity;
@@ -92,9 +93,9 @@ public class PacienteResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public PacienteDTO getPaciente(@PathParam("id") Long id) 
+    public PacienteDetailDTO getPaciente(@PathParam("id") Long id) 
     {
-        return new PacienteDTO(pacienteLogic.getPaciente(id));
+        return new PacienteDetailDTO(pacienteLogic.getPaciente(id));
     }
 
 //    /**
@@ -128,7 +129,7 @@ public class PacienteResource {
         } catch (BusinessLogicException ex) {
             throw new PacienteLogicException(ex.getMessage());
         }
-        pacienteLogic.crearHistoriaClinicaPaciente(respuesta.toEntity());
+       
         return respuesta;
     }
 

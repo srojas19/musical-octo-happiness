@@ -20,53 +20,52 @@ import javax.inject.Inject;
  * @author BarraganJeronimo
  */
 @Stateless
-public class MarcapasosLogic implements IMarcapasosLogic{
-
+public class MarcapasosLogic implements IMarcapasosLogic {
     
     @Inject
     private MarcapasosPersistence persistence;
     
     @Inject
     private PacientePersistence paciente;
-  
     
-      
     @Override
     public MarcapasosEntity getMarcapasosId(long id) {
-       return persistence.find(id);
+        return persistence.find(id);
     }
-
+    
     @Override
     public List<MarcapasosEntity> getAllMarcapasos() {
         return persistence.findAll();
     }
-
+    
     @Override
     public MarcapasosEntity getMarcapasosNumeroSerie(String numeroSerie) {
-      return persistence.findByNumeroSerie(numeroSerie);
+        return persistence.findByNumeroSerie(numeroSerie);
     }
-
+    
     @Override
-    public MarcapasosEntity createMarcapasos(MarcapasosEntity entity,Long id) throws BusinessLogicException {
+    public MarcapasosEntity createMarcapasos(MarcapasosEntity entity, Long id) throws BusinessLogicException {
         
         MarcapasosEntity alreadyExist = getMarcapasosNumeroSerie(entity.getNumeroSerie());
         PacienteEntity existe = paciente.find(id);
         if (alreadyExist != null) {
             throw new BusinessLogicException("Ya existe un marcapasos con ese numero de serie");
-        } 
+        }        
         if (existe == null) {
-            throw new BusinessLogicException("No exite cliente con esa identificacion: " +id );
-        }else {
-            entity.setPaciente(existe);
+            throw new BusinessLogicException("No exite cliente con esa identificacion: " + id);
+        } else {
+            existe.setMarcapasos(entity);
+            entity.setPaciente(existe);          
             persistence.create(entity);
+            paciente.update(existe);
         }
         return entity;
-
+        
     }
-
+    
     @Override
     public MarcapasosEntity updateMarcapasos(MarcapasosEntity entity) throws BusinessLogicException {
-    
+        
         MarcapasosEntity alreadyExist = getMarcapasosNumeroSerie(entity.getNumeroSerie());
         if (alreadyExist == null) {
             throw new BusinessLogicException("No existe un marcapasos con ese numero de serie para actualizar");
@@ -75,13 +74,11 @@ public class MarcapasosLogic implements IMarcapasosLogic{
         }
         return entity;
     }
-
+    
     @Override
     public void deleteMarcapasos(long id) {
         persistence.delete(id);
         
     }
-    
-    
     
 }

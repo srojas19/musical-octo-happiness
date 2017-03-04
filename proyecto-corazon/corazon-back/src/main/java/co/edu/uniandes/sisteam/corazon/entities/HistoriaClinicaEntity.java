@@ -21,7 +21,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class HistoriaClinicaEntity extends BaseEntity implements Serializable {
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToOne(fetch = FetchType.LAZY)
     private PacienteEntity paciente;
 
     @OneToMany(mappedBy = "historiaClinica",cascade = CascadeType.ALL)

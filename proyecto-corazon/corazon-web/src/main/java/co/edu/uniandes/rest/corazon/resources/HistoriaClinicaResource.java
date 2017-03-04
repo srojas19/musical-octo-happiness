@@ -71,7 +71,7 @@ public class HistoriaClinicaResource {
     }
     
     @DELETE
-    @Path("diagnostico/{idDignostico: \\d+}")
+    @Path("diagnostico/{idDiagnostico:\\d+}")
     public void deleteDiagnosticoPaciente(@PathParam("idDiagnostico") Long idDiagnostico){
         if(historiaClinicaLogic.getDiagnosticoPaciente(idDiagnostico)==null){
             throw new WebApplicationException("El diagnostico no existe", 404);

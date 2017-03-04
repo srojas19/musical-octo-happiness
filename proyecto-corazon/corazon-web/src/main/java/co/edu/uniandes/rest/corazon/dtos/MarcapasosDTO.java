@@ -7,11 +7,13 @@ package co.edu.uniandes.rest.corazon.dtos;
 
 import co.edu.uniandes.sisteam.corazon.entities.MarcapasosEntity;
 import java.util.Date;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author BarraganJeronimo
  */
+@XmlRootElement
 public class MarcapasosDTO {
 
     private long id;
@@ -50,6 +52,7 @@ public class MarcapasosDTO {
     public MarcapasosDTO(MarcapasosEntity entity) {
 
         if (entity != null) {
+            this.id=entity.getId();
             this.fechaImplante = entity.getFechaImplante();
             this.finVidaUtil = entity.getFinVidaUtil();
             this.marca = entity.getMarca();
@@ -57,6 +60,7 @@ public class MarcapasosDTO {
             this.numeroSerie = entity.getNumeroSerie();
             this.voltaje = entity.getVoltaje();
             this.frecuenciaElectrica = entity.getFrecuenciaElectrica();
+           
         }
 
     }

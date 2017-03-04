@@ -78,6 +78,7 @@ public class MarcapasosResource {
    /**
      *
      * @param dto
+     * @param idPaciente
      * @param id
      * @return
      * @throws MarcapasosLogicException

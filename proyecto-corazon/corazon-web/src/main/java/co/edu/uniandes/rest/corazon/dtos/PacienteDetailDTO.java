@@ -23,8 +23,8 @@ SOFTWARE.
  */
 package co.edu.uniandes.rest.corazon.dtos;
 
-import co.edu.uniandes.sisteam.corazon.entities.HistoriaClinicaEntity;
-import co.edu.uniandes.sisteam.corazon.entities.MedicionEntity;
+import co.edu.uniandes.sisteam.corazon.entities.ConsejoEntity;
+import co.edu.uniandes.sisteam.corazon.entities.MedicoEntity;
 import co.edu.uniandes.sisteam.corazon.entities.PacienteEntity;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class PacienteDetailDTO extends PacienteDTO {
 
-  
+    private MedicoDTO medicoTratante;
+    
+    private List<MedicoDTO> medicos=new ArrayList<>();
+
+    private MarcapasosDTO marcapasos;
+
+    private List<ConsejoDTO> consejosRecibidos = new ArrayList<>();
 
     public PacienteDetailDTO() {
         super();
@@ -49,11 +55,24 @@ public class PacienteDetailDTO extends PacienteDTO {
      */
     public PacienteDetailDTO(PacienteEntity entity) {
         super(entity);
+        if (entity != null) {
+            List<ConsejoEntity> consejosEntityRecibidos = entity.getConsejosRecibidos();
+            for (ConsejoEntity consejoRecibido : consejosEntityRecibidos) {
+                this.consejosRecibidos.add(new ConsejoDTO(consejoRecibido));
+            }
+            
+            List<MedicoEntity> medicosa = entity.getMedicos();
+            for (MedicoEntity medico : medicosa) {
+                this.medicos.add(new MedicoDTO(medico));
+            }
+           if(entity.getMedicoTratante()!=null){
+           medicoTratante= new MedicoDTO(entity.getMedicoTratante());
+           }
+           if(entity.getMarcapasos()!=null){
+           this.marcapasos=new MarcapasosDTO(entity.getMarcapasos());
+           }
+        }
 
-   
-
-//        HistoriaClinicaEntity hist = entity.getHistoriaClinica();
-//        this.historiaClinica = new HistoriaClinicaDTO(hist);
     }
 
     /**
@@ -67,13 +86,45 @@ public class PacienteDetailDTO extends PacienteDTO {
     public PacienteEntity toEntity() {
 
         PacienteEntity entity = super.toEntity();
+        
+        List<ConsejoDTO> consejosRecibidosDTO = this.consejosRecibidos;
 
-//        if (this.getHistoriaClinica() != null) {
-//            HistoriaClinicaDTO hist = this.getHistoriaClinica();
-//            entity.setHistoriaClinica(historiaClinica.toEntity());
-//        }
+        for (ConsejoDTO consejoRealizado : consejosRecibidosDTO) {
+            entity.getConsejosRecibidos().add(consejoRealizado.toEntity());
+        }
+
         return entity;
     }
 
+    public MedicoDTO getMedicoTratante() {
+        return medicoTratante;
+    }
+
+    public void setMedicoTratante(MedicoDTO medicoTratante) {
+        this.medicoTratante = medicoTratante;
+    }
+
+    public MarcapasosDTO getMarcapasos() {
+        return marcapasos;
+    }
+
+    public void setMarcapasos(MarcapasosDTO marcapasos) {
+        this.marcapasos = marcapasos;
+    }
+
+    public List<ConsejoDTO> getConsejosRecibidos() {
+        return consejosRecibidos;
+    }
+
+    public void setConsejosRecibidos(List<ConsejoDTO> consejosRecibidos) {
+        this.consejosRecibidos = consejosRecibidos;
+    }
+    public List<MedicoDTO> getMedicos() {
+        return medicos;
+    }
+
+    public void setMedicos(List<MedicoDTO> medicos) {
+        this.medicos = medicos;
+    }
 
 }

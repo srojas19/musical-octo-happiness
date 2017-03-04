@@ -7,11 +7,13 @@ package co.edu.uniandes.rest.corazon.dtos;
 
 import co.edu.uniandes.sisteam.corazon.entities.TratamientoEntity;
 import java.sql.Date;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author santiago
  */
+@XmlRootElement
 public class TratamientoDTO {
     
     private Long id;
@@ -33,8 +35,7 @@ public class TratamientoDTO {
         TratamientoEntity entity = new TratamientoEntity();
         entity.setId(id);
         entity.setDescripcion(descripcion);
-        entity.setFecha(fecha);
-        
+        entity.setFecha(fecha);      
         return entity;
     }
 

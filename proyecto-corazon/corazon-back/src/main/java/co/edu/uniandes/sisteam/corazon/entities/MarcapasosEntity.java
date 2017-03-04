@@ -7,7 +7,9 @@ package co.edu.uniandes.sisteam.corazon.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -37,7 +39,7 @@ public class MarcapasosEntity extends BaseEntity implements Serializable {
     
     private Double frecuenciaElectrica;
     
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private PacienteEntity paciente;
 
     

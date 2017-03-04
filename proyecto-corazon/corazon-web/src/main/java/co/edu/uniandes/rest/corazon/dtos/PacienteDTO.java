@@ -7,16 +7,17 @@ package co.edu.uniandes.rest.corazon.dtos;
 
 import co.edu.uniandes.sisteam.corazon.entities.PacienteEntity;
 import java.sql.Date;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Objeto de transferencia de datos de Paciente.
  *
  * @author Asistente
  */
+@XmlRootElement
 public class PacienteDTO {
     
-    
-
+   
     private Long id;   
     private int cedula;
     private String nombres;
@@ -41,7 +42,7 @@ public class PacienteDTO {
     public PacienteDTO(Long id, int cedula, String nombres, String apellidos,
             int edad, char sexo, String direccionResidencia, 
             String entidadPrestadoraSalud, Date fechaNacimiento, 
-            String tipoSanguineo, HistoriaClinicaDTO historiaClinica ) {
+            String tipoSanguineo ) {
         this.id = id;
         this.cedula = cedula;
         this.nombres = nombres;
@@ -70,8 +71,7 @@ public class PacienteDTO {
             this.nombres = entity.getNombres();
             this.apellidos = entity.getApellidos();
             this.edad = entity.getEdad();
-            this.sexo = entity.getSexo();
-            
+            this.sexo = entity.getSexo();          
             this.direccionResidencia = entity.getDireccionResidencia();
             this.entidadPrestadoraSalud = entity.getEntidadPrestadoraSalud();
             this.fechaNacimiento = entity.getFechaNacimiento();
@@ -93,9 +93,7 @@ public class PacienteDTO {
         entity.setNombres(this.getNombres());
         entity.setApellidos(this.getApellidos());
         entity.setEdad(this.getEdad());
-        entity.setSexo(this.getSexo());
-        
-        
+        entity.setSexo(this.getSexo());        
         entity.setDireccionResidencia(this.direccionResidencia);
         entity.setEntidadPrestadoraSalud(this.entidadPrestadoraSalud);
         entity.setFechaNacimiento(this.fechaNacimiento);
@@ -104,18 +102,7 @@ public class PacienteDTO {
         return entity;
     }
 
-    
-    
-    /**
-     * Convierte el objeto a una cadena
-     */
-    @Override
-    public String toString() {
-        return "{ id : " + getId()
-                + ", names : \"" + getNombres()
-                + "\", apellidos : \"" + getApellidos()
-                + "\" }";
-    }
+
 
     public Long getId() {
         return id;

@@ -5,14 +5,17 @@
  */
 package co.edu.uniandes.rest.corazon.mappers;
 
-import co.edu.uniandes.rest.corazon.exceptions.MedicoLogicException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
+import javax.ws.rs.ext.Provider;
+
+import co.edu.uniandes.rest.corazon.exceptions.MedicoLogicException;
 
 /**
  *
  * @author BarraganJeronimo
  */
+@Provider
 public class MedicoLogicExceptionMapper implements ExceptionMapper<MedicoLogicException>{
     
     /**

@@ -9,10 +9,12 @@ package co.edu.uniandes.rest.corazon.mappers;
 import co.edu.uniandes.rest.corazon.exceptions.MarcapasosLogicException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
+import javax.ws.rs.ext.Provider;
 /**
  *
  * @author BarraganJeronimo
  */
+@Provider
 public class MarcapasosLogicExceptionMapper implements ExceptionMapper<MarcapasosLogicException> {
 
 	/**

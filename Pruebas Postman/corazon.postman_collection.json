@@ -1,0 +1,365 @@
+{
+	"variables": [],
+	"info": {
+		"name": "corazon",
+		"_postman_id": "d65fc179-dd2a-7753-2da6-4841fdf80bf0",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get medicos",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/medicos",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get medico detalle",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/medicos/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post Medico",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/medicos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"apellidos\": \"Barragan\",\n    \"cedula\": 89979,\n    \"especialista\": true,\n    \"nombres\": \"Juan\",\n    \"sexo\": \"F\",\n    \"tarjetaProfesional\": \"ohho8to\",\n    \"fechaNacimiento\": \"2017-02-16\"\n  }\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update Medico",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/medicos/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n    \"apellidos\": \"Barragan\",\n    \"cedula\": 878787234,\n    \"especialista\": true,\n    \"fechaNacimiento\": \"2017-03-03T00:00:00-05:00\",\n    \"id\": 1,\n    \"nombres\": \"Juan\",\n    \"sexo\": \"F\",\n    \"tarjetaProfesional\": \"o9ui398ho\"\n  }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete medico",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/medicos/6",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pacientes",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/pacientes",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post Paciente",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/pacientes/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"apellidos\": \"sadf\",\n  \"cedula\": 007343,\n  \"direccionResidencia\": \"asdf\",\n  \"edad\": 23,\n  \"entidadPrestadoraSalud\": \"dfasdf\",\n  \"fechaNacimiento\": \"2017-02-16\",\n  \"nombres\": \"dsfas\",\n  \"sexo\": \"m\",\n  \"tipoSanguineo\": \"asdf\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get un paciente detalle",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/pacientes/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Mediciones de un paciente",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/pacientes/1/mediciones/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Asignar medico a paciente",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/medicos/1/agregarPacienteTratante/1",
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Asignar  paciente a histrial medico",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/medicos/1/agregarPacienteHistorial/1",
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post Medicion",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/pacientes/1/mediciones/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n    \"dictamen\": \"rojo\",\n    \"fecha\": \"2017-02-16\",\n    \"frecuenciaCardiaca\": 23,\n    \"nivelEstres\": 5,\n    \"pacienteId\": 1\n  }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Emergencia",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/pacientes/1/mediciones/1/emergencia/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post Emergencia",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/pacientes/1/mediciones/1/emergencia",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"latitud\": 234,\n  \"longitud\": 234,\n  \"medicionId\": 1\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Historia Medica Paciente",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/pacientes/1/historia",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post tratamiento historia clinica",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/pacientes/1/historia/tratamiento",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n      \"descripcion\": \"eklrmgoi4ngoig n45f\",\n      \"fecha\": \"2017-03-03\"\n \t\n \t\n }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete tratamiento",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/pacientes/13/historia/tratamiento/1",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post examen historia clinica",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/pacientes/1/historia/examen",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n      \"descripcion\": \"eklrmgoi4ngoig n45f\",\n      \"fecha\": \"2017-03-03\"\n \t\n }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete un examen",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/pacientes/13/historia/examen/1",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post diagnostico historia clinica",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/pacientes/1/historia/diagnostico",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n      \"descripcion\": \"eklrmgoi4ngoig n45f\",\n      \"fecha\": \"2017-03-03\"\n \t\n }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Detele un diagnostico",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/pacientes/13/historia/diagnostico/2",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get marcapasos",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/marcapasos/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post Marcapasos",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/marcapasos/2",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fechaImplante\": \"2017-03-03T00:00:00-05:00\",\n    \"finVidaUtil\": \"2017-03-03T00:00:00-05:00\",\n    \"frecuenciaElectrica\": 3.3,\n    \"id\": 0,\n    \"marca\": \"12c343h5fv\",\n    \"modelo\": \"323x44\",\n    \"numeroSerie\": \"23tyty0fvf346\",\n    \"voltaje\": 1.666\n  }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update Marcapasos",
+			"request": {
+				"url": "http://localhost:8080/corazon-web/api/marcapasos/3",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fechaImplante\": \"2017-03-03T00:00:00-05:00\",\n    \"finVidaUtil\": \"2017-03-03T00:00:00-05:00\",\n    \"frecuenciaElectrica\": 3.3,\n    \"id\": 2,\n    \"marca\": \"12cfv\",\n    \"modelo\": \"323x44\",\n    \"numeroSerie\": \"23tyty0fvf346\",\n    \"voltaje\": 1.66\n  }"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

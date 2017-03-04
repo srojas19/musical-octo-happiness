@@ -7,11 +7,13 @@ package co.edu.uniandes.rest.corazon.dtos;
 
 import co.edu.uniandes.sisteam.corazon.entities.ConsejoEntity;
 import java.sql.Date;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author s.rojas19
  */
+@XmlRootElement
 public class ConsejoDTO {
 
     private Long id;

@@ -55,7 +55,7 @@ public class MedicoLogic implements IMedicoLogic {
         MedicoEntity alreadyExistTP = getMedicoTarjetaProfesional(entity.getTarjetaProfesional());
            MedicoEntity alreadyExistCC = getMedicoCedula(entity.getCedula());
         if (alreadyExistTP != null) {
-            throw new BusinessLogicException("Ya existe un medico con misma Tarjeta Profecional");
+            throw new BusinessLogicException("Ya existe un medico con misma Tarjeta Profesional");
         }
         if (alreadyExistCC != null) {
             throw new BusinessLogicException("Ya existe un medico con misma cedula");
@@ -70,13 +70,14 @@ public class MedicoLogic implements IMedicoLogic {
       
            MedicoEntity alreadyExistTP = getMedicoTarjetaProfesional(entity.getTarjetaProfesional());
            MedicoEntity alreadyExistCC = getMedicoCedula(entity.getCedula());
-        if (alreadyExistTP == null) {
-            throw new BusinessLogicException("No existe un medico con la Tarjeta Profecional dada");
+        if (alreadyExistTP == null ) {
+            throw new BusinessLogicException("No existe un medico con la Tarjeta Profesional dada");
         }
         if (alreadyExistCC == null) {
             throw new BusinessLogicException("No existe un medico con la cedula dada");
         }else {
-            persistence.update(entity);
+           
+            persistence.update(alreadyExistCC);
         }
         return entity;
     }
@@ -91,8 +92,18 @@ public class MedicoLogic implements IMedicoLogic {
       PacienteEntity paciente = persistencePa.find(idPaciente);
       MedicoEntity medico = persistence.find(medicoid);
       medico.addPacienteTrantando(paciente);
+      paciente.setMedicoTratante(medico);
       persistence.update(medico);
     
+    }
+
+    @Override
+    public void agregarPacienteHistorial(Long medicoid, Long idPaciente) {
+      PacienteEntity paciente = persistencePa.find(idPaciente);
+      MedicoEntity medico = persistence.find(medicoid);
+      medico.getPacientes().add(paciente);
+      paciente.getMedicos().add(medico);
+      persistence.update(medico);
     }
 
 }

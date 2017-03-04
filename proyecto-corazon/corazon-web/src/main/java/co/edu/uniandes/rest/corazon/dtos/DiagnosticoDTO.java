@@ -7,11 +7,13 @@ package co.edu.uniandes.rest.corazon.dtos;
 
 import co.edu.uniandes.sisteam.corazon.entities.DiagnosticoEntity;
 import java.sql.Date;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author santiago
  */
+@XmlRootElement
 public class DiagnosticoDTO {
     
     private Long id;

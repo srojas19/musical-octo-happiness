@@ -2,6 +2,7 @@ package co.edu.uniandes.rest.corazon.dtos;
 
 import co.edu.uniandes.sisteam.corazon.entities.MedicionEntity;
 import java.sql.Date;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /*
  * MedicionDTO
@@ -13,6 +14,7 @@ import java.sql.Date;
  * Objeto de transferencia de datos de Ciudades.
  * @author Asistente
  */
+@XmlRootElement
 public class MedicionDTO {
     
     private Long id;

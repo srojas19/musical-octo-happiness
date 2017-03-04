@@ -93,12 +93,23 @@ public class MedicoResource {
     }
     
     @POST
-    @Path("{id: \\d+}/agregarPaciente")
-    public MedicoDetailDTO addPaciente(@PathParam("id") Long id,PacienteDTO dto) throws MedicoLogicException {
+    @Path("{id: \\d+}/agregarPacienteTratante/{idPaciente: \\d+}")
+    public MedicoDetailDTO addPaciente(@PathParam("id") Long id,@PathParam("idPaciente") Long idpaciente) throws MedicoLogicException {
        
-       medicoLogic.agregarPacienteMedico(id, dto.getId());
+    
+     medicoLogic.agregarPacienteMedico(id, idpaciente);
         
-
+    return getMedico(id);
+        
+    }
+    
+    @POST
+    @Path("{id: \\d+}/agregarPacienteHistorial/{idPaciente: \\d+}")
+    public MedicoDetailDTO addPacienteHistorial(@PathParam("id") Long id,@PathParam("idPaciente") Long idpaciente) throws MedicoLogicException {
+       
+    
+     medicoLogic.agregarPacienteHistorial(id, idpaciente);
+        
     return getMedico(id);
         
     }
@@ -120,7 +131,7 @@ public class MedicoResource {
                 }
             }
      
-          MedicoDetailDTO resp= new MedicoDetailDTO(medicoLogic.createMedico(dto.toEntity()));
+          MedicoDetailDTO resp= new MedicoDetailDTO(medicoLogic.updateMedico(dto.toEntity()));
           resp.setId(id);
           return resp;
         } catch (BusinessLogicException ex) {

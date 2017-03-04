@@ -7,11 +7,13 @@ package co.edu.uniandes.rest.corazon.dtos;
 
 import co.edu.uniandes.sisteam.corazon.entities.MedicoEntity;
 import java.util.Date;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author BarraganJeronimo
  */
+@XmlRootElement
 public class MedicoDTO {
 
     private long id;
@@ -58,12 +60,14 @@ public class MedicoDTO {
      */
     public MedicoDTO(MedicoEntity entity) {
         if (entity != null) {
+            this.id= entity.getId();
             this.cedula = entity.getCedula();
             this.tarjetaProfesional = entity.getTarjetaProfesional();
             this.nombres = entity.getNombres();
             this.especialista = entity.getEspecialista();
             this.apellidos = entity.getApellidos();
             this.sexo = entity.getSexo();
+            this.fechaNacimiento= entity.getFechaNacimiento();
         }
     }
 

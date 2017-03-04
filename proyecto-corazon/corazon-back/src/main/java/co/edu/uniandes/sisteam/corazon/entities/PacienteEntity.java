@@ -30,6 +30,8 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -49,13 +51,15 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     private List<MedicoEntity> medicos = new ArrayList<>();
         
     //Relaciones con MarcaPasos
-    @OneToOne(mappedBy = "paciente")
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private MarcapasosEntity marcapasos;
-    
     
     @PodamExclude
     @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)
-    private List<ConsejoEntity> consejosrecibidos = new ArrayList<>();
+    private List<ConsejoEntity> consejosRecibidos = new ArrayList<>();
+    
+    @OneToOne(mappedBy = "paciente",cascade = CascadeType.ALL, optional = false,  fetch = FetchType.LAZY, orphanRemoval = true)
+    private HistoriaClinicaEntity historiaClinica;
 
     
     private int cedula;
@@ -72,7 +76,7 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     
         
 
-     public int getCedula() {
+    public int getCedula() {
         return cedula;
     }
 
@@ -170,12 +174,20 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     }
 
 
-    public List<ConsejoEntity> getConsejosrecibidos() {
-        return consejosrecibidos;
+    public List<ConsejoEntity> getConsejosRecibidos() {
+        return consejosRecibidos;
     }
 
-    public void setConsejosrecibidos(List<ConsejoEntity> consejosrecibidos) {
-        this.consejosrecibidos = consejosrecibidos;
+    public void setConsejosRecibidos(List<ConsejoEntity> consejosrecibidos) {
+        this.consejosRecibidos = consejosrecibidos;
+    }
+
+    public HistoriaClinicaEntity getHistoriaClinica() {
+        return historiaClinica;
+    }
+
+    public void setHistoriaClinica(HistoriaClinicaEntity historiaClinica) {
+        this.historiaClinica = historiaClinica;
     }
 
     
