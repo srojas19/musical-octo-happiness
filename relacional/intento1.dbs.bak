@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Derby" id="Project_231cf128" template="Default" database="Derby" >
+	<schema name="APP" schemaname="APP" >
+		<table name="CONSEJOENTITY" >
+			<column name="ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>GENERATED_BY_DEFAULT</defo>
+			</column>
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="FECHA" type="date" length="10" decimal="0" jt="91" />
+			<column name="TIPO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="MEDICO_ID" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="PACIENTE_ID" type="bigint" length="19" decimal="0" jt="-5" />
+			<index name="SQL170304101046920" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="SQL170304101046970" unique="NORMAL" >
+				<column name="MEDICO_ID" />
+			</index>
+			<index name="SQL170304101046971" unique="NORMAL" >
+				<column name="PACIENTE_ID" />
+			</index>
+			<fk name="CNSEJOENTITYMDCOID" to_schema="APP" to_table="MEDICOENTITY" >
+				<fk_column name="MEDICO_ID" pk="ID" />
+			</fk>
+			<fk name="CNSJOENTITYPCNTEID" to_schema="APP" to_table="PACIENTEENTITY" >
+				<fk_column name="PACIENTE_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="DIAGNOSTICOENTITY" >
+			<column name="ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>GENERATED_BY_DEFAULT</defo>
+			</column>
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="FECHA" type="date" length="10" decimal="0" jt="91" />
+			<column name="HISTORIACLINICA_ID" type="bigint" length="19" decimal="0" jt="-5" />
+			<index name="SQL170304101046930" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="SQL170304101046972" unique="NORMAL" >
+				<column name="HISTORIACLINICA_ID" />
+			</index>
+			<fk name="DGNSTCNTTHSTRCLNCD" to_schema="APP" to_table="HISTORIACLINICAENTITY" >
+				<fk_column name="HISTORIACLINICA_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="EMERGENCIAENTITY" >
+			<column name="ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>GENERATED_BY_DEFAULT</defo>
+			</column>
+			<column name="LATITUD" type="double" length="52" decimal="0" jt="8" />
+			<column name="LONGITUD" type="double" length="52" decimal="0" jt="8" />
+			<column name="MEDICIONID" type="bigint" length="19" decimal="0" jt="-5" />
+			<index name="SQL170304101046911" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="IDX_EMERGENCIAENTITY" unique="NORMAL" >
+				<column name="MEDICIONID" />
+			</index>
+			<fk name="FK_EMERGENCIAENTITY" to_schema="APP" to_table="MEDICIONENTITY" >
+				<fk_column name="MEDICIONID" pk="ID" />
+			</fk>
+		</table>
+		<table name="EXAMENENTITY" >
+			<column name="ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>GENERATED_BY_DEFAULT</defo>
+			</column>
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="FECHA" type="date" length="10" decimal="0" jt="91" />
+			<column name="HISTORIACLINICA_ID" type="bigint" length="19" decimal="0" jt="-5" />
+			<index name="SQL170304101046931" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="SQL170304101046980" unique="NORMAL" >
+				<column name="HISTORIACLINICA_ID" />
+			</index>
+			<fk name="XMNNTTYHSTRCLNCAID" to_schema="APP" to_table="HISTORIACLINICAENTITY" >
+				<fk_column name="HISTORIACLINICA_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="HISTORIACLINICAENTITY" >
+			<column name="ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>GENERATED_BY_DEFAULT</defo>
+			</column>
+			<column name="PACIENTE_ID" type="bigint" length="19" decimal="0" jt="-5" />
+			<index name="SQL170304101046940" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="SQL170304101046981" unique="NORMAL" >
+				<column name="PACIENTE_ID" />
+			</index>
+			<fk name="HSTRCLNCNTITYPCNTD" to_schema="APP" to_table="PACIENTEENTITY" >
+				<fk_column name="PACIENTE_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="MARCAPASOSENTITY" >
+			<column name="ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>GENERATED_BY_DEFAULT</defo>
+			</column>
+			<column name="FECHAIMPLANTE" type="date" length="10" decimal="0" jt="91" />
+			<column name="FINVIDAUTIL" type="date" length="10" decimal="0" jt="91" />
+			<column name="FRECUENCIAELECTRICA" type="double" length="52" decimal="0" jt="8" />
+			<column name="MARCA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="MODELO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NUMEROSERIE" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="VOLTAJE" type="double" length="52" decimal="0" jt="8" />
+			<column name="PACIENTE_ID" type="bigint" length="19" decimal="0" jt="-5" />
+			<index name="SQL170304101046941" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="SQL170304101046990" unique="NORMAL" >
+				<column name="PACIENTE_ID" />
+			</index>
+			<fk name="MRCPSSENTITYPCNTID" to_schema="APP" to_table="PACIENTEENTITY" >
+				<fk_column name="PACIENTE_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="MEDICIONENTITY" >
+			<column name="ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>GENERATED_BY_DEFAULT</defo>
+			</column>
+			<column name="PACIENTEID" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="DICTAMEN" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="FECHA" type="date" length="10" decimal="0" jt="91" />
+			<column name="FRECUENCIACARDIACA" type="double" length="52" decimal="0" jt="8" />
+			<column name="NIVELESTRES" type="integer" length="10" decimal="0" jt="4" />
+			<column name="PRESIONSANGUINEA" type="double" length="52" decimal="0" jt="8" />
+			<index name="SQL170304101046910" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="IDX_MEDICIONENTITY" unique="NORMAL" >
+				<column name="PACIENTEID" />
+			</index>
+			<fk name="FK_MEDICIONENTITY" to_schema="APP" to_table="PACIENTEENTITY" >
+				<fk_column name="PACIENTEID" pk="ID" />
+			</fk>
+		</table>
+		<table name="MEDICOENTITY" >
+			<column name="ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>GENERATED_BY_DEFAULT</defo>
+			</column>
+			<column name="APELLIDOS" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CEDULA" type="integer" length="10" decimal="0" jt="4" />
+			<column name="ESPECIALISTA" type="smallint" length="5" decimal="0" jt="5" >
+				<defo>0</defo>
+			</column>
+			<column name="FECHANACIMIENTO" type="date" length="10" decimal="0" jt="91" />
+			<column name="NOMBRES" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="SEXO" type="char" length="1" decimal="0" jt="1" />
+			<column name="TARJETAPROFESIONAL" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="SQL170304101046950" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="PACIENTEENTITY" >
+			<column name="ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>GENERATED_BY_DEFAULT</defo>
+			</column>
+			<column name="APELLIDOS" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CEDULA" type="integer" length="10" decimal="0" jt="4" />
+			<column name="DIRECCIONRESIDENCIA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="EDAD" type="integer" length="10" decimal="0" jt="4" />
+			<column name="ENTIDADPRESTADORASALUD" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="FECHANACIMIENTO" type="date" length="10" decimal="0" jt="91" />
+			<column name="NOMBRES" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="SEXO" type="char" length="1" decimal="0" jt="1" />
+			<column name="TIPOSANGUINEO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="MEDICOTRATANTE_ID" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="MARCAPASOS_ID" type="bigint" length="19" decimal="0" jt="-5" />
+			<index name="SQL170304101046900" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="SQL170304101046961" unique="NORMAL" >
+				<column name="MEDICOTRATANTE_ID" />
+			</index>
+			<index name="SQL170304101046962" unique="NORMAL" >
+				<column name="MARCAPASOS_ID" />
+			</index>
+			<fk name="PCNTNTITYMRCPSOSID" to_schema="APP" to_table="MARCAPASOSENTITY" >
+				<fk_column name="MARCAPASOS_ID" pk="ID" />
+			</fk>
+			<fk name="PCNTNTTYMDCTRTNTID" to_schema="APP" to_table="MEDICOENTITY" >
+				<fk_column name="MEDICOTRATANTE_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="PACIENTEENTITY_MEDICOENTITY" >
+			<column name="PACIENTES_ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="MEDICOS_ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<index name="SQL170304101046960" unique="PRIMARY_KEY" >
+				<column name="PACIENTES_ID" />
+				<column name="MEDICOS_ID" />
+			</index>
+			<index name="SQL170304101047000" unique="NORMAL" >
+				<column name="MEDICOS_ID" />
+			</index>
+			<index name="SQL170304101047001" unique="NORMAL" >
+				<column name="PACIENTES_ID" />
+			</index>
+			<fk name="PCNTNTTYMDCNTMDCSD" to_schema="APP" to_table="MEDICOENTITY" >
+				<fk_column name="MEDICOS_ID" pk="ID" />
+			</fk>
+			<fk name="PCNTNTTYMDCNPCNTSD" to_schema="APP" to_table="PACIENTEENTITY" >
+				<fk_column name="PACIENTES_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRATAMIENTOENTITY" >
+			<column name="ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>GENERATED_BY_DEFAULT</defo>
+			</column>
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="FECHA" type="date" length="10" decimal="0" jt="91" />
+			<column name="HISTORIACLINICA_ID" type="bigint" length="19" decimal="0" jt="-5" />
+			<index name="SQL170304101046951" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="SQL170304101046991" unique="NORMAL" >
+				<column name="HISTORIACLINICA_ID" />
+			</index>
+			<fk name="TRTMNTNTTHSTRCLNCD" to_schema="APP" to_table="HISTORIACLINICAENTITY" >
+				<fk_column name="HISTORIACLINICA_ID" pk="ID" />
+			</fk>
+		</table>
+	</schema>
+	<connector name="Derby" database="Derby" driver_class="org.apache.derby.jdbc.EmbeddedDriver" driver_jar="derby10.11.jar" driver_desc="Local Connection" host="localhost" port="1527" instance="/Users/BarraganJeronimo/.netbeans-derby/corazonDB" />
+	<layout name="Default Layout" id="Layout_22cfdbc8" show_relation="columns" >
+		<entity schema="APP" name="CONSEJOENTITY" color="f5ddbf" x="976" y="768" />
+		<entity schema="APP" name="DIAGNOSTICOENTITY" color="bfd4f5" x="480" y="48" />
+		<entity schema="APP" name="EMERGENCIAENTITY" color="bfd4f5" x="272" y="192" />
+		<entity schema="APP" name="EXAMENENTITY" color="c8f5bf" x="976" y="48" />
+		<entity schema="APP" name="HISTORIACLINICAENTITY" color="bfd4f5" x="272" y="48" />
+		<entity schema="APP" name="MARCAPASOSENTITY" color="f5ddbf" x="720" y="768" />
+		<entity schema="APP" name="MEDICIONENTITY" color="bfd4f5" x="48" y="192" />
+		<entity schema="APP" name="MEDICOENTITY" color="f5ddbf" x="976" y="464" />
+		<entity schema="APP" name="PACIENTEENTITY" color="f5ddbf" x="720" y="464" />
+		<entity schema="APP" name="PACIENTEENTITY_MEDICOENTITY" color="c8f5bf" x="720" y="48" />
+		<entity schema="APP" name="TRATAMIENTOENTITY" color="c8f5bf" x="720" y="192" />
+	</layout>
+	<layout name="Sample Layout with Groups" id="Layout_13763149" show_relation="columns" >
+		<entity schema="APP" name="CONSEJOENTITY" color="f5ddbf" x="960" y="752" />
+		<entity schema="APP" name="HISTORIACLINICAENTITY" color="bfd4f5" x="272" y="272" />
+		<entity schema="APP" name="MARCAPASOSENTITY" color="f5ddbf" x="704" y="752" />
+		<entity schema="APP" name="MEDICOENTITY" color="f5ddbf" x="960" y="448" />
+		<entity schema="APP" name="PACIENTEENTITY" color="f5ddbf" x="704" y="448" />
+		<entity schema="APP" name="DIAGNOSTICOENTITY" color="bfd4f5" x="480" y="336" />
+		<entity schema="APP" name="TRATAMIENTOENTITY" color="c8f5bf" x="48" y="288" />
+		<entity schema="APP" name="EXAMENENTITY" color="c8f5bf" x="192" y="112" />
+		<entity schema="APP" name="PACIENTEENTITY_MEDICOENTITY" color="c8f5bf" x="688" y="80" />
+		<entity schema="APP" name="EMERGENCIAENTITY" color="bfd4f5" x="448" y="496" />
+		<entity schema="APP" name="MEDICIONENTITY" color="bfd4f5" x="224" y="480" />
+		<callout x="704" y="336" pointer="NO" >
+			<comment><![CDATA[You may create multiple layouts with the same or different tables.
+Layouts will be saved to project file. 
+Double-click any column, foreign key or table headers to edit.]]></comment>
+		</callout>
+		<group name="HISTORIACLINICAENTITY" color="ecf0f7" >
+			<entity schema="APP" name="HISTORIACLINICAENTITY" />
+			<entity schema="APP" name="DIAGNOSTICOENTITY" />
+			<entity schema="APP" name="EMERGENCIAENTITY" />
+			<entity schema="APP" name="MEDICIONENTITY" />
+		</group>
+		<group name="PACIENTEENTITY_MEDICOENTITY" color="eef7ec" >
+			<entity schema="APP" name="PACIENTEENTITY_MEDICOENTITY" />
+			<entity schema="APP" name="EXAMENENTITY" />
+			<entity schema="APP" name="TRATAMIENTOENTITY" />
+		</group>
+		<group name="PACIENTEENTITY" color="f7f3ec" >
+			<entity schema="APP" name="PACIENTEENTITY" />
+			<entity schema="APP" name="MEDICOENTITY" />
+			<entity schema="APP" name="CONSEJOENTITY" />
+			<entity schema="APP" name="MARCAPASOSENTITY" />
+		</group>
+	</layout>
+	<layout name="Sample Layout with Relational Data Browse" id="Layout_29ceeb87" show_relation="columns" >
+		<entity schema="APP" name="PACIENTEENTITY" color="f5ddbf" x="512" y="304" />
+		<entity schema="APP" name="PACIENTEENTITY_MEDICOENTITY" color="c8f5bf" x="256" y="240" />
+		<entity schema="APP" name="MEDICOENTITY" color="f5ddbf" x="48" y="336" />
+		<entity schema="APP" name="CONSEJOENTITY" color="f5ddbf" x="304" y="544" />
+		<entity schema="APP" name="MARCAPASOSENTITY" color="f5ddbf" x="784" y="48" />
+		<entity schema="APP" name="EXAMENENTITY" color="3399ff" x="880" y="624" />
+		<entity schema="APP" name="DIAGNOSTICOENTITY" color="bfd4f5" x="304" y="768" />
+		<entity schema="APP" name="HISTORIACLINICAENTITY" color="bfd4f5" x="576" y="640" />
+		<entity schema="APP" name="TRATAMIENTOENTITY" color="3399ff" x="880" y="784" />
+		<entity schema="APP" name="MEDICIONENTITY" color="bfd4f5" x="928" y="288" />
+		<entity schema="APP" name="EMERGENCIAENTITY" color="bfd4f5" x="752" y="448" />
+		<browser id="Browse_2e30287e" name="Sample Relational Data Browse" confirm_updates="y" >
+			<browse_table schema="APP" entity="PACIENTEENTITY" x="10" y="10" width="400" height="300" >
+				<browse_table schema="APP" entity="MARCAPASOSENTITY" fk="PCNTNTITYMRCPSOSID" x="420" y="10" width="400" height="300" record_view="y" />
+			</browse_table>
+		</browser>
+	</layout>
+</project>
