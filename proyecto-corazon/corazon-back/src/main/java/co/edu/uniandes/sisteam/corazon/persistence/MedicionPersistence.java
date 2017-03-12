@@ -23,7 +23,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-
 import co.edu.uniandes.sisteam.corazon.entities.MedicionEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -57,6 +56,20 @@ public class MedicionPersistence {
         LOGGER.log(Level.INFO, "Consultando todas las mediciones del paciente pacienteId={0}", pacienteId);
         TypedQuery q = em.createQuery("select d from MedicionEntity d  where d.pacienteId = :pacienteId", MedicionEntity.class);
         q = q.setParameter("pacienteId", pacienteId);
+        return q.getResultList();
+    }
+
+    public List<MedicionEntity> findForPacienteByDates(Long pacienteId, String fechaInicio, String fechaFin) {
+        TypedQuery q = em.createQuery("select d from MedicionEntity d  where d.pacienteId = :pacienteId :fecha", MedicionEntity.class);
+        q = q.setParameter("pacienteId", pacienteId);
+        String fecha = "";
+        if (!fechaInicio.equals("null")) {
+            fecha += "and d.fecha >= '" + fechaInicio + "'";
+        }
+        if (!fechaFin.equals("null")) {
+            fecha += "and d.fecha <= '" + fechaFin + "'";
+        }
+        q = q.setParameter("fecha", fecha);
         return q.getResultList();
     }
 

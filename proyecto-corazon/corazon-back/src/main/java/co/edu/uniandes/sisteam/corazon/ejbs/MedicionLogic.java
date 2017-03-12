@@ -23,8 +23,6 @@ SOFTWARE.
  */
 package co.edu.uniandes.sisteam.corazon.ejbs;
 
-
-
 import co.edu.uniandes.sisteam.corazon.persistence.MedicionPersistence;
 import co.edu.uniandes.sisteam.corazon.api.IMedicionLogic;
 import co.edu.uniandes.sisteam.corazon.api.IPacienteLogic;
@@ -49,16 +47,23 @@ public class MedicionLogic implements IMedicionLogic {
      * Paciente.
      *
      * @param pacienteid id de la Paciente la cual es padre de las Mediciones.
+     * @param fechaInicio fecha de inicio del rango de busqueda.
+     * @param fechaFin fecha de fin del rango de busqueda.
+     *
      * @return Colección de objetos de MedicionEntity.
      *
      */
     @Override
-    public List<MedicionEntity> getMedicionesDePaciente(Long pacienteid) {
-        
-        return persistence.findAllForPaciente(pacienteid);
+    public List<MedicionEntity> getMedicionesDePaciente(Long pacienteid, String fechaInicio, String fechaFin) {
+        if (fechaInicio.equals("null") && fechaFin.equals("null")) {
+            return persistence.findAllForPaciente(pacienteid);
+        }
+        else {
+           return persistence.findForPacienteByDates(pacienteid, fechaInicio, fechaFin);
+        }
     }
-    
-     /**
+
+    /**
      * Obtiene la lista de los registros de Medicion que pertenecen a una
      * Paciente.
      *
@@ -92,14 +97,14 @@ public class MedicionLogic implements IMedicionLogic {
      * Se encarga de crear una Medicion en la base de datos.
      *
      * @param entity Objeto de MedicionEntity con los datos nuevos
-     * @param pacienteid id de la Paciente la cual sera padre de la nueva Medicion.
+     * @param pacienteid id de la Paciente la cual sera padre de la nueva
+     * Medicion.
      * @return Objeto de MedicionEntity con los datos nuevos y su ID.
      *
      */
     @Override
-    public MedicionEntity createMedicion( MedicionEntity entity) {
+    public MedicionEntity createMedicion(MedicionEntity entity) {
 
-       
         entity = persistence.create(entity);
         return entity;
     }
@@ -108,15 +113,14 @@ public class MedicionLogic implements IMedicionLogic {
      * Actualiza la información de una instancia de Medicion.
      *
      * @param entity Instancia de MedicionEntity con los nuevos datos.
-     * @param pacienteid id de la Paciente la  cual sera padre de la Medicion
+     * @param pacienteid id de la Paciente la cual sera padre de la Medicion
      * actualizada.
      * @return Instancia de MedicionEntity con los datos actualizados.
      *
      */
     @Override
     public MedicionEntity updateMedicion(MedicionEntity entity) {
-  
-     
+
         return persistence.update(entity);
     }
 

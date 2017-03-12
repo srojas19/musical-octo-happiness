@@ -47,6 +47,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import java.util.ArrayList;
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 
 @Consumes(MediaType.APPLICATION_JSON)
@@ -96,9 +98,11 @@ public class MedicionResource {
      *
      */
     @GET
-    public List<MedicionDetailDTO> getMediciones(@PathParam("pacienteId") Long pacienteId) {
+    public List<MedicionDetailDTO> getMediciones(@PathParam("pacienteId") Long pacienteId,
+            @DefaultValue("null") @QueryParam("fecha_inicio") String fechaInicio, 
+            @DefaultValue("null") @QueryParam("fecha_fin") String fechaFin) {
     
-        List<MedicionEntity> mediciones = medicionLogic.getMedicionesDePaciente(pacienteId);
+        List<MedicionEntity> mediciones = medicionLogic.getMedicionesDePaciente(pacienteId,fechaInicio,fechaFin);
 
         return listEntity2DTO(mediciones);
     }

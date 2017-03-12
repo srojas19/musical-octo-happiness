@@ -29,7 +29,7 @@ import java.util.List;
 
 public interface IMedicionLogic {
   
-    public List<MedicionEntity> getMedicionesDePaciente(Long pacienteid);
+    public List<MedicionEntity> getMedicionesDePaciente(Long pacienteid, String fechaInicio, String fechaFin);
     public MedicionEntity getMedicion(Long medicionid);
     public List<MedicionEntity> getMedicionesTodas();
     public MedicionEntity createMedicion(MedicionEntity entity);
