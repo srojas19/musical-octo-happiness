@@ -33,8 +33,8 @@ import javax.persistence.OneToOne;
 public class EmergenciaEntity extends BaseEntity implements Serializable {
     
     
-    @OneToOne(fetch = FetchType.LAZY)
-    private MedicionEntity medicion;
+   @OneToOne(fetch = FetchType.LAZY)
+   private MedicionEntity medicion;
  
    private double latitud;
    private double longitud;

@@ -1,11 +1,195 @@
 [
     {
-        "id": "8e9e3acb.17d908",
+        "id": "f3b38627.f6327",
         "type": "tab",
-        "label": "Telemetry Flow"
+        "label": "medicion Flow"
     },
     {
-        "id": "253dcf2f.a9a7f",
+        "id": "818c96ed.bc4208",
+        "type": "serial in",
+        "z": "f3b38627.f6327",
+        "name": "sensores",
+        "serial": "3929f5b1.22f1ca",
+        "x": 80,
+        "y": 256,
+        "wires": [
+            [
+                "b2954eb1.c39938"
+            ]
+        ]
+    },
+    {
+        "id": "b2954eb1.c39938",
+        "type": "function",
+        "z": "f3b38627.f6327",
+        "name": "medidas",
+        "func": "var res = {};\nvar datosArray = [];\nvar datosArrayInt = [3];\n\ndatosString = msg.payload;\ndatosArray = datosString.split(\"\\t\");\n\nres.topic = \"medicion\";\ndatosArrayInt[0] =parseInt(datosArray[0]);\ndatosArrayInt[1] =parseInt(datosArray[1]);\ndatosArrayInt[2] =parseInt(datosArray[2]);\nres.payload =datosArrayInt;\n\nreturn res;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 358.5,
+        "y": 279,
+        "wires": [
+            [
+                "51f676b5.3128d",
+                "4d9a2177.4c076"
+            ]
+        ]
+    },
+    {
+        "id": "d209c38b.078e4",
+        "type": "inject",
+        "z": "f3b38627.f6327",
+        "name": "sensorTime",
+        "topic": "medicionFecha",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "10",
+        "crontab": "",
+        "once": true,
+        "x": 134,
+        "y": 127,
+        "wires": [
+            [
+                "e8073bb9.bee798"
+            ]
+        ]
+    },
+    {
+        "id": "e8073bb9.bee798",
+        "type": "function",
+        "z": "f3b38627.f6327",
+        "name": "Format Time",
+        "func": "var res = {};\n\nres.payload = new Date(msg.payload);\nres.topic = msg.topic;\n\nreturn res;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 374,
+        "y": 118,
+        "wires": [
+            [
+                "51f676b5.3128d",
+                "f94e4e65.2d3ef"
+            ]
+        ]
+    },
+    {
+        "id": "51f676b5.3128d",
+        "type": "function",
+        "z": "f3b38627.f6327",
+        "name": "CrearMedicion",
+        "func": "context.data = context.data || {};\n\nswitch (msg.topic) {\n    case \"medicionFecha\":\n        context.data.fecha = msg.payload;\n        msg = null;\n        break;\n    case \"medicion\":\n        var datos = [];\n        datos = msg.payload;\n        context.data.pacienteId = 2;\n        context.data.presionSanguinea = datos[1];\n        context.data.frecuenciaCardiaca=parseInt(datos[2]);\n\t    context.data.nivelEstres=datos[0];\n        msg = null;\n        break;\n        \n    default:\n        msg = null;\n    \tbreak;\n}\n\nif(context.data.fecha != null &&context.data.frecuenciaCardiaca>0) {\n    var res={};\n\tif(context.data.frecuenciaCardiaca<30&&context.data.nivelEstres<30&& context.data.presionSanguinea<25){\n\t      res.topic = \"medicionNormal\";\n\t      context.data.dictamen=\"verde\";\n\t }\n\telse if (context.data.frecuenciaCardiaca<40&&context.data.nivelEstres<50&&context.data.presionSanguinea<20){\n\t      res.topic = \"medicionNormal\";\n\t      context.data.dictamen=\"amarillo\";\n\t }\n\telse {\n\t      res.topic = \"medicionEmergencia\";\n\t      context.data.dictamen=\"rojo\";\n\t      context.data.emergencia={\"latitud\":13424524523, \"longitud\":2394223};\n\t}\n    res.payload = JSON.stringify(context.data);\n    res.headers = {\n         \"Content-type\" : \"application/json\",\n         \"my-custom-header\": \"a value\"\n     };\n    context.data = null;\n\treturn res;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 639,
+        "y": 190,
+        "wires": [
+            [
+                "571b0009.956208",
+                "e1ba5552.25104",
+                "4750a40f.fed2f4"
+            ]
+        ]
+    },
+    {
+        "id": "4750a40f.fed2f4",
+        "type": "http request",
+        "z": "f3b38627.f6327",
+        "name": "post medicion",
+        "method": "POST",
+        "ret": "obj",
+        "url": "http://localhost:8080/corazon-web/api/pacientes/1/mediciones/",
+        "tls": "",
+        "x": 1124.5,
+        "y": 203,
+        "wires": [
+            [
+                "86364e78.8812a8",
+                "ae899b2d.d24a"
+            ]
+        ]
+    },
+    {
+        "id": "86364e78.8812a8",
+        "type": "http response",
+        "z": "f3b38627.f6327",
+        "name": "respuesta",
+        "x": 1403.5,
+        "y": 172,
+        "wires": []
+    },
+    {
+        "id": "571b0009.956208",
+        "type": "debug",
+        "z": "f3b38627.f6327",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 964.5,
+        "y": 356,
+        "wires": []
+    },
+    {
+        "id": "4d9a2177.4c076",
+        "type": "debug",
+        "z": "f3b38627.f6327",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 372.5,
+        "y": 490,
+        "wires": []
+    },
+    {
+        "id": "f94e4e65.2d3ef",
+        "type": "debug",
+        "z": "f3b38627.f6327",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 573.5,
+        "y": 38,
+        "wires": []
+    },
+    {
+        "id": "e4f463ed.9bb488",
+        "type": "debug",
+        "z": "f3b38627.f6327",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "true",
+        "x": 1003.5,
+        "y": 618,
+        "wires": []
+    },
+    {
+        "id": "ae899b2d.d24a",
+        "type": "debug",
+        "z": "f3b38627.f6327",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 1242.5,
+        "y": 399,
+        "wires": []
+    },
+    {
+        "id": "e1ba5552.25104",
+        "type": "debug",
+        "z": "f3b38627.f6327",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 736.5,
+        "y": 483,
+        "wires": []
+    },
+    {
+        "id": "3929f5b1.22f1ca",
         "type": "serial-port",
         "z": "",
         "serialport": "/dev/cu.usbserial-A100DNF0",
@@ -16,369 +200,6 @@
         "newline": "\\n",
         "bin": "false",
         "out": "char",
-        "addchar": true
-    },
-    {
-        "id": "e2635cc2.d3993",
-        "type": "mongodb",
-        "z": "",
-        "hostname": "127.0.0.1",
-        "port": "27017",
-        "db": "rediot",
-        "name": ""
-    },
-    {
-        "id": "3b286300.c4221e",
-        "type": "ui_group",
-        "z": "",
-        "name": "Estado del Deposito",
-        "tab": "bc6c924b.4a92a",
-        "disp": true,
-        "width": "8"
-    },
-    {
-        "id": "bc6c924b.4a92a",
-        "type": "ui_tab",
-        "z": "",
-        "name": "Home",
-        "icon": "dashboard"
-    },
-    {
-        "id": "77649a1e.649414",
-        "type": "mongodb2",
-        "z": "",
-        "uri": "localhost:127.0.0.1:27017",
-        "name": "rediot",
-        "options": "",
-        "parallelism": "-1"
-    },
-    {
-        "id": "87edc2c3.d4d7a",
-        "type": "ui_base",
-        "theme": {
-            "name": "theme-light",
-            "lightTheme": {
-                "default": "#0094CE",
-                "baseColor": "#0094CE",
-                "baseFont": "Helvetica Neue",
-                "edited": true,
-                "reset": false
-            },
-            "darkTheme": {
-                "default": "#097479",
-                "baseColor": "#097479",
-                "baseFont": "Helvetica Neue",
-                "edited": false
-            },
-            "customTheme": {
-                "name": "Untitled Theme 1",
-                "default": "#4B7930",
-                "baseColor": "#4B7930",
-                "baseFont": "Helvetica Neue"
-            },
-            "themeState": {
-                "base-color": {
-                    "default": "#0094CE",
-                    "value": "#0094CE",
-                    "edited": false
-                },
-                "page-titlebar-backgroundColor": {
-                    "value": "#0094CE",
-                    "edited": false
-                },
-                "page-backgroundColor": {
-                    "value": "#fafafa",
-                    "edited": false
-                },
-                "page-sidebar-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-textColor": {
-                    "value": "#000000",
-                    "edited": false
-                },
-                "group-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "widget-textColor": {
-                    "value": "#111111",
-                    "edited": false
-                },
-                "widget-backgroundColor": {
-                    "value": "#0094ce",
-                    "edited": false
-                },
-                "widget-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                }
-            }
-        },
-        "site": {
-            "name": "Node-RED Dashboard",
-            "hideToolbar": "false",
-            "allowSwipe": "false",
-            "dateFormat": "DD/MM/YYYY",
-            "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
-                "cx": 6,
-                "cy": 6,
-                "px": 0,
-                "py": 0
-            }
-        }
-    },
-    {
-        "id": "af10ddc.8c31b2",
-        "type": "serial in",
-        "z": "8e9e3acb.17d908",
-        "name": "temperatureSensor",
-        "serial": "253dcf2f.a9a7f",
-        "x": 110,
-        "y": 256,
-        "wires": [
-            [
-                "c8176d41.b9a57"
-            ]
-        ]
-    },
-    {
-        "id": "c8176d41.b9a57",
-        "type": "function",
-        "z": "8e9e3acb.17d908",
-        "name": "presionSanguinea",
-        "func": "var res = {};\nvar tempArray = [];\nvar tempUnit = \"\";\n\ntempString = msg.payload;\ntempArray = tempString.split(\"\\t\");\ntempUnit = tempArray[1].replace(\"\\r\\n\", \"\");\nres.topic = \"presionSanguinea\";\nres.medicion = {};\nres.payload = {\"presionSanguinea\": parseInt(tempArray[0])}\n\nreturn res;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 391.5,
-        "y": 290,
-        "wires": [
-            [
-                "e0a82dfb.15727",
-                "837efb0e.6dc1c8"
-            ]
-        ]
-    },
-    {
-        "id": "c430afd6.247e6",
-        "type": "inject",
-        "z": "8e9e3acb.17d908",
-        "name": "sensorTime",
-        "topic": "medicionFecha",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "9",
-        "crontab": "",
-        "once": true,
-        "x": 134,
-        "y": 127,
-        "wires": [
-            [
-                "79ed0775.bb1dc8"
-            ]
-        ]
-    },
-    {
-        "id": "79ed0775.bb1dc8",
-        "type": "function",
-        "z": "8e9e3acb.17d908",
-        "name": "Format Time",
-        "func": "var res = {};\n\nres.payload = new Date(msg.payload);\nres.topic = msg.topic;\n\nreturn res;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 374,
-        "y": 118,
-        "wires": [
-            [
-                "e0a82dfb.15727",
-                "3a40fd1a.b23562"
-            ]
-        ]
-    },
-    {
-        "id": "e0a82dfb.15727",
-        "type": "function",
-        "z": "8e9e3acb.17d908",
-        "name": "CrearMedicion",
-        "func": "context.data = context.data || {};\n\nswitch (msg.topic) {\n    case \"medicionFecha\":\n        context.data.fecha = msg.payload;\n        msg = null;\n        break;\n    case \"presionSanguinea\":\n        context.data.presionSanguinea = msg.payload.presionSanguinea;\n        msg = null;\n        break;\n        \n    default:\n        msg = null;\n    \tbreak;\n}\n\nif(context.data.fecha != null && context.data.presionSanguinea != null) {\n\tres = {};\n\tcontext.data.frecuenciaCardiaca=28;\n\tcontext.data.nivelEstres=29;\n\tcontext.data.pacienteId=1;\n\tif(context.data.frecuenciaCardiaca<30&&context.data.nivelEstres<30&& context.data.presionSanguinea<25){\n\t      res.topic = \"medicionNormal\";\n\t      context.data.dictamen=\"verde\";\n\t }\n\telse if (context.data.frecuenciaCardiaca<40&&context.data.nivelEstres<50&&context.data.presionSanguinea<20){\n\t      res.topic = \"medicionNormal\";\n\t      context.data.dictamen=\"amarillo\";\n\t }\n\telse {\n\t       res.topic = \"medicionEmergencia\";\n\t      context.data.dictamen=\"rojo\";\n\t}\n    res.payload = JSON.stringify(context.data);\n    res.headers = {\n         \"Content-type\" : \"application/json\",\n         \"my-custom-header\": \"a value\"\n     }\n    context.data = null;\n\treturn res;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 639,
-        "y": 190,
-        "wires": [
-            [
-                "41b39163.af7bf",
-                "ec84ac3e.60e1",
-                "361c04f0.3f2a4c"
-            ]
-        ]
-    },
-    {
-        "id": "a53aeb03.b3d7e8",
-        "type": "http request",
-        "z": "8e9e3acb.17d908",
-        "name": "post medicion",
-        "method": "POST",
-        "ret": "obj",
-        "url": "http://localhost:8080/corazon-web/api/pacientes/1/mediciones/",
-        "tls": "",
-        "x": 1074.5,
-        "y": 46,
-        "wires": [
-            [
-                "6b845ce6.ec2154",
-                "ccfb33aa.7ea25"
-            ]
-        ]
-    },
-    {
-        "id": "6b845ce6.ec2154",
-        "type": "http response",
-        "z": "8e9e3acb.17d908",
-        "name": "respuesta",
-        "x": 1341.5,
-        "y": 64,
-        "wires": []
-    },
-    {
-        "id": "41b39163.af7bf",
-        "type": "switch",
-        "z": "8e9e3acb.17d908",
-        "name": "Guardar",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "medicionNormal",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "medicionEmergencia",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "outputs": 2,
-        "x": 847.5,
-        "y": 215,
-        "wires": [
-            [
-                "a53aeb03.b3d7e8"
-            ],
-            [
-                "7cc5004c.a199d",
-                "a53aeb03.b3d7e8",
-                "d404295b.297928"
-            ]
-        ]
-    },
-    {
-        "id": "7cc5004c.a199d",
-        "type": "http request",
-        "z": "8e9e3acb.17d908",
-        "name": "Emergencia ",
-        "method": "POST",
-        "ret": "obj",
-        "url": "http://localhost:8080/corazon-web/api/pacientes/1/mediciones/1/emergencia",
-        "tls": "",
-        "x": 1069.5,
-        "y": 326,
-        "wires": [
-            [
-                "a77bad27.11d9f"
-            ]
-        ]
-    },
-    {
-        "id": "a77bad27.11d9f",
-        "type": "http response",
-        "z": "8e9e3acb.17d908",
-        "name": "respuesta",
-        "x": 1336.5,
-        "y": 327,
-        "wires": []
-    },
-    {
-        "id": "ec84ac3e.60e1",
-        "type": "debug",
-        "z": "8e9e3acb.17d908",
-        "name": "",
-        "active": false,
-        "console": "false",
-        "complete": "topic",
-        "x": 637.5,
-        "y": 358,
-        "wires": []
-    },
-    {
-        "id": "837efb0e.6dc1c8",
-        "type": "debug",
-        "z": "8e9e3acb.17d908",
-        "name": "",
-        "active": false,
-        "console": "false",
-        "complete": "payload",
-        "x": 372.5,
-        "y": 490,
-        "wires": []
-    },
-    {
-        "id": "3a40fd1a.b23562",
-        "type": "debug",
-        "z": "8e9e3acb.17d908",
-        "name": "",
-        "active": false,
-        "console": "false",
-        "complete": "payload",
-        "x": 573.5,
-        "y": 38,
-        "wires": []
-    },
-    {
-        "id": "d404295b.297928",
-        "type": "debug",
-        "z": "8e9e3acb.17d908",
-        "name": "",
-        "active": false,
-        "console": "false",
-        "complete": "true",
-        "x": 1003.5,
-        "y": 618,
-        "wires": []
-    },
-    {
-        "id": "ccfb33aa.7ea25",
-        "type": "debug",
-        "z": "8e9e3acb.17d908",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "payload",
-        "x": 1194.5,
-        "y": 183,
-        "wires": []
-    },
-    {
-        "id": "361c04f0.3f2a4c",
-        "type": "debug",
-        "z": "8e9e3acb.17d908",
-        "name": "",
-        "active": false,
-        "console": "false",
-        "complete": "true",
-        "x": 736.5,
-        "y": 483,
-        "wires": []
+        "addchar": false
     }
 ]

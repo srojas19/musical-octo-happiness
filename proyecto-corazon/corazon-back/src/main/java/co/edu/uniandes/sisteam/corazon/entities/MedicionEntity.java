@@ -20,7 +20,7 @@ public class MedicionEntity extends BaseEntity implements Serializable {
     private int nivelEstres;
     
      //Relaciones con Emergencia
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,optional=true)
+    @OneToOne( cascade = CascadeType.ALL, fetch = FetchType.LAZY,optional=true)
     private EmergenciaEntity emergencia;
 
    
