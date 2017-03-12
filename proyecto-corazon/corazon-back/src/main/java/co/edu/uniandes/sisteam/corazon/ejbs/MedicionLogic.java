@@ -97,9 +97,9 @@ public class MedicionLogic implements IMedicionLogic {
      *
      */
     @Override
-    public MedicionEntity createMedicion(Long pacienteid, MedicionEntity entity) {
+    public MedicionEntity createMedicion( MedicionEntity entity) {
 
-        entity.setPacienteId(pacienteid);
+       
         entity = persistence.create(entity);
         return entity;
     }
@@ -114,9 +114,9 @@ public class MedicionLogic implements IMedicionLogic {
      *
      */
     @Override
-    public MedicionEntity updateMedicion(Long pacienteid, MedicionEntity entity) {
+    public MedicionEntity updateMedicion(MedicionEntity entity) {
   
-        entity.setPacienteId(pacienteid);
+     
         return persistence.update(entity);
     }
 

@@ -32,8 +32,8 @@ public interface IMedicionLogic {
     public List<MedicionEntity> getMedicionesDePaciente(Long pacienteid);
     public MedicionEntity getMedicion(Long medicionid);
     public List<MedicionEntity> getMedicionesTodas();
-    public MedicionEntity createMedicion(Long pacienteid, MedicionEntity entity);
-    public MedicionEntity updateMedicion(Long pacienteid, MedicionEntity entity);
+    public MedicionEntity createMedicion(MedicionEntity entity);
+    public MedicionEntity updateMedicion(MedicionEntity entity);
     public void deleteMedicion(Long id);
     
 }

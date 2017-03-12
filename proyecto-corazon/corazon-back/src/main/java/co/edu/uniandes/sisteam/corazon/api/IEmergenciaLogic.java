@@ -5,11 +5,8 @@
  */
 package co.edu.uniandes.sisteam.corazon.api;
 
-import co.edu.uniandes.sisteam.corazon.entities.DiagnosticoEntity;
 import co.edu.uniandes.sisteam.corazon.entities.EmergenciaEntity;
-import co.edu.uniandes.sisteam.corazon.entities.ExamenEntity;
-import co.edu.uniandes.sisteam.corazon.entities.HistoriaClinicaEntity;
-import co.edu.uniandes.sisteam.corazon.entities.TratamientoEntity;
+
 import java.util.List;
 
 /**
@@ -20,7 +17,7 @@ public interface IEmergenciaLogic {
     
     public EmergenciaEntity getEmergencia(Long id);
     public List<EmergenciaEntity> getEmergenciaMedicion(Long idMedicion);
-   public EmergenciaEntity createEmergencia(Long idMedicion, EmergenciaEntity entity);
+   public EmergenciaEntity createEmergencia(EmergenciaEntity entity);
     
     
 }

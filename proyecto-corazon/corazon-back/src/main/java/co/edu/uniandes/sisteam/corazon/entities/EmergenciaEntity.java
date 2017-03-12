@@ -24,15 +24,8 @@ SOFTWARE.
 package co.edu.uniandes.sisteam.corazon.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import uk.co.jemos.podam.common.PodamExclude;
-import javax.persistence.ManyToOne;
-
-import javax.persistence.OneToMany;
+import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 
 
@@ -40,17 +33,18 @@ import javax.persistence.OneToOne;
 public class EmergenciaEntity extends BaseEntity implements Serializable {
     
     
-    private Long medicionId;
+    @OneToOne(fetch = FetchType.LAZY)
+    private MedicionEntity medicion;
  
    private double latitud;
    private double longitud;
 
-    public Long getMedicion() {
-        return medicionId;
+    public MedicionEntity  getMedicion() {
+        return medicion;
     }
 
-    public void setMedicion(Long medicion) {
-        this.medicionId = medicion;
+    public void setMedicion(MedicionEntity  medicion) {
+        this.medicion = medicion;
     }
 
     public double getLatitud() {

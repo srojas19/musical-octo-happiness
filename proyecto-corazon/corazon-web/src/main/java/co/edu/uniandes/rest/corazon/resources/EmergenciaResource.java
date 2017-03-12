@@ -118,6 +118,6 @@ public class EmergenciaResource {
     public EmergenciaDTO createEmergenciaMedicion( @PathParam("medicionId") Long medicionId,EmergenciaDTO dto) throws BusinessLogicException {        
         
                 
-        return new EmergenciaDTO(emergenciaLogic.createEmergencia(medicionId, dto.toEntity()));
+        return new EmergenciaDTO(emergenciaLogic.createEmergencia( dto.toEntity()));
     }
 }

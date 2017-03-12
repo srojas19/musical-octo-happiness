@@ -126,11 +126,11 @@ public class PacienteResource {
         PacienteDTO respuesta= dto;
         try {
             respuesta = new PacienteDTO(pacienteLogic.createPaciente(dto.toEntity()));
+            return respuesta;
         } catch (BusinessLogicException ex) {
             throw new PacienteLogicException(ex.getMessage());
         }
        
-        return respuesta;
     }
 
     /**

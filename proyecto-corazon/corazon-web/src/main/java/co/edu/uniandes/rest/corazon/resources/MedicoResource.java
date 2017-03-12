@@ -70,7 +70,7 @@ public class MedicoResource {
     
     
     @POST
-    public MedicoDetailDTO createMedico(MedicoDetailDTO dto) throws MedicoLogicException {
+    public MedicoDTO createMedico(MedicoDTO dto) throws MedicoLogicException {
        
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");

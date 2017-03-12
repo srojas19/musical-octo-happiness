@@ -50,7 +50,7 @@ public class EmergenciaLogic implements IEmergenciaLogic {
      * Obtiene la lista de los registros de Emergencia que pertenecen a una
      * Medicion.
      *
-     * @param medicionid id de la Medicion la cual es padre de las Emergencias.
+     * @param idMedicion
      * @return Colección de objetos de EmergenciaEntity.
      *
      */
@@ -77,8 +77,7 @@ public class EmergenciaLogic implements IEmergenciaLogic {
     }
 
    @Override
-    public EmergenciaEntity createEmergencia(Long medicionId, EmergenciaEntity entity) {
-        entity.setMedicion(medicionId);
+    public EmergenciaEntity createEmergencia(EmergenciaEntity entity) {
         entity = persistence.create(entity);
         return entity;
     }

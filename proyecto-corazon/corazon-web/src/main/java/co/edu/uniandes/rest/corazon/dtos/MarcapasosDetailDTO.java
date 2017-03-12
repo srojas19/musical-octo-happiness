@@ -29,6 +29,7 @@ public class MarcapasosDetailDTO extends MarcapasosDTO {
         
     }
     
+    @Override
     public MarcapasosEntity toEntity(){
         MarcapasosEntity entity= super.toEntity();
         

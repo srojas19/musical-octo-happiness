@@ -1,6 +1,7 @@
 package co.edu.uniandes.rest.corazon.dtos;
 
 import co.edu.uniandes.sisteam.corazon.entities.EmergenciaEntity;
+import co.edu.uniandes.sisteam.corazon.entities.MedicionEntity;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /*
@@ -18,9 +19,7 @@ public class EmergenciaDTO {
     
     private Long id;
     private double latitud;
-    private double longitud;
-    private Long medicionId;
-    
+    private double longitud;  
     
     /**
      * Constructor por defecto
@@ -28,21 +27,19 @@ public class EmergenciaDTO {
     public EmergenciaDTO() {
 	}
 
-    public EmergenciaDTO(Long id, double latitud, double longitud, Long medicionId){
+    public EmergenciaDTO(Long id, double latitud, double longitud, MedicionDTO medicionId){
         this.id = id;
         this.latitud = latitud;
         this.longitud = longitud;
-        this.medicionId = medicionId;
-        
     }
     
     public EmergenciaDTO(EmergenciaEntity entity) {
+        
         if (entity != null) {
             this.id = entity.getId();
             this.latitud = entity.getLatitud();
             this.longitud = entity.getLongitud();
-            this.medicionId = entity.getMedicion();
-           
+    
         }
     }
     
@@ -57,7 +54,7 @@ public class EmergenciaDTO {
         entity.setId(this.getId());
         entity.setLatitud(this.getLatitud());
         entity.setLongitud(this.getLongitud());
-        entity.setMedicion(this.getMedicionId()); 
+
         
         return entity;
     }
@@ -86,13 +83,6 @@ public class EmergenciaDTO {
         this.longitud = longitud;
     }
 
-    public Long getMedicionId() {
-        return medicionId;
-    }
-
-    public void setMedicionId(Long medicionId) {
-        this.medicionId = medicionId;
-    }
 
    
     
