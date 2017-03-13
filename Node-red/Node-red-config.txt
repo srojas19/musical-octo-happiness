@@ -5,6 +5,263 @@
         "label": "medicion Flow"
     },
     {
+        "id": "253dcf2f.a9a7f",
+        "type": "serial-port",
+        "z": "",
+        "serialport": "/dev/cu.usbserial-A100DNF0",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": true
+    },
+    {
+        "id": "e2635cc2.d3993",
+        "type": "mongodb",
+        "z": "",
+        "hostname": "127.0.0.1",
+        "port": "27017",
+        "db": "rediot",
+        "name": ""
+    },
+    {
+        "id": "3b286300.c4221e",
+        "type": "ui_group",
+        "z": "",
+        "name": "Estado del Deposito",
+        "tab": "bc6c924b.4a92a",
+        "disp": true,
+        "width": "8"
+    },
+    {
+        "id": "bc6c924b.4a92a",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Home",
+        "icon": "dashboard"
+    },
+    {
+        "id": "77649a1e.649414",
+        "type": "mongodb2",
+        "z": "",
+        "uri": "localhost:127.0.0.1:27017",
+        "name": "rediot",
+        "options": "",
+        "parallelism": "-1"
+    },
+    {
+        "id": "76a07437.e17fac",
+        "type": "serial-port",
+        "z": "",
+        "serialport": "/dev/cu.usbserial-A100DNF0",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": false
+    },
+    {
+        "id": "927acf89.23d17",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "Helvetica Neue",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "Helvetica Neue",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "Helvetica Neue"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#000000",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                }
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "fbe3a1de.30edd",
+        "type": "serial-port",
+        "z": "",
+        "serialport": "/dev/cu.usbserial-A100E1JI",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": true
+    },
+    {
+        "id": "154b0bcc.b4b2d4",
+        "type": "mongodb",
+        "z": "",
+        "hostname": "127.0.0.1",
+        "port": "27017",
+        "db": "rediot",
+        "name": ""
+    },
+    {
+        "id": "4859e363.59401c",
+        "type": "ui_group",
+        "z": "",
+        "name": "Estado del Deposito",
+        "tab": "a1457d22.4e0df",
+        "disp": true,
+        "width": "8"
+    },
+    {
+        "id": "a1457d22.4e0df",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Home",
+        "icon": "dashboard"
+    },
+    {
+        "id": "e1c60ee6.8bd62",
+        "type": "mongodb2",
+        "z": "",
+        "uri": "localhost:127.0.0.1:27017",
+        "name": "rediot",
+        "options": "",
+        "parallelism": "-1"
+    },
+    {
+        "id": "d30d3b3b.e4e368",
+        "type": "serial-port",
+        "z": "",
+        "serialport": "/dev/cu.usbserial-A100E1JI",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": true
+    },
+    {
+        "id": "13a9721d.6017ee",
+        "type": "mongodb",
+        "z": "",
+        "hostname": "127.0.0.1",
+        "port": "27017",
+        "db": "rediot",
+        "name": ""
+    },
+    {
+        "id": "6db425da.2bbf0c",
+        "type": "ui_group",
+        "z": "",
+        "name": "Estado del Deposito",
+        "tab": "81290041.cc206",
+        "disp": true,
+        "width": "8"
+    },
+    {
+        "id": "81290041.cc206",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Home",
+        "icon": "dashboard"
+    },
+    {
+        "id": "97c690f5.d3534",
+        "type": "mongodb2",
+        "z": "",
+        "uri": "localhost:127.0.0.1:27017",
+        "name": "rediot",
+        "options": "",
+        "parallelism": "-1"
+    },
+    {
+        "id": "3929f5b1.22f1ca",
+        "type": "serial-port",
+        "z": "",
+        "serialport": "/dev/cu.usbserial-A100DNF0",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": false
+    },
+    {
         "id": "818c96ed.bc4208",
         "type": "serial in",
         "z": "f3b38627.f6327",
@@ -187,19 +444,5 @@
         "x": 736.5,
         "y": 483,
         "wires": []
-    },
-    {
-        "id": "3929f5b1.22f1ca",
-        "type": "serial-port",
-        "z": "",
-        "serialport": "/dev/cu.usbserial-A100DNF0",
-        "serialbaud": "9600",
-        "databits": "8",
-        "parity": "none",
-        "stopbits": "1",
-        "newline": "\\n",
-        "bin": "false",
-        "out": "char",
-        "addchar": false
     }
 ]
