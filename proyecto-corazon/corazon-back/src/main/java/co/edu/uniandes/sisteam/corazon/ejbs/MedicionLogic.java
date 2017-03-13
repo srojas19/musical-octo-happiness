@@ -28,6 +28,7 @@ import co.edu.uniandes.sisteam.corazon.api.IMedicionLogic;
 import co.edu.uniandes.sisteam.corazon.api.IPacienteLogic;
 import co.edu.uniandes.sisteam.corazon.entities.MedicionEntity;
 import co.edu.uniandes.sisteam.corazon.entities.PacienteEntity;
+import java.sql.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -59,7 +60,7 @@ public class MedicionLogic implements IMedicionLogic {
             return persistence.findAllForPaciente(pacienteid);
         }
         else {
-           return persistence.findForPacienteByDates(pacienteid, fechaInicio, fechaFin);
+           return persistence.findForPacienteByDates(pacienteid, Date.valueOf(fechaInicio), Date.valueOf(fechaFin));
         }
     }
 

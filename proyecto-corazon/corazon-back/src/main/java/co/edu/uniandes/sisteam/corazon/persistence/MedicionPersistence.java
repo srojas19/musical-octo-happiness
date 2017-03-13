@@ -24,6 +24,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 import co.edu.uniandes.sisteam.corazon.entities.MedicionEntity;
+import java.sql.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -59,17 +60,13 @@ public class MedicionPersistence {
         return q.getResultList();
     }
 
-    public List<MedicionEntity> findForPacienteByDates(Long pacienteId, String fechaInicio, String fechaFin) {
-        TypedQuery q = em.createQuery("select d from MedicionEntity d  where d.pacienteId = :pacienteId :fecha", MedicionEntity.class);
+    public List<MedicionEntity> findForPacienteByDates(Long pacienteId, Date fechaInicio, Date fechaFin) {
+        TypedQuery q = em.createQuery("select d from MedicionEntity d  where d.pacienteId = :pacienteId and d.fecha>=:fecha1 and d.fecha<=:fecha2 ", MedicionEntity.class);
         q = q.setParameter("pacienteId", pacienteId);
-        String fecha = "";
-        if (!fechaInicio.equals("null")) {
-            fecha += "and d.fecha >= '" + fechaInicio + "'";
-        }
-        if (!fechaFin.equals("null")) {
-            fecha += "and d.fecha <= '" + fechaFin + "'";
-        }
-        q = q.setParameter("fecha", fecha);
+        q = q.setParameter("fecha1", fechaInicio);
+        q = q.setParameter("fecha2", fechaFin);
+
+        System.out.println(q.toString());
         return q.getResultList();
     }
 
