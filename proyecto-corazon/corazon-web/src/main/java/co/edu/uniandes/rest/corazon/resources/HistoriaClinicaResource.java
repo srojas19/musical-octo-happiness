@@ -73,9 +73,9 @@ public class HistoriaClinicaResource {
     
     @DELETE
     @Path("diagnostico/{idDiagnostico:\\d+}")
-    public void deleteDiagnosticoPaciente(@PathParam("idDiagnostico") Long idDiagnostico) throws PacienteLogicException{
+    public void deleteDiagnosticoPaciente(@PathParam("idDiagnostico") Long idDiagnostico) {
         if(historiaClinicaLogic.getDiagnosticoPaciente(idDiagnostico)==null){
-            throw new PacienteLogicException("El diagnostico no existe");
+            throw new WebApplicationException("El diagnostico no existe",404);
         }
         else{
             historiaClinicaLogic.deleteDiagnosticoPaciente(idDiagnostico);
@@ -84,9 +84,9 @@ public class HistoriaClinicaResource {
     
     @DELETE
     @Path("examen/{idExamen: \\d+}")
-    public void deleteExamenPaciente(@PathParam("idExamen") Long idExamen) throws PacienteLogicException{
+    public void deleteExamenPaciente(@PathParam("idExamen") Long idExamen) {
         if(historiaClinicaLogic.getExamenPaciente(idExamen)==null){
-            throw new PacienteLogicException("El examen no existe");
+            throw new WebApplicationException("El examen no existe",404);
         }
         else{
             historiaClinicaLogic.deleteExamenPaciente(idExamen);
@@ -95,9 +95,9 @@ public class HistoriaClinicaResource {
     
     @DELETE
     @Path("tratamiento/{idTratamiento: \\d+}")
-    public void deleteTratamientoPaciente(@PathParam("idTratamiento") Long idTratamiento) throws PacienteLogicException{
+    public void deleteTratamientoPaciente(@PathParam("idTratamiento") Long idTratamiento) {
         if(historiaClinicaLogic.getDiagnosticoPaciente(idTratamiento)==null){
-            throw new PacienteLogicException("El tratamiento no existe");
+            throw new WebApplicationException("El tratamiento no existe",404);
         }
         else{
             historiaClinicaLogic.deleteTratamientoPaciente(idTratamiento);

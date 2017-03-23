@@ -69,9 +69,9 @@ public class ConsejoResource {
     
     @DELETE
     @Path("consejos/{id: \\d+}")
-    public void deleteConsejo(@PathParam("id") Long id) throws MedicoLogicException{
+    public void deleteConsejo(@PathParam("id") Long id) {
         if(consejoLogic.getConsejo(id)==null){
-            throw new MedicoLogicException("El consejo no existe");
+            throw new WebApplicationException("El consejo no existe",404);
         }
         else{
             consejoLogic.deleteConsejo(id);
