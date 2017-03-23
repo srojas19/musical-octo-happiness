@@ -9,6 +9,7 @@ import co.edu.uniandes.rest.corazon.dtos.DiagnosticoDTO;
 import co.edu.uniandes.rest.corazon.dtos.ExamenDTO;
 import co.edu.uniandes.rest.corazon.dtos.HistoriaClinicaDTO;
 import co.edu.uniandes.rest.corazon.dtos.TratamientoDTO;
+import co.edu.uniandes.rest.corazon.exceptions.PacienteLogicException;
 import co.edu.uniandes.sisteam.corazon.api.IHistoriaClinicaLogic;
 import co.edu.uniandes.sisteam.corazon.entities.DiagnosticoEntity;
 import co.edu.uniandes.sisteam.corazon.entities.ExamenEntity;
@@ -72,9 +73,9 @@ public class HistoriaClinicaResource {
     
     @DELETE
     @Path("diagnostico/{idDiagnostico:\\d+}")
-    public void deleteDiagnosticoPaciente(@PathParam("idDiagnostico") Long idDiagnostico){
+    public void deleteDiagnosticoPaciente(@PathParam("idDiagnostico") Long idDiagnostico) throws PacienteLogicException{
         if(historiaClinicaLogic.getDiagnosticoPaciente(idDiagnostico)==null){
-            throw new WebApplicationException("El diagnostico no existe", 404);
+            throw new PacienteLogicException("El diagnostico no existe");
         }
         else{
             historiaClinicaLogic.deleteDiagnosticoPaciente(idDiagnostico);
@@ -83,9 +84,9 @@ public class HistoriaClinicaResource {
     
     @DELETE
     @Path("examen/{idExamen: \\d+}")
-    public void deleteExamenPaciente(@PathParam("idExamen") Long idExamen){
+    public void deleteExamenPaciente(@PathParam("idExamen") Long idExamen) throws PacienteLogicException{
         if(historiaClinicaLogic.getExamenPaciente(idExamen)==null){
-            throw new WebApplicationException("El examen no existe", 404);
+            throw new PacienteLogicException("El examen no existe");
         }
         else{
             historiaClinicaLogic.deleteExamenPaciente(idExamen);
@@ -94,9 +95,9 @@ public class HistoriaClinicaResource {
     
     @DELETE
     @Path("tratamiento/{idTratamiento: \\d+}")
-    public void deleteTratamientoPaciente(@PathParam("idTratamiento") Long idTratamiento){
+    public void deleteTratamientoPaciente(@PathParam("idTratamiento") Long idTratamiento) throws PacienteLogicException{
         if(historiaClinicaLogic.getDiagnosticoPaciente(idTratamiento)==null){
-            throw new WebApplicationException("El tratamiento no existe", 404);
+            throw new PacienteLogicException("El tratamiento no existe");
         }
         else{
             historiaClinicaLogic.deleteTratamientoPaciente(idTratamiento);

@@ -7,6 +7,7 @@ package co.edu.uniandes.rest.corazon.resources;
 
 import co.edu.uniandes.rest.corazon.dtos.ConsejoDTO;
 import co.edu.uniandes.rest.corazon.dtos.ConsejoDetailDTO;
+import co.edu.uniandes.rest.corazon.exceptions.MedicoLogicException;
 import co.edu.uniandes.sisteam.corazon.api.IConsejoLogic;
 import co.edu.uniandes.sisteam.corazon.entities.ConsejoEntity;
 import co.edu.uniandes.sisteam.corazon.exceptions.BusinessLogicException;
@@ -68,9 +69,9 @@ public class ConsejoResource {
     
     @DELETE
     @Path("consejos/{id: \\d+}")
-    public void deleteConsejo(@PathParam("id") Long id){
+    public void deleteConsejo(@PathParam("id") Long id) throws MedicoLogicException{
         if(consejoLogic.getConsejo(id)==null){
-            throw new WebApplicationException("El consejo no existe", 404);
+            throw new MedicoLogicException("El consejo no existe");
         }
         else{
             consejoLogic.deleteConsejo(id);
