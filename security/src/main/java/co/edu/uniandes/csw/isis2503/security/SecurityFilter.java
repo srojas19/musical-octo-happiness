@@ -1,3 +1,5 @@
+package co.edu.uniandes.csw.isis2503.security;
+
 import co.edu.uniandes.csw.isis2503.security.jwt.api.JwtToken;
 import java.io.IOException;
 import java.util.logging.Level;

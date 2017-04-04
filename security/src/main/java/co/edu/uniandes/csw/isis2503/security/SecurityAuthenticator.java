@@ -58,7 +58,7 @@ public class SecurityAuthenticator implements Authenticator {
     public boolean validarToken(UserDTO user) {
  
         boolean result = false;
-        String path = "C:\\Users\\Jj.alarcon10\\Documents\\apiKey.properties";//Colocar la Ubicacion de su archivo apiKey.properties
+        String path = "/Users/sebastiansanchez/IngenieriaSistemas/2017-1/ArquiSoft/Proyecto/musical-octo-happiness/proyecto-corazon/corazon-web/src/main/webapp/WEB-INF/apiKey.properties";//Colocar la Ubicacion de su archivo apiKey.properties
         ApiKey apiKey = ApiKeys.builder().setFileLocation(path).build();
         Client client = Clients.builder().setApiKey(apiKey).build();
  
