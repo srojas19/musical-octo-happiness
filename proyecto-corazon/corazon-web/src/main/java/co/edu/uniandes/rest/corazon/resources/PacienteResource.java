@@ -48,7 +48,7 @@ import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.ws.rs.QueryParam;
 
-@Path("/pacientes")
+@Path("/resources/pacientes")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class PacienteResource {
