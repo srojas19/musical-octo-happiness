@@ -16,4 +16,9 @@ import javax.ws.rs.ApplicationPath;
  * @see javax.ws.rs.core.Application
  */
 @ApplicationPath("/api")
-public class RestConfig extends Application { }
+public class RestConfig extends Application 
+{ 
+  
+
+
+}
