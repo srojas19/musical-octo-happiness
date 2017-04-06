@@ -36,7 +36,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>jersey-serlvet</servlet-name>
-        <url-pattern>/webresources/*</url-pattern>
+        <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
