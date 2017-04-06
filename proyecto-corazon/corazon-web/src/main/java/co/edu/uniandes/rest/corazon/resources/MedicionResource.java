@@ -53,7 +53,7 @@ import javax.ws.rs.WebApplicationException;
 
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@Path("/pacientes/{pacienteId: \\d+}/mediciones")
+@Path("/resources/pacientes/{pacienteId: \\d+}/mediciones")
 public class MedicionResource {
 
     @Inject
