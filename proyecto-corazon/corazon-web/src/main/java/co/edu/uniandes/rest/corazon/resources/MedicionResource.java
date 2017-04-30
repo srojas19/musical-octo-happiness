@@ -26,11 +26,14 @@ SOFTWARE.
 
 
 
+import co.edu.uniandes.rest.corazon.dtos.ConsejoDTO;
+import co.edu.uniandes.rest.corazon.dtos.ConsejoDetailDTO;
 import co.edu.uniandes.rest.corazon.dtos.MedicionDTO;
 import co.edu.uniandes.rest.corazon.dtos.MedicionDetailDTO;
 import co.edu.uniandes.rest.corazon.dtos.PacienteDTO;
 import co.edu.uniandes.sisteam.corazon.api.IMedicionLogic;
 import co.edu.uniandes.sisteam.corazon.api.IPacienteLogic;
+import co.edu.uniandes.sisteam.corazon.entities.ConsejoEntity;
 import co.edu.uniandes.sisteam.corazon.entities.MedicionEntity;
 import co.edu.uniandes.sisteam.corazon.exceptions.BusinessLogicException;
 import java.util.List;
@@ -87,7 +90,27 @@ public class MedicionResource {
         }
     }
 
-    /**
+//    /**
+//     * Obtiene los datos de los Mediciones de una compañía a partir del ID de
+//     * la Paciente
+//     *
+//     *
+//     * @param pacienteId
+//     * @return Lista de MedicionDTO con los datos del Medicion
+//     * consultado
+//     *
+//     */
+//    @GET
+//    public List<MedicionDetailDTO> getMedicionesConFecha(@PathParam("pacienteId") Long pacienteId,
+//            @DefaultValue("null") @QueryParam("fecha_inicio") String fechaInicio, 
+//            @DefaultValue("null") @QueryParam("fecha_fin") String fechaFin) {
+//    
+//        List<MedicionEntity> mediciones = medicionLogic.getMedicionesDePacienteConFecha(pacienteId,fechaInicio,fechaFin);
+//
+//        return listEntity2DTO(mediciones);
+//    }
+    
+     /**
      * Obtiene los datos de los Mediciones de una compañía a partir del ID de
      * la Paciente
      *
@@ -98,11 +121,9 @@ public class MedicionResource {
      *
      */
     @GET
-    public List<MedicionDetailDTO> getMediciones(@PathParam("pacienteId") Long pacienteId,
-            @DefaultValue("null") @QueryParam("fecha_inicio") String fechaInicio, 
-            @DefaultValue("null") @QueryParam("fecha_fin") String fechaFin) {
+    public List<MedicionDetailDTO> getMedicionesSinFecha(@PathParam("pacienteId") Long pacienteId) {
     
-        List<MedicionEntity> mediciones = medicionLogic.getMedicionesDePaciente(pacienteId,fechaInicio,fechaFin);
+        List<MedicionEntity> mediciones = medicionLogic.getMedicionesDePacienteSinFecha(pacienteId);
 
         return listEntity2DTO(mediciones);
     }
@@ -128,19 +149,13 @@ public class MedicionResource {
     }
 
 
-    /**
-     * Asocia un Medicion existente a un Paciente
-     *
-     * @param dto Objeto de MedicionDTO con los datos nuevos
-     * @param pacienteId
-     * @return Objeto de MedicionDTOcon los datos nuevos y su ID.
-     * @throws co.edu.uniandes.sisteam.corazon.exceptions.BusinessLogicException
-     *
-     */
+    
+    
     @POST
-    public MedicionDetailDTO createMedicion(MedicionDetailDTO dto) throws BusinessLogicException {
-
-       return new MedicionDetailDTO(medicionLogic.createMedicion( dto.toEntity()));
+    public MedicionDetailDTO createMedicion(@PathParam("pacienteId") Long pacienteId, MedicionDetailDTO dto) throws BusinessLogicException {
+        MedicionEntity medicion = dto.toEntity();
+        MedicionEntity respuesta = medicionLogic.createMedicion(pacienteId, medicion);
+        return new MedicionDetailDTO(respuesta);
     }
 
     /**

@@ -18,7 +18,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author BarraganJeronimo
  */
 @Entity
-public class MarcapasosEntity extends BaseEntity implements Serializable {
+public class MarcapasosRealEntity extends BaseEntity implements Serializable,IMarcapasos {
 
     @PodamExclude
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -44,66 +44,82 @@ public class MarcapasosEntity extends BaseEntity implements Serializable {
     
 
     
+    @Override
     public Date getFechaImplante() {
         return fechaImplante;
     }
 
+    @Override
     public void setFechaImplante(Date fechaImplante) {
         this.fechaImplante = fechaImplante;
     }
 
+    @Override
     public Date getFinVidaUtil() {
         return finVidaUtil;
     }
 
+    @Override
     public void setFinVidaUtil(Date finVidaUtil) {
         this.finVidaUtil = finVidaUtil;
     }
 
+    @Override
     public String getMarca() {
         return marca;
     }
 
+    @Override
     public void setMarca(String marca) {
         this.marca = marca;
     }
 
+    @Override
     public String getModelo() {
         return modelo;
     }
 
+    @Override
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
 
+    @Override
     public String getNumeroSerie() {
         return numeroSerie;
     }
 
+    @Override
     public void setNumeroSerie(String numeroSerie) {
         this.numeroSerie = numeroSerie;
     }
 
+    @Override
     public Double getVoltaje() {
         return voltaje;
     }
 
+    @Override
     public void setVoltaje(Double voltaje) {
         this.voltaje = voltaje;
     }
 
+    @Override
     public Double getFrecuenciaElectrica() {
         return frecuenciaElectrica;
     }
 
+    @Override
     public void setFrecuenciaElectrica(Double frecuenciaElectrica) {
         this.frecuenciaElectrica = frecuenciaElectrica;
     }
     
+    @Override
     public PacienteEntity getPaciente() {
         return paciente;
     }
 
+    @Override
     public void setPaciente(PacienteEntity paciente) {
         this.paciente = paciente;
     }

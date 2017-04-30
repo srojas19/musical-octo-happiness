@@ -42,6 +42,21 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class PacienteEntity extends BaseEntity implements Serializable {
 
+    private INivel nivelActual;
+    
+    public PacienteEntity()
+    {
+        nivelActual = new INivel.NivelVerde();
+    }
+    
+    public void set_nivel(INivel nivel)
+    {
+        nivelActual = nivel;
+    }
+    
+    public void cambiar(){
+        nivelActual.cambiar(this, mediciones.get(mediciones.size()-1));
+    }
 
     //Relaciones con Medico
     @ManyToOne 
@@ -52,13 +67,17 @@ public class PacienteEntity extends BaseEntity implements Serializable {
         
     //Relaciones con MarcaPasos
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private MarcapasosEntity marcapasos;
+    private MarcapasosRealEntity marcapasos;
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)
+    private List<MedicionEntity> mediciones = new ArrayList<>();
     
     @PodamExclude
     @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)
     private List<ConsejoEntity> consejosRecibidos = new ArrayList<>();
     
-    @OneToOne(mappedBy = "paciente",cascade = CascadeType.ALL, optional = false,  fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private HistoriaClinicaEntity historiaClinica;
 
     
@@ -165,11 +184,11 @@ public class PacienteEntity extends BaseEntity implements Serializable {
         this.medicos = medicos;
     }
 
-    public MarcapasosEntity getMarcapasos() {
+    public MarcapasosRealEntity getMarcapasos() {
         return marcapasos;
     }
 
-    public void setMarcapasos(MarcapasosEntity marcapasos) {
+    public void setMarcapasos(MarcapasosRealEntity marcapasos) {
         this.marcapasos = marcapasos;
     }
 
@@ -190,6 +209,15 @@ public class PacienteEntity extends BaseEntity implements Serializable {
         this.historiaClinica = historiaClinica;
     }
 
+    public List<MedicionEntity> getMediciones() {
+        return mediciones;
+    }
+
+    public void setMediciones(List<MedicionEntity> mediciones) {
+        this.mediciones = mediciones;
+    }
+
+    
     
 
 }

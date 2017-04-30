@@ -6,7 +6,8 @@
 package co.edu.uniandes.sisteam.corazon.ejbs;
 
 import co.edu.uniandes.sisteam.corazon.api.IMarcapasosLogic;
-import co.edu.uniandes.sisteam.corazon.entities.MarcapasosEntity;
+import co.edu.uniandes.sisteam.corazon.entities.HistoriaClinicaEntity;
+import co.edu.uniandes.sisteam.corazon.entities.MarcapasosRealEntity;
 import co.edu.uniandes.sisteam.corazon.entities.PacienteEntity;
 import co.edu.uniandes.sisteam.corazon.exceptions.BusinessLogicException;
 import co.edu.uniandes.sisteam.corazon.persistence.MarcapasosPersistence;
@@ -21,64 +22,47 @@ import javax.inject.Inject;
  */
 @Stateless
 public class MarcapasosLogic implements IMarcapasosLogic {
-    
+
     @Inject
-    private MarcapasosPersistence persistence;
-    
+    private MarcapasosPersistence marcapasosPersistence;
+
     @Inject
-    private PacientePersistence paciente;
-    
+    private PacientePersistence pacientePersistence;
+
     @Override
-    public MarcapasosEntity getMarcapasosId(long id) {
-        return persistence.find(id);
+    public MarcapasosRealEntity getMarcapasosPaciente(Long idPaciente) {
+        return marcapasosPersistence.getMarcapasosPaciente(idPaciente);
     }
-    
+
     @Override
-    public List<MarcapasosEntity> getAllMarcapasos() {
-        return persistence.findAll();
-    }
-    
-    @Override
-    public MarcapasosEntity getMarcapasosNumeroSerie(String numeroSerie) {
-        return persistence.findByNumeroSerie(numeroSerie);
-    }
-    
-    @Override
-    public MarcapasosEntity createMarcapasos(MarcapasosEntity entity, Long id) throws BusinessLogicException {
-        
-        MarcapasosEntity alreadyExist = getMarcapasosNumeroSerie(entity.getNumeroSerie());
-        PacienteEntity existe = paciente.find(id);
-        if (alreadyExist != null) {
-            throw new BusinessLogicException("Ya existe un marcapasos con ese numero de serie");
-        }        
+    public MarcapasosRealEntity createMarcapasos(MarcapasosRealEntity entity, Long idPaciente) throws BusinessLogicException {
+
+        PacienteEntity existe = pacientePersistence.find(idPaciente);
         if (existe == null) {
-            throw new BusinessLogicException("No exite cliente con esa identificacion: " + id);
+            throw new BusinessLogicException("No exite cliente con esa identificacion: " + idPaciente);
         } else {
             existe.setMarcapasos(entity);
-            entity.setPaciente(existe);          
-            persistence.create(entity);
-            paciente.update(existe);
+            entity.setPaciente(existe);
+            marcapasosPersistence.create(entity);
+            pacientePersistence.update(existe);
         }
         return entity;
-        
     }
-    
+
     @Override
-    public MarcapasosEntity updateMarcapasos(MarcapasosEntity entity) throws BusinessLogicException {
-        
-        MarcapasosEntity alreadyExist = getMarcapasosNumeroSerie(entity.getNumeroSerie());
-        if (alreadyExist == null) {
-            throw new BusinessLogicException("No existe un marcapasos con ese numero de serie para actualizar");
+    public MarcapasosRealEntity updateMarcapasos(MarcapasosRealEntity entity, Long idPaciente) throws BusinessLogicException 
+    {
+        PacienteEntity existe = pacientePersistence.find(idPaciente);
+        if (existe == null) {
+            throw new BusinessLogicException("No exite cliente con esa identificacion: " + idPaciente);
         } else {
-            persistence.update(entity);
+            existe.setMarcapasos(entity);
+            entity.setPaciente(existe);
+            marcapasosPersistence.update(entity);
+            pacientePersistence.update(existe);
         }
         return entity;
+      
     }
-    
-    @Override
-    public void deleteMarcapasos(long id) {
-        persistence.delete(id);
-        
-    }
-    
+
 }

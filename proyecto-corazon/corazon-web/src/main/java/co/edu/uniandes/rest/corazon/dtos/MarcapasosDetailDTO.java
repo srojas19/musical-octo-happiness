@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.rest.corazon.dtos;
 
-import co.edu.uniandes.sisteam.corazon.entities.MarcapasosEntity;
+import co.edu.uniandes.sisteam.corazon.entities.MarcapasosRealEntity;
 
 /**
  *
@@ -19,7 +19,7 @@ public class MarcapasosDetailDTO extends MarcapasosDTO {
         super();
     }
 
-    public MarcapasosDetailDTO(MarcapasosEntity entity){
+    public MarcapasosDetailDTO(MarcapasosRealEntity entity){
         super(entity);
         if(entity!=null){
             if(entity.getPaciente()!=null){
@@ -30,8 +30,8 @@ public class MarcapasosDetailDTO extends MarcapasosDTO {
     }
     
     @Override
-    public MarcapasosEntity toEntity(){
-        MarcapasosEntity entity= super.toEntity();
+    public MarcapasosRealEntity toEntity(){
+        MarcapasosRealEntity entity= super.toEntity();
         
         if(paciente!=null){
             entity.setPaciente(paciente.toEntity());

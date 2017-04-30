@@ -18,6 +18,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class MedicionDetailDTO extends MedicionDTO{
     
     private EmergenciaDTO emergencia;
+    
+    private PacienteDTO paciente;
 
     public MedicionDetailDTO() {
      super();
@@ -27,8 +29,13 @@ public class MedicionDetailDTO extends MedicionDTO{
 
     public MedicionDetailDTO( MedicionEntity entity) {
         super(entity);
+        
         if(entity.getEmergencia()!=null){
         this.emergencia = new EmergenciaDTO(entity.getEmergencia());
+        }
+        
+        if (entity.getPaciente() != null) {
+            this.paciente = new PacienteDTO(entity.getPaciente());
         }
     }
     
@@ -38,6 +45,11 @@ public class MedicionDetailDTO extends MedicionDTO{
         if(emergencia!=null){
             entity.setEmergencia(emergencia.toEntity());
         }
+        
+        if (this.getPaciente() != null) {
+            entity.setPaciente(this.getPaciente().toEntity());
+        }
+        
         return entity;
     }
 
@@ -48,5 +60,15 @@ public class MedicionDetailDTO extends MedicionDTO{
     public void setEmergencia(EmergenciaDTO emergencia) {
         this.emergencia = emergencia;
     }
+
+    public PacienteDTO getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(PacienteDTO paciente) {
+        this.paciente = paciente;
+    }
+    
+    
     
 }

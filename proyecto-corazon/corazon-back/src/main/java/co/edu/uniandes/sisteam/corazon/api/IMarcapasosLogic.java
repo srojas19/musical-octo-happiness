@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.sisteam.corazon.api;
 
-import co.edu.uniandes.sisteam.corazon.entities.MarcapasosEntity;
+import co.edu.uniandes.sisteam.corazon.entities.MarcapasosRealEntity;
 import co.edu.uniandes.sisteam.corazon.exceptions.BusinessLogicException;
 import java.util.List;
 
@@ -15,15 +15,8 @@ import java.util.List;
  */
 public interface IMarcapasosLogic {
 
-    public MarcapasosEntity getMarcapasosId(long id);
+    public MarcapasosRealEntity getMarcapasosPaciente(Long idPaciente);
+    public MarcapasosRealEntity createMarcapasos(MarcapasosRealEntity entity, Long idPaciente) throws BusinessLogicException;
+    public MarcapasosRealEntity updateMarcapasos(MarcapasosRealEntity entity, Long idPaciente) throws BusinessLogicException;
 
-    public List<MarcapasosEntity> getAllMarcapasos();
-
-    public MarcapasosEntity getMarcapasosNumeroSerie(String numeroSerie);
-
-    public MarcapasosEntity createMarcapasos(MarcapasosEntity entity, Long idPaciente) throws BusinessLogicException;
-
-    public MarcapasosEntity updateMarcapasos(MarcapasosEntity entity)throws BusinessLogicException;
-   
-    public void deleteMarcapasos(long id);
 }

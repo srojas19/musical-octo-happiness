@@ -55,13 +55,13 @@ public class MedicionPersistence {
 
     public List<MedicionEntity> findAllForPaciente(Long pacienteId) {
         LOGGER.log(Level.INFO, "Consultando todas las mediciones del paciente pacienteId={0}", pacienteId);
-        TypedQuery q = em.createQuery("select d from MedicionEntity d  where d.pacienteId = :pacienteId", MedicionEntity.class);
+        TypedQuery q = em.createQuery("select d from MedicionEntity d  where d.paciente.id = :pacienteId", MedicionEntity.class);
         q = q.setParameter("pacienteId", pacienteId);
         return q.getResultList();
     }
 
     public List<MedicionEntity> findForPacienteByDates(Long pacienteId, Date fechaInicio, Date fechaFin) {
-        TypedQuery q = em.createQuery("select d from MedicionEntity d  where d.pacienteId = :pacienteId and d.fecha>=:fecha1 and d.fecha<=:fecha2 ", MedicionEntity.class);
+        TypedQuery q = em.createQuery("select d from MedicionEntity d  where d.paciente.id = :pacienteId and d.fecha>=:fecha1 and d.fecha<=:fecha2 ", MedicionEntity.class);
         q = q.setParameter("pacienteId", pacienteId);
         q = q.setParameter("fecha1", fechaInicio);
         q = q.setParameter("fecha2", fechaFin);

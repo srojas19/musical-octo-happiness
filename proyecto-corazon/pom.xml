@@ -8,8 +8,8 @@
     <packaging>pom</packaging>
     
     <modules>
-        <module>corazon-back</module>
         <module>corazon-web</module>
+        <module>corazon-back</module>
     </modules>
 
 	

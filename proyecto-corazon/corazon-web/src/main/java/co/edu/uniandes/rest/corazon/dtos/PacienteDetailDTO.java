@@ -24,6 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.rest.corazon.dtos;
 
 import co.edu.uniandes.sisteam.corazon.entities.ConsejoEntity;
+import co.edu.uniandes.sisteam.corazon.entities.MedicionEntity;
 import co.edu.uniandes.sisteam.corazon.entities.MedicoEntity;
 import co.edu.uniandes.sisteam.corazon.entities.PacienteEntity;
 import java.util.ArrayList;
@@ -40,6 +41,8 @@ public class PacienteDetailDTO extends PacienteDTO {
     private MarcapasosDTO marcapasos;
 
     private List<ConsejoDTO> consejosRecibidos = new ArrayList<>();
+    
+    private List<MedicionDTO> mediciones = new ArrayList<>();
 
     public PacienteDetailDTO() {
         super();
@@ -65,6 +68,12 @@ public class PacienteDetailDTO extends PacienteDTO {
             for (MedicoEntity medico : medicosa) {
                 this.medicos.add(new MedicoDTO(medico));
             }
+            
+            List<MedicionEntity> meds = entity.getMediciones();
+            for (MedicionEntity med : meds) {
+                this.mediciones.add(new MedicionDTO(med));
+            }
+            
            if(entity.getMedicoTratante()!=null){
            medicoTratante= new MedicoDTO(entity.getMedicoTratante());
            }
@@ -88,12 +97,25 @@ public class PacienteDetailDTO extends PacienteDTO {
         PacienteEntity entity = super.toEntity();
         
         List<ConsejoDTO> consejosRecibidosDTO = this.consejosRecibidos;
-
         for (ConsejoDTO consejoRealizado : consejosRecibidosDTO) {
             entity.getConsejosRecibidos().add(consejoRealizado.toEntity());
         }
+        
+        List<MedicionDTO> medicionesDTO = this.mediciones;
+        for (MedicionDTO medicion : medicionesDTO) {
+            entity.getMediciones().add(medicion.toEntity());
+        }
+
 
         return entity;
+    }
+
+    public List<MedicionDTO> getMediciones() {
+        return mediciones;
+    }
+
+    public void setMediciones(List<MedicionDTO> mediciones) {
+        this.mediciones = mediciones;
     }
 
     public MedicoDTO getMedicoTratante() {

@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.rest.corazon.dtos;
 
-import co.edu.uniandes.sisteam.corazon.entities.MarcapasosEntity;
+import co.edu.uniandes.sisteam.corazon.entities.MarcapasosRealEntity;
 import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -49,7 +49,7 @@ public class MarcapasosDTO {
     public MarcapasosDTO() {
     }
 
-    public MarcapasosDTO(MarcapasosEntity entity) {
+    public MarcapasosDTO(MarcapasosRealEntity entity) {
 
         if (entity != null) {
             this.id=entity.getId();
@@ -65,8 +65,8 @@ public class MarcapasosDTO {
 
     }
 
-    public MarcapasosEntity toEntity() {
-        MarcapasosEntity entity = new MarcapasosEntity();
+    public MarcapasosRealEntity toEntity() {
+        MarcapasosRealEntity entity = new MarcapasosRealEntity();
         entity.setFechaImplante(fechaImplante);
         entity.setFinVidaUtil(finVidaUtil);
         entity.setFrecuenciaElectrica(frecuenciaElectrica);
