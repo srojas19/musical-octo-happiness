@@ -90,25 +90,25 @@ public class MedicionResource {
         }
     }
 
-//    /**
-//     * Obtiene los datos de los Mediciones de una compañía a partir del ID de
-//     * la Paciente
-//     *
-//     *
-//     * @param pacienteId
-//     * @return Lista de MedicionDTO con los datos del Medicion
-//     * consultado
-//     *
-//     */
-//    @GET
-//    public List<MedicionDetailDTO> getMedicionesConFecha(@PathParam("pacienteId") Long pacienteId,
-//            @DefaultValue("null") @QueryParam("fecha_inicio") String fechaInicio, 
-//            @DefaultValue("null") @QueryParam("fecha_fin") String fechaFin) {
-//    
-//        List<MedicionEntity> mediciones = medicionLogic.getMedicionesDePacienteConFecha(pacienteId,fechaInicio,fechaFin);
-//
-//        return listEntity2DTO(mediciones);
-//    }
+    /**
+     * Obtiene los datos de los Mediciones de una compañía a partir del ID de
+     * la Paciente
+     *
+     *
+     * @param pacienteId
+     * @return Lista de MedicionDTO con los datos del Medicion
+     * consultado
+     *
+     */
+    @GET
+    public List<MedicionDetailDTO> getMedicionesConFecha(@PathParam("pacienteId") Long pacienteId,
+            @DefaultValue("null") @QueryParam("fecha_inicio") String fechaInicio, 
+            @DefaultValue("null") @QueryParam("fecha_fin") String fechaFin) {
+    
+        List<MedicionEntity> mediciones = medicionLogic.getMedicionesDePacienteConFecha(pacienteId,fechaInicio,fechaFin);
+
+        return listEntity2DTO(mediciones);
+    }
     
      /**
      * Obtiene los datos de los Mediciones de una compañía a partir del ID de
@@ -121,6 +121,7 @@ public class MedicionResource {
      *
      */
     @GET
+    @Path("/historial")
     public List<MedicionDetailDTO> getMedicionesSinFecha(@PathParam("pacienteId") Long pacienteId) {
     
         List<MedicionEntity> mediciones = medicionLogic.getMedicionesDePacienteSinFecha(pacienteId);
