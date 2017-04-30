@@ -152,9 +152,9 @@ public class MedicionResource {
     
     
     @POST
-    public MedicionDetailDTO createMedicion(@PathParam("idPaciente") Long idPaciente, MedicionDetailDTO dto) throws BusinessLogicException {
+    public MedicionDetailDTO createMedicion(@PathParam("pacienteId") Long pacienteId, MedicionDetailDTO dto) throws BusinessLogicException {
         MedicionEntity medicion = dto.toEntity();
-        MedicionEntity respuesta = medicionLogic.createMedicion(idPaciente, medicion);
+        MedicionEntity respuesta = medicionLogic.createMedicion(pacienteId, medicion);
         return new MedicionDetailDTO(respuesta);
     }
 
