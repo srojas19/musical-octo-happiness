@@ -12,6 +12,9 @@ import javax.persistence.OneToOne;
 @Entity
 public class MedicionEntity extends BaseEntity implements Serializable {
 
+    
+    
+    
     private Long pacienteId;
     private String dictamen;
     private Date fecha;

@@ -42,6 +42,21 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class PacienteEntity extends BaseEntity implements Serializable {
 
+    private INivel nivelActual;
+    
+    public PacienteEntity()
+    {
+        nivelActual = new INivel.NivelVerde();
+    }
+    
+    public void set_nivel(INivel nivel)
+    {
+        nivelActual = nivel;
+    }
+    
+//    public void cambiar(){
+//        nivelActual.cambiar(this, MedicionEntity medicion);
+//    }
 
     //Relaciones con Medico
     @ManyToOne 
