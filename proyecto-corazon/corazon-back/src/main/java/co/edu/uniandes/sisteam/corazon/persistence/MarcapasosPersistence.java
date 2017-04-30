@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.sisteam.corazon.persistence;
 
+import co.edu.uniandes.sisteam.corazon.entities.HistoriaClinicaEntity;
 import co.edu.uniandes.sisteam.corazon.entities.MarcapasosRealEntity;
 import java.util.List;
 import java.util.logging.Level;
@@ -27,47 +28,15 @@ public class MarcapasosPersistence {
     @PersistenceContext(unitName = "SisteamCorazonPU")
     protected EntityManager em;
 
-    public MarcapasosRealEntity find(Long id) {
-        LOGGER.log(Level.INFO, "Consultando marcapasos con id={0}", id);
-        return em.find(MarcapasosRealEntity.class, id);
-    }
-
-    public MarcapasosRealEntity findByNumeroSerie(String numeroSerie) {
-        LOGGER.log(Level.INFO, "Consultando marcapasos con numeroSerie= {0}", numeroSerie);
-        TypedQuery<MarcapasosRealEntity> q
-         = em.createQuery("select u from MarcapasosEntity u where u.numeroSerie= :numeroSerie", MarcapasosRealEntity.class);
-        q = q.setParameter("numeroSerie", numeroSerie);
-
-        List<MarcapasosRealEntity> marcapasoss = q.getResultList();
-        if (marcapasoss.isEmpty()) {
+   public MarcapasosRealEntity getMarcapasosPaciente(Long idPaciente) {
+        TypedQuery q = em.createQuery("select u from MarcapasosRealEntity u where u.paciente.id = :idPaciente", HistoriaClinicaEntity.class);
+        q = q.setParameter("idPaciente", idPaciente);
+        List<MarcapasosRealEntity> similarName = q.getResultList();
+        if (similarName.isEmpty()) {
             return null;
         } else {
-           return marcapasoss.get(0);
+            return similarName.get(0);
         }
-    }
-
-
-    public List<MarcapasosRealEntity> findAll() {
-        LOGGER.info("Consultando todos los marcapasoss");
-        Query q = em.createQuery("select u from MarcapasosEntity u");
-        return q.getResultList();
-    }
-
-    public MarcapasosRealEntity create(MarcapasosRealEntity entity) {
-        LOGGER.info("Creando un marcapasos nuevo " + entity.getNumeroSerie());
-        em.persist(entity);
-        return entity;
-    }
-
-    public MarcapasosRealEntity update(MarcapasosRealEntity entity) {
-        LOGGER.log(Level.INFO, "Actualizando marcapasos con id={0}", entity.getId());
-        return em.merge(entity);
-    }
-
-    public void delete(Long id) {
-        LOGGER.log(Level.INFO, "Borrando marcapasos con id={0}", id);
-        MarcapasosRealEntity entity = em.find(MarcapasosRealEntity.class, id);
-        em.remove(entity);
     }
 
     

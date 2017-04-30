@@ -15,10 +15,9 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author BarraganJeronimo
+ * @author 
  */
-@Entity
-public class MarcapasosProxy extends BaseEntity implements IMarcapasos {
+public class MarcapasosProxy implements IMarcapasos {
 
     private MarcapasosRealEntity real;
 

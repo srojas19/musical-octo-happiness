@@ -15,15 +15,5 @@ import java.util.List;
  */
 public interface IMarcapasosLogic {
 
-    public MarcapasosRealEntity getMarcapasosId(long id);
-
-    public List<MarcapasosRealEntity> getAllMarcapasos();
-
-    public MarcapasosRealEntity getMarcapasosNumeroSerie(String numeroSerie);
-
-    public MarcapasosRealEntity createMarcapasos(MarcapasosRealEntity entity, Long idPaciente) throws BusinessLogicException;
-
-    public MarcapasosRealEntity updateMarcapasos(MarcapasosRealEntity entity)throws BusinessLogicException;
-   
-    public void deleteMarcapasos(long id);
+    public MarcapasosRealEntity getMarcapasosPaciente(Long idPaciente);
 }
