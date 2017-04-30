@@ -18,7 +18,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author BarraganJeronimo
  */
 @Entity
-public class MarcapasosEntity extends BaseEntity implements Serializable,IMarcapasos {
+public class MarcapasosRealEntity extends BaseEntity implements Serializable,IMarcapasos {
 
     @PodamExclude
     @Temporal(javax.persistence.TemporalType.DATE)

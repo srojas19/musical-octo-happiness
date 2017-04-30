@@ -52,7 +52,7 @@ public class PacienteEntity extends BaseEntity implements Serializable {
         
     //Relaciones con MarcaPasos
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private MarcapasosEntity marcapasos;
+    private MarcapasosRealEntity marcapasos;
     
     @PodamExclude
     @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)
@@ -165,11 +165,11 @@ public class PacienteEntity extends BaseEntity implements Serializable {
         this.medicos = medicos;
     }
 
-    public MarcapasosEntity getMarcapasos() {
+    public MarcapasosRealEntity getMarcapasos() {
         return marcapasos;
     }
 
-    public void setMarcapasos(MarcapasosEntity marcapasos) {
+    public void setMarcapasos(MarcapasosRealEntity marcapasos) {
         this.marcapasos = marcapasos;
     }
 

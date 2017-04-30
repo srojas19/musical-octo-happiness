@@ -9,7 +9,7 @@ import co.edu.uniandes.rest.corazon.dtos.MarcapasosDetailDTO;
 import co.edu.uniandes.rest.corazon.dtos.MarcapasosDTO;
 import co.edu.uniandes.rest.corazon.exceptions.MarcapasosLogicException;
 import co.edu.uniandes.sisteam.corazon.api.IMarcapasosLogic;
-import co.edu.uniandes.sisteam.corazon.entities.MarcapasosEntity;
+import co.edu.uniandes.sisteam.corazon.entities.MarcapasosRealEntity;
 import co.edu.uniandes.sisteam.corazon.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +45,9 @@ public class MarcapasosResource {
      * @return Lista de MarcapasosDTO convertida.
      *
      */
-    private List<MarcapasosDTO> listEntity2DTO(List<MarcapasosEntity> entityList) {
+    private List<MarcapasosDTO> listEntity2DTO(List<MarcapasosRealEntity> entityList) {
         List<MarcapasosDTO> list = new ArrayList<>();
-        for (MarcapasosEntity entity : entityList) {
+        for (MarcapasosRealEntity entity : entityList) {
             list.add(new MarcapasosDTO(entity));
         }
         return list;
@@ -108,7 +108,7 @@ public class MarcapasosResource {
     @PUT
     @Path("{id: \\d+}")
     public MarcapasosDetailDTO updateMarcapasos(@PathParam("id") Long id, MarcapasosDetailDTO dto) throws MarcapasosLogicException {
-        MarcapasosEntity entity = dto.toEntity();
+        MarcapasosRealEntity entity = dto.toEntity();
         entity.setId(id);
         try {
             return new MarcapasosDetailDTO(marcapasosLogic.updateMarcapasos(entity));

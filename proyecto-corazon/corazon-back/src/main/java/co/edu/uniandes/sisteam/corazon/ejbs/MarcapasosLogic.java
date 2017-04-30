@@ -6,7 +6,7 @@
 package co.edu.uniandes.sisteam.corazon.ejbs;
 
 import co.edu.uniandes.sisteam.corazon.api.IMarcapasosLogic;
-import co.edu.uniandes.sisteam.corazon.entities.MarcapasosEntity;
+import co.edu.uniandes.sisteam.corazon.entities.MarcapasosRealEntity;
 import co.edu.uniandes.sisteam.corazon.entities.PacienteEntity;
 import co.edu.uniandes.sisteam.corazon.exceptions.BusinessLogicException;
 import co.edu.uniandes.sisteam.corazon.persistence.MarcapasosPersistence;
@@ -29,24 +29,24 @@ public class MarcapasosLogic implements IMarcapasosLogic {
     private PacientePersistence paciente;
     
     @Override
-    public MarcapasosEntity getMarcapasosId(long id) {
+    public MarcapasosRealEntity getMarcapasosId(long id) {
         return persistence.find(id);
     }
     
     @Override
-    public List<MarcapasosEntity> getAllMarcapasos() {
+    public List<MarcapasosRealEntity> getAllMarcapasos() {
         return persistence.findAll();
     }
     
     @Override
-    public MarcapasosEntity getMarcapasosNumeroSerie(String numeroSerie) {
+    public MarcapasosRealEntity getMarcapasosNumeroSerie(String numeroSerie) {
         return persistence.findByNumeroSerie(numeroSerie);
     }
     
     @Override
-    public MarcapasosEntity createMarcapasos(MarcapasosEntity entity, Long id) throws BusinessLogicException {
+    public MarcapasosRealEntity createMarcapasos(MarcapasosRealEntity entity, Long id) throws BusinessLogicException {
         
-        MarcapasosEntity alreadyExist = getMarcapasosNumeroSerie(entity.getNumeroSerie());
+        MarcapasosRealEntity alreadyExist = getMarcapasosNumeroSerie(entity.getNumeroSerie());
         PacienteEntity existe = paciente.find(id);
         if (alreadyExist != null) {
             throw new BusinessLogicException("Ya existe un marcapasos con ese numero de serie");
@@ -64,9 +64,9 @@ public class MarcapasosLogic implements IMarcapasosLogic {
     }
     
     @Override
-    public MarcapasosEntity updateMarcapasos(MarcapasosEntity entity) throws BusinessLogicException {
+    public MarcapasosRealEntity updateMarcapasos(MarcapasosRealEntity entity) throws BusinessLogicException {
         
-        MarcapasosEntity alreadyExist = getMarcapasosNumeroSerie(entity.getNumeroSerie());
+        MarcapasosRealEntity alreadyExist = getMarcapasosNumeroSerie(entity.getNumeroSerie());
         if (alreadyExist == null) {
             throw new BusinessLogicException("No existe un marcapasos con ese numero de serie para actualizar");
         } else {
