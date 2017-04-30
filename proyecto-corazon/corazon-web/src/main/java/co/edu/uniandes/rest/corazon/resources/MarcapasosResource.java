@@ -35,11 +35,10 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class MarcapasosResource {
-    
+
     @Inject
     private IMarcapasosLogic marcapasosLogic;
-    
-    
+
     /**
      * Convierte una lista de MarcapasosEntity a una lista de MarcapasosDTO.
      *
@@ -54,14 +53,56 @@ public class MarcapasosResource {
         }
         return list;
     }
-    
-   @GET
-    public MarcapasosDetailDTO getMarcapasosPaciente(@PathParam("idPaciente") Long idPaciente){
+
+    @GET
+    public MarcapasosDetailDTO getMarcapasosPaciente(@PathParam("idPaciente") Long idPaciente) {
         MarcapasosRealEntity entity = marcapasosLogic.getMarcapasosPaciente(idPaciente);
-        if(entity == null){
+        if (entity == null) {
             throw new WebApplicationException(404);
         }
         return new MarcapasosDetailDTO(entity);
     }
-   
+
+    /**
+     *
+     * @param dto
+     * @param idPaciente
+     * @param id
+     * @return
+     * @throws MarcapasosLogicException
+     */
+    @POST
+    public MarcapasosDetailDTO createMarcapasos(MarcapasosDetailDTO dto, @PathParam("idPaciente") Long idPaciente) throws MarcapasosLogicException {
+        // System.out.println("dto es "+ dto.toEntity());
+        MarcapasosDetailDTO respuesta = dto;
+
+        try {
+            respuesta = new MarcapasosDetailDTO(marcapasosLogic.createMarcapasos(dto.toEntity(), idPaciente));
+        } catch (BusinessLogicException ex) {
+            throw new MarcapasosLogicException(ex.getMessage());
+        }
+
+        return respuesta;
+    }
+
+    /**
+     *
+     * @param id
+     * @param dto
+     * @return
+     * @throws MarcapasosLogicException
+     */
+    @PUT
+    public MarcapasosDetailDTO updateMarcapasos(MarcapasosDetailDTO dto, @PathParam("idPaciente") Long idPaciente) throws MarcapasosLogicException {
+        MarcapasosRealEntity entity = dto.toEntity();
+        try 
+        {
+            return new MarcapasosDetailDTO(marcapasosLogic.updateMarcapasos(entity, idPaciente));
+        } 
+        catch (BusinessLogicException ex) 
+        {
+            throw new MarcapasosLogicException(ex.getMessage());
+
+        }
+    }
 }

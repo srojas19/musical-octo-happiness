@@ -16,4 +16,7 @@ import java.util.List;
 public interface IMarcapasosLogic {
 
     public MarcapasosRealEntity getMarcapasosPaciente(Long idPaciente);
+    public MarcapasosRealEntity createMarcapasos(MarcapasosRealEntity entity, Long idPaciente) throws BusinessLogicException;
+    public MarcapasosRealEntity updateMarcapasos(MarcapasosRealEntity entity, Long idPaciente) throws BusinessLogicException;
+
 }

@@ -22,16 +22,47 @@ import javax.inject.Inject;
  */
 @Stateless
 public class MarcapasosLogic implements IMarcapasosLogic {
-    
+
     @Inject
     private MarcapasosPersistence marcapasosPersistence;
-    
+
     @Inject
-    private PacientePersistence paciente;
-    
+    private PacientePersistence pacientePersistence;
+
     @Override
     public MarcapasosRealEntity getMarcapasosPaciente(Long idPaciente) {
         return marcapasosPersistence.getMarcapasosPaciente(idPaciente);
     }
-    
+
+    @Override
+    public MarcapasosRealEntity createMarcapasos(MarcapasosRealEntity entity, Long idPaciente) throws BusinessLogicException {
+
+        PacienteEntity existe = pacientePersistence.find(idPaciente);
+        if (existe == null) {
+            throw new BusinessLogicException("No exite cliente con esa identificacion: " + idPaciente);
+        } else {
+            existe.setMarcapasos(entity);
+            entity.setPaciente(existe);
+            marcapasosPersistence.create(entity);
+            pacientePersistence.update(existe);
+        }
+        return entity;
+    }
+
+    @Override
+    public MarcapasosRealEntity updateMarcapasos(MarcapasosRealEntity entity, Long idPaciente) throws BusinessLogicException 
+    {
+        PacienteEntity existe = pacientePersistence.find(idPaciente);
+        if (existe == null) {
+            throw new BusinessLogicException("No exite cliente con esa identificacion: " + idPaciente);
+        } else {
+            existe.setMarcapasos(entity);
+            entity.setPaciente(existe);
+            marcapasosPersistence.update(entity);
+            pacientePersistence.update(existe);
+        }
+        return entity;
+      
+    }
+
 }

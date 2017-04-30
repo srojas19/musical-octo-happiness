@@ -22,13 +22,13 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class MarcapasosPersistence {
-    
+
     private static final Logger LOGGER = Logger.getLogger(MedicoPersistence.class.getName());
 
     @PersistenceContext(unitName = "SisteamCorazonPU")
     protected EntityManager em;
 
-   public MarcapasosRealEntity getMarcapasosPaciente(Long idPaciente) {
+    public MarcapasosRealEntity getMarcapasosPaciente(Long idPaciente) {
         TypedQuery q = em.createQuery("select u from MarcapasosRealEntity u where u.paciente.id = :idPaciente", HistoriaClinicaEntity.class);
         q = q.setParameter("idPaciente", idPaciente);
         List<MarcapasosRealEntity> similarName = q.getResultList();
@@ -39,6 +39,15 @@ public class MarcapasosPersistence {
         }
     }
 
-    
-    
+    public MarcapasosRealEntity create(MarcapasosRealEntity entity) {
+        LOGGER.info("Creando un marcapasos nuevo " + entity.getNumeroSerie());
+        em.persist(entity);
+        return entity;
+    }
+
+    public MarcapasosRealEntity update(MarcapasosRealEntity entity) {
+        LOGGER.log(Level.INFO, "Actualizando marcapasos con id={0}", entity.getId());
+        return em.merge(entity);
+    }
+
 }
