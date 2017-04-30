@@ -27,6 +27,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -66,6 +67,15 @@ public class MedicoResource {
     @Path("{id: \\d+}")
     public MedicoDetailDTO getMedico(@PathParam("id") Long id) {
         return new MedicoDetailDTO(medicoLogic.getMedicoId(id));
+    }
+    
+    
+    @GET
+    @Path("cedula/{cedula: \\d+}")
+    public MedicoDetailDTO getMedicoCedula(@PathParam("cedula") Integer id){
+        
+        MedicoDetailDTO resp= new MedicoDetailDTO(medicoLogic.getMedicoCedula(id));
+        return resp;
     }
     
     
