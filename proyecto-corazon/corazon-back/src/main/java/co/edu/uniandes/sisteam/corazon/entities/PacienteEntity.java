@@ -58,7 +58,7 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)
     private List<ConsejoEntity> consejosRecibidos = new ArrayList<>();
     
-    @OneToOne(mappedBy = "paciente",cascade = CascadeType.ALL, optional = false,  fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private HistoriaClinicaEntity historiaClinica;
 
     

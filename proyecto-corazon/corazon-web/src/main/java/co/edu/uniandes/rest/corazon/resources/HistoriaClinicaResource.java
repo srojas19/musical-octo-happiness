@@ -96,7 +96,7 @@ public class HistoriaClinicaResource {
     @DELETE
     @Path("tratamiento/{idTratamiento: \\d+}")
     public void deleteTratamientoPaciente(@PathParam("idTratamiento") Long idTratamiento) {
-        if(historiaClinicaLogic.getDiagnosticoPaciente(idTratamiento)==null){
+        if(historiaClinicaLogic.getTratamientoPaciente(idTratamiento)==null){
             throw new WebApplicationException("El tratamiento no existe",404);
         }
         else{
