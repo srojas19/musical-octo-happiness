@@ -26,8 +26,12 @@ package co.edu.uniandes.sisteam.corazon.ejbs;
 import co.edu.uniandes.sisteam.corazon.persistence.MedicionPersistence;
 import co.edu.uniandes.sisteam.corazon.api.IMedicionLogic;
 import co.edu.uniandes.sisteam.corazon.api.IPacienteLogic;
+import co.edu.uniandes.sisteam.corazon.entities.ConsejoEntity;
 import co.edu.uniandes.sisteam.corazon.entities.MedicionEntity;
+import co.edu.uniandes.sisteam.corazon.entities.MedicoEntity;
 import co.edu.uniandes.sisteam.corazon.entities.PacienteEntity;
+import co.edu.uniandes.sisteam.corazon.exceptions.BusinessLogicException;
+import co.edu.uniandes.sisteam.corazon.persistence.PacientePersistence;
 import java.sql.Date;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -42,6 +46,9 @@ public class MedicionLogic implements IMedicionLogic {
 
     @Inject
     private IPacienteLogic pacienteLogic;
+    
+      @Inject
+    private PacientePersistence pacientePersistence;
 
     /**
      * Obtiene la lista de los registros de Medicion que pertenecen a una
@@ -55,13 +62,19 @@ public class MedicionLogic implements IMedicionLogic {
      *
      */
     @Override
-    public List<MedicionEntity> getMedicionesDePaciente(Long pacienteid, String fechaInicio, String fechaFin) {
+    public List<MedicionEntity> getMedicionesDePacienteConFecha(Long pacienteid, String fechaInicio, String fechaFin) {
         if (fechaInicio.equals("null") && fechaFin.equals("null")) {
             return persistence.findAllForPaciente(pacienteid);
         }
         else {
            return persistence.findForPacienteByDates(pacienteid, Date.valueOf(fechaInicio), Date.valueOf(fechaFin));
         }
+    }
+    
+    @Override
+    public List<MedicionEntity> getMedicionesDePacienteSinFecha(Long pacienteid) 
+    {    
+            return persistence.findAllForPaciente(pacienteid);   
     }
 
     /**
@@ -94,20 +107,19 @@ public class MedicionLogic implements IMedicionLogic {
         }
     }
 
-    /**
-     * Se encarga de crear una Medicion en la base de datos.
-     *
-     * @param entity Objeto de MedicionEntity con los datos nuevos
-     * @param pacienteid id de la Paciente la cual sera padre de la nueva
-     * Medicion.
-     * @return Objeto de MedicionEntity con los datos nuevos y su ID.
-     *
-     */
+   
     @Override
-    public MedicionEntity createMedicion(MedicionEntity entity) {
+    public MedicionEntity createMedicion(Long idPaciente, MedicionEntity medicion) throws BusinessLogicException 
+    {
+        PacienteEntity paciente = pacientePersistence.find(idPaciente);
 
-        entity = persistence.create(entity);
-        return entity;
+        if (paciente == null) {
+            throw new BusinessLogicException("No existe el paciente que entra por parametro");
+        } else {
+            medicion.setPaciente(paciente);
+            persistence.create(medicion);
+        }
+        return medicion;
     }
 
     /**

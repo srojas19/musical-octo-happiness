@@ -4,16 +4,19 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.sisteam.corazon.entities;
+import java.io.Serializable;
+
 
 /**
  *
  * @author sebastiansanchez
  */
-public interface INivel {
+public interface INivel 
+{
 
     void cambiar(PacienteEntity paciente, MedicionEntity medicion);
 
-    class NivelVerde implements INivel {
+    class NivelVerde implements INivel, Serializable {
 
         @Override
         public void cambiar(PacienteEntity paciente, MedicionEntity medicion) {
@@ -23,7 +26,7 @@ public interface INivel {
         }
     }
 
-    class NivelAmarillo implements INivel {
+    class NivelAmarillo implements INivel, Serializable {
 
         @Override
         public void cambiar(PacienteEntity paciente, MedicionEntity medicion) {
@@ -32,7 +35,7 @@ public interface INivel {
         }
     }
     
-    class NivelRojo implements INivel {
+    class NivelRojo implements INivel, Serializable {
 
         @Override
         public void cambiar(PacienteEntity paciente, MedicionEntity medicion) {

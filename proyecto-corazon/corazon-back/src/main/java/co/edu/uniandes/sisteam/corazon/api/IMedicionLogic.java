@@ -25,14 +25,16 @@ package co.edu.uniandes.sisteam.corazon.api;
 
 
 import co.edu.uniandes.sisteam.corazon.entities.MedicionEntity;
+import co.edu.uniandes.sisteam.corazon.exceptions.BusinessLogicException;
 import java.util.List;
 
 public interface IMedicionLogic {
   
-    public List<MedicionEntity> getMedicionesDePaciente(Long pacienteid, String fechaInicio, String fechaFin);
+    public List<MedicionEntity> getMedicionesDePacienteSinFecha(Long pacienteid);
+    public List<MedicionEntity> getMedicionesDePacienteConFecha(Long pacienteid, String fechaInicio, String fechaFin);
     public MedicionEntity getMedicion(Long medicionid);
     public List<MedicionEntity> getMedicionesTodas();
-    public MedicionEntity createMedicion(MedicionEntity entity);
+    public MedicionEntity createMedicion(Long pacienteid,MedicionEntity entity) throws BusinessLogicException;
     public MedicionEntity updateMedicion(MedicionEntity entity);
     public void deleteMedicion(Long id);
     
