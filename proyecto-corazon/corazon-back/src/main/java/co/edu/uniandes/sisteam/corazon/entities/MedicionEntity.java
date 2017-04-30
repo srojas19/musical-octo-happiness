@@ -6,16 +6,16 @@ import java.sql.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 
 @Entity
 public class MedicionEntity extends BaseEntity implements Serializable {
 
+     @ManyToOne
+    private PacienteEntity paciente;
     
-    
-    
-    private Long pacienteId;
     private String dictamen;
     private Date fecha;
     private Double frecuenciaCardiaca;
@@ -25,29 +25,6 @@ public class MedicionEntity extends BaseEntity implements Serializable {
      //Relaciones con Emergencia
     @OneToOne( cascade = CascadeType.ALL, fetch = FetchType.LAZY,optional=true)
     private EmergenciaEntity emergencia;
-
-   
-    
-    /**
-     * Obtiene el atributo pacienteId.
-     *
-     * @return atributo pacienteId.
-     *
-     */
-    public Long getPacienteId() 
-    {
-        return pacienteId;
-    }
-
-    /**
-     * Establece el valor del atributo pacienteId.
-     *
-     * @param pacienteId nuevo valor del atributo
-     *
-     */
-    public void setPacienteId(Long pacienteId) {
-        this.pacienteId = pacienteId;
-    }
     
     
 
@@ -98,4 +75,14 @@ public class MedicionEntity extends BaseEntity implements Serializable {
     public void setEmergencia(EmergenciaEntity emergencia) {
         this.emergencia = emergencia;
     }
+
+    public PacienteEntity getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(PacienteEntity paciente) {
+        this.paciente = paciente;
+    }
+    
+    
 }

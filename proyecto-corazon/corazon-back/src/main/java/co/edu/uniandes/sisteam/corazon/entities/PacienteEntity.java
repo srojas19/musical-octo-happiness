@@ -71,6 +71,10 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
     @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)
+    private List<MedicionEntity> mediciones = new ArrayList<>();
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)
     private List<ConsejoEntity> consejosRecibidos = new ArrayList<>();
     
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
@@ -205,6 +209,15 @@ public class PacienteEntity extends BaseEntity implements Serializable {
         this.historiaClinica = historiaClinica;
     }
 
+    public List<MedicionEntity> getMediciones() {
+        return mediciones;
+    }
+
+    public void setMediciones(List<MedicionEntity> mediciones) {
+        this.mediciones = mediciones;
+    }
+
+    
     
 
 }
