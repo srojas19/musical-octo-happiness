@@ -1,5 +1,5 @@
 projectKey=org.sonarqube:corazon-back
 serverUrl=http://localhost:9000
 dashboardUrl=http://localhost:9000/dashboard/index/org.sonarqube:corazon-back
-ceTaskId=AVu7iHmBaq8RpDzgDn_J
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AVu7iHmBaq8RpDzgDn_J
+ceTaskId=AVvAiG1oyzjgGt1cZN6x
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AVvAiG1oyzjgGt1cZN6x
