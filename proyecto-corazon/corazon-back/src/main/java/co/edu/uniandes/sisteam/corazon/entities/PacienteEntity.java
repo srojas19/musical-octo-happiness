@@ -54,9 +54,9 @@ public class PacienteEntity extends BaseEntity implements Serializable {
         nivelActual = nivel;
     }
     
-//    public void cambiar(){
-//        nivelActual.cambiar(this, MedicionEntity medicion);
-//    }
+    public void cambiar(){
+        nivelActual.cambiar(this, mediciones.get(mediciones.size()-1));
+    }
 
     //Relaciones con Medico
     @ManyToOne 
