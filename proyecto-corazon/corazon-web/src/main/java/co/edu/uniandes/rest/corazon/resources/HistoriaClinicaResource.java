@@ -30,7 +30,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author santiago
  */
-@Path("pacientes/{idPaciente: \\d+}/historia")
+@Path("resources/pacientes/{idPaciente: \\d+}/historia")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class HistoriaClinicaResource {
