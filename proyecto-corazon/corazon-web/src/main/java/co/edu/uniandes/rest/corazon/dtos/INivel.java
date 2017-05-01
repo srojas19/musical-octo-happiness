@@ -29,9 +29,15 @@ public interface INivel {
         @Override
         public void cambiarEstado(PacienteDetailDTO paciente, MedicionDTO medicion) {
 
-            paciente.set_nivel(new NivelAmarillo());
+            if(medicion.getFrecuenciaCardiaca()>50 && medicion.getFrecuenciaCardiaca()<100)
+            {
+                paciente.set_nivel(new NivelAmarillo());
+            }
 
-            paciente.set_nivel(new NivelRojo());
+            if(medicion.getFrecuenciaCardiaca()>100)
+            {
+                paciente.set_nivel(new NivelRojo());
+            }
 
         }
     }
@@ -49,16 +55,22 @@ public interface INivel {
         @Override
         public void cambiarEstado(PacienteDetailDTO paciente, MedicionDTO medicion) {
             
-                paciente.set_nivel(new NivelVerde());
-            
+                if(medicion.getFrecuenciaCardiaca()<50)
+            {
+                paciente.set_nivel(new NivelAmarillo());
+            }
+
+            if(medicion.getFrecuenciaCardiaca()>100)
+            {
                 paciente.set_nivel(new NivelRojo());
+            }
             }
         }
     }
 
     class NivelRojo implements INivel {
         
-        public static final String estado = "VERDE";
+        public static final String estado = "ROJO";
 
         
         @Override

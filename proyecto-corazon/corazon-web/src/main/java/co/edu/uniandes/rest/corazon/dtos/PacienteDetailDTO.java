@@ -46,7 +46,7 @@ public class PacienteDetailDTO extends PacienteDTO {
         nivelActual.cambiarEstado(this, mediciones.get(mediciones.size()-1));
     }
 
-    private String estado = "VERDE";
+    private String estado = nivelActual.getEstado();
     
     private MedicoDTO medicoTratante;
     private List<MedicoDTO> medicos=new ArrayList<>();
@@ -172,12 +172,7 @@ public class PacienteDetailDTO extends PacienteDTO {
     }
 
     public String getEstado() {
-        return estado;
+        return nivelActual.getEstado();
     }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-    
-    
+   
 }
