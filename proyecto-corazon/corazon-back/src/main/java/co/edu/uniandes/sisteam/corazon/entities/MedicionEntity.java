@@ -21,6 +21,7 @@ public class MedicionEntity extends BaseEntity implements Serializable {
     private Double frecuenciaCardiaca;
     private Double presionSanguinea;
     private int nivelEstres;
+    private String dictamen;
     
      //Relaciones con Emergencia
     @OneToOne( cascade = CascadeType.ALL, fetch = FetchType.LAZY,optional=true)
@@ -73,6 +74,16 @@ public class MedicionEntity extends BaseEntity implements Serializable {
     public void setPaciente(PacienteEntity paciente) {
         this.paciente = paciente;
     }
+
+    public String getDictamen() {
+        return dictamen;
+    }
+
+    public void setDictamen(String dictamen) {
+        this.dictamen = dictamen;
+    }
+    
+    
     
     
 }

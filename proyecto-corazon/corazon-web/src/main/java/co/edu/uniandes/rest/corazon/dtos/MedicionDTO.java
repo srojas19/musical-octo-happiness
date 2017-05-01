@@ -22,11 +22,8 @@ public class MedicionDTO {
     private Double frecuenciaCardiaca;
     private Double presionSanguinea;
     private int nivelEstres;
-    
+    private String dictamen;
 
-    
-    
-    
     /**
      * Constructor por defecto
      */
@@ -35,6 +32,7 @@ public class MedicionDTO {
 
     public MedicionDTO(Long id, String dictamen, Date fecha, Double frecuenciaCardiaca, Double presionSanguinea, int nivelEstres,Long pacienteId) {
         this.id = id;
+        this.dictamen = dictamen;
         this.fecha = fecha;
         this.frecuenciaCardiaca = frecuenciaCardiaca;
         this.presionSanguinea = presionSanguinea;
@@ -49,6 +47,7 @@ public class MedicionDTO {
             this.frecuenciaCardiaca = entity.getFrecuenciaCardiaca();
             this.presionSanguinea = entity.getPresionSanguinea();
             this.nivelEstres = entity.getNivelEstres();
+            this.dictamen = entity.getDictamen();
 
         }
     }
@@ -66,6 +65,7 @@ public class MedicionDTO {
         entity.setFrecuenciaCardiaca(this.getFrecuenciaCardiaca());
         entity.setPresionSanguinea(this.getPresionSanguinea());
         entity.setNivelEstres(this.getNivelEstres());
+        entity.setDictamen(this.getDictamen());
         return entity;
     }
 
@@ -108,4 +108,14 @@ public class MedicionDTO {
     public void setNivelEstres(int nivelEstres) {
         this.nivelEstres = nivelEstres;
     }
+
+    public String getDictamen() {
+        return dictamen;
+    }
+
+    public void setDictamen(String dictamen) {
+        this.dictamen = dictamen;
+    }
+    
+    
 }
