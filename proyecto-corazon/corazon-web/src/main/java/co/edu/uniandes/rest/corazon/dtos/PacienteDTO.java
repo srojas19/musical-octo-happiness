@@ -16,8 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class PacienteDTO {
-    
-   
+  
     private Long id;   
     private int cedula;
     private String nombres;
@@ -25,24 +24,23 @@ public class PacienteDTO {
     private int edad;
     private char sexo;
     
-
-    
     private String direccionResidencia;
     private String entidadPrestadoraSalud;
     private Date fechaNacimiento;
     private String tipoSanguineo;
+    
+    
 
     /**
      * Constructor por defecto
      */
     public PacienteDTO() {
-        
     }
 
     public PacienteDTO(Long id, int cedula, String nombres, String apellidos,
             int edad, char sexo, String direccionResidencia, 
             String entidadPrestadoraSalud, Date fechaNacimiento, 
-            String tipoSanguineo ) {
+            String tipoSanguineo) {
         this.id = id;
         this.cedula = cedula;
         this.nombres = nombres;
@@ -53,8 +51,8 @@ public class PacienteDTO {
         this.direccionResidencia = direccionResidencia;
         this.entidadPrestadoraSalud = entidadPrestadoraSalud;
         this.fechaNacimiento = fechaNacimiento;
-        this.tipoSanguineo = tipoSanguineo;
-   
+        this.tipoSanguineo = tipoSanguineo; 
+        
     }
   
     /**
@@ -76,6 +74,7 @@ public class PacienteDTO {
             this.entidadPrestadoraSalud = entity.getEntidadPrestadoraSalud();
             this.fechaNacimiento = entity.getFechaNacimiento();
             this.tipoSanguineo = entity.getTipoSanguineo();
+            
         }
     }
 
@@ -94,10 +93,11 @@ public class PacienteDTO {
         entity.setApellidos(this.getApellidos());
         entity.setEdad(this.getEdad());
         entity.setSexo(this.getSexo());        
-        entity.setDireccionResidencia(this.direccionResidencia);
-        entity.setEntidadPrestadoraSalud(this.entidadPrestadoraSalud);
-        entity.setFechaNacimiento(this.fechaNacimiento);
-        entity.setTipoSanguineo(this.tipoSanguineo);
+        entity.setDireccionResidencia(this.getDireccionResidencia());
+        entity.setEntidadPrestadoraSalud(this.getEntidadPrestadoraSalud());
+        entity.setFechaNacimiento(this.getFechaNacimiento());
+        entity.setTipoSanguineo(this.getTipoSanguineo());
+        
         
         return entity;
     }
@@ -183,7 +183,8 @@ public class PacienteDTO {
     public void setTipoSanguineo(String tipoSanguineo) {
         this.tipoSanguineo = tipoSanguineo;
     }
-    
-    
 
+    
+    
+    
 }

@@ -31,10 +31,12 @@ import co.edu.uniandes.rest.corazon.dtos.ConsejoDetailDTO;
 import co.edu.uniandes.rest.corazon.dtos.MedicionDTO;
 import co.edu.uniandes.rest.corazon.dtos.MedicionDetailDTO;
 import co.edu.uniandes.rest.corazon.dtos.PacienteDTO;
+import co.edu.uniandes.rest.corazon.dtos.PacienteDetailDTO;
 import co.edu.uniandes.sisteam.corazon.api.IMedicionLogic;
 import co.edu.uniandes.sisteam.corazon.api.IPacienteLogic;
 import co.edu.uniandes.sisteam.corazon.entities.ConsejoEntity;
 import co.edu.uniandes.sisteam.corazon.entities.MedicionEntity;
+import co.edu.uniandes.sisteam.corazon.entities.PacienteEntity;
 import co.edu.uniandes.sisteam.corazon.exceptions.BusinessLogicException;
 import java.util.List;
 import javax.inject.Inject;
@@ -154,6 +156,7 @@ public class MedicionResource {
     
     @POST
     public MedicionDetailDTO createMedicion(@PathParam("pacienteId") Long pacienteId, MedicionDetailDTO dto) throws BusinessLogicException {
+                
         MedicionEntity medicion = dto.toEntity();
         MedicionEntity respuesta = medicionLogic.createMedicion(pacienteId, medicion);
         return new MedicionDetailDTO(respuesta);

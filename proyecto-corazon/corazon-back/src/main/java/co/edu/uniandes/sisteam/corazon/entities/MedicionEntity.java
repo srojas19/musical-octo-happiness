@@ -16,7 +16,7 @@ public class MedicionEntity extends BaseEntity implements Serializable {
      @ManyToOne
     private PacienteEntity paciente;
     
-    private String dictamen;
+    
     private Date fecha;
     private Double frecuenciaCardiaca;
     private Double presionSanguinea;
@@ -25,16 +25,6 @@ public class MedicionEntity extends BaseEntity implements Serializable {
      //Relaciones con Emergencia
     @OneToOne( cascade = CascadeType.ALL, fetch = FetchType.LAZY,optional=true)
     private EmergenciaEntity emergencia;
-    
-    
-
-    public String getDictamen() {
-        return dictamen;
-    }
-
-    public void setDictamen(String dictamen) {
-        this.dictamen = dictamen;
-    }
 
     public Date getFecha() {
         return fecha;

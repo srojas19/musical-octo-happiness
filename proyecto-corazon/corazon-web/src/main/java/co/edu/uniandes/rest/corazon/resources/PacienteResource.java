@@ -23,7 +23,6 @@ SOFTWARE.
  */
 package co.edu.uniandes.rest.corazon.resources;
 
-
 import co.edu.uniandes.rest.corazon.dtos.PacienteDTO;
 import co.edu.uniandes.rest.corazon.dtos.PacienteDetailDTO;
 import co.edu.uniandes.rest.corazon.exceptions.PacienteLogicException;
@@ -78,8 +77,8 @@ public class PacienteResource {
      *
      */
     @GET
-    public List<PacienteDTO> getPacientes() { 
-        
+    public List<PacienteDTO> getPacientes() {
+
         return listEntity2DTO(pacienteLogic.getPacientes());
     }
 
@@ -87,15 +86,14 @@ public class PacienteResource {
      * Obtiene los datos de una instancia de Paciente a partir de su ID
      *
      * @param id Identificador de la instancia a consultar
-     * @return Instancia de PacienteDTO con los datos del Paciente
-     * consultado
+     * @return Instancia de PacienteDTO con los datos del Paciente consultado
      *
      */
     @GET
     @Path("{id: \\d+}")
-    public PacienteDetailDTO getPaciente(@PathParam("id") Long id) 
-    {
-        return new PacienteDetailDTO(pacienteLogic.getPaciente(id));
+    public PacienteDetailDTO getPaciente(@PathParam("id") Long id) {
+        PacienteDetailDTO paciente = new PacienteDetailDTO(pacienteLogic.getPaciente(id));
+        return paciente;
     }
 
 //    /**
@@ -111,7 +109,6 @@ public class PacienteResource {
 //    public PacienteDTO getPacienteByCedula(@QueryParam("cedula") int cedula) {
 //        return new PacienteDTO(pacienteLogic.getPacienteByCedula(cedula));
 //    }
-
     /**
      * Se encarga de crear un Paciente en la base de datos
      *
@@ -121,16 +118,16 @@ public class PacienteResource {
      *
      */
     @POST
-    public PacienteDTO createPaciente(PacienteDTO dto) throws PacienteLogicException  {
-        System.out.println("dto es "+ dto.toEntity());
-        PacienteDTO respuesta= dto;
+    public PacienteDTO createPaciente(PacienteDTO dto) throws PacienteLogicException {
+        System.out.println("dto es " + dto.toEntity());
+        PacienteDTO respuesta = dto;
         try {
             respuesta = new PacienteDTO(pacienteLogic.createPaciente(dto.toEntity()));
             return respuesta;
         } catch (BusinessLogicException ex) {
             throw new PacienteLogicException(ex.getMessage());
         }
-       
+
     }
 
     /**
@@ -182,6 +179,4 @@ public class PacienteResource {
 //        return PacienteReservasResourse.class;
 //
 //    }
-
-
 }
