@@ -21,6 +21,7 @@ import {CorazonRest} from'../../providers/corazon-rest'
 })
 export class Autenticacion {
   authForm : FormGroup;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,fb: FormBuilder,
     public viewCtrl: ViewController,public storage:Storage,
     public rest:CorazonRest,public alertCtrl: AlertController) {

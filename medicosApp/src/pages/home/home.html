@@ -10,4 +10,17 @@
 <ion-content padding>
   <h3>Buen día Doctor {{medico?.nombres}}</h3>
 
+  <ion-list>
+    <ion-list-header>
+      Pacientes en observación
+    </ion-list-header>
+    <ion-item *ngFor="let paciente of pacientesCuidado" >
+      {{paciente.nombres}}  {{paciente.apellidos}}
+      <button ion-button item-right  icon-only (click)="verDetallePaciente(favorito.id)">
+        Ver detalle
+        <ion-icon name="open"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list><br/>
+
 </ion-content>

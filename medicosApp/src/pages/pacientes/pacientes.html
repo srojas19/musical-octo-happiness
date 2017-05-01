@@ -16,4 +16,15 @@
 
 <ion-content padding>
 
+  <ion-list>
+
+    <ion-item *ngFor="let paciente of pacientes" >
+      {{paciente.nombres}}  {{paciente.apellidos}}
+      <button ion-button item-right  (click)="verDetallePaciente(paciente)" color="login" outline>
+        Ver detalle 
+        <ion-icon name="open"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list><br/>
+
 </ion-content>

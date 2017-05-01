@@ -8,6 +8,9 @@ import { ListPage } from '../pages/list/list';
 import { Pacientes } from '../pages/pacientes/pacientes';
 import { Autenticacion} from '../pages/autenticacion/autenticacion';
 
+import { DetallePaciente} from '../pages/detalle-paciente/detalle-paciente';
+import {DetalleMediciones} from'../pages/detalle-mediciones/detalle-mediciones';
+
 import { IonicStorageModule } from '@ionic/storage';
 
 
@@ -22,7 +25,9 @@ import { HttpModule } from '@angular/http';
     HomePage,
     ListPage,
     Pacientes,
-    Autenticacion
+    Autenticacion,
+    DetallePaciente,
+    DetalleMediciones
   ],
   imports: [
     BrowserModule,
@@ -36,7 +41,9 @@ import { HttpModule } from '@angular/http';
     HomePage,
     ListPage,
     Pacientes,
-    Autenticacion
+    Autenticacion,
+    DetallePaciente,
+    DetalleMediciones
   ],
   providers: [
     StatusBar,

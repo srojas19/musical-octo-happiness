@@ -12,6 +12,7 @@ import {Autenticacion} from'../autenticacion/autenticacion'
 export class HomePage {
 
   medico:any;
+  pacientesCuidado:any;
 
   constructor(public navCtrl: NavController,public storage:Storage, public navParams: NavParams,
     public rest:CorazonRest,public modalCtrl: ModalController) {
@@ -33,12 +34,17 @@ export class HomePage {
 
     ionViewDidLoad(){
       console.log("  ionViewDidLoad home");
-      console.log(this.navParams);
+
       this.medico=this.storage.get('medico').then((medico=>{
         if(medico!==undefined){
           this.medico=medico;
         }else{
           this.navCtrl.setRoot(Autenticacion,{},{});
+        }
+      }));
+      this.medico=this.storage.get('pacientesCuidado').then((pacientes=>{
+        if(pacientes!==undefined){
+          this.pacientesCuidado=pacientes;
         }
       }));
     }

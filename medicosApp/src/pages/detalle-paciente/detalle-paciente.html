@@ -1,0 +1,66 @@
+<!--
+Generated template for the DetallePaciente page.
+
+See http://ionicframework.com/docs/components/#navigation for more info on
+Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{paciente.nombres}} {{paciente.apellidos}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card>
+    <ion-card-header>
+      Datos personales
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <h3><strong>Nombres: </strong>{{paciente.nombres}}</h3>
+        <h3><strong>Apellidos: </strong>{{paciente.apellidos}}</h3>
+        <h3><strong>Edad: </strong>{{paciente.edad}}</h3>
+        <h3><strong>Sexo: </strong>{{paciente.sexo}}</h3>
+        <h3><strong>Tipo Sanguineo: </strong>{{paciente.tipoSanguineo}}</h3>
+        <h3><strong>Cédula: </strong>{{paciente.cedula}}</h3>
+        <h3><strong>EPS: </strong>{{paciente.entidadPrestadoraSalud}}</h3>
+        <h3><strong>Dirección recidencia: </strong>{{paciente.direccionResidencia}}</h3>
+        <h3><strong>Cédula: </strong>{{paciente.cedula}}</h3>
+      </ion-item>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Consultar mediciones paciente
+    </ion-card-header>
+
+    <form [formGroup]="authForm">
+
+        <ion-item>
+          <ion-label >Desde</ion-label>
+          <ion-datetime displayFormat="YYYY/MM/DD" min="2016" placeholder="AAAA/MM/DD" [formControl]="authForm.controls['fechaInicio']"></ion-datetime>
+        </ion-item>
+        <div style="color:#FF0000" class="error-box" *ngIf="authForm.controls['fechaInicio'].hasError('required') && authForm.controls['fechaInicio'].touched">* Fecha final requerida!</div>
+        <ion-item>
+          <ion-label >Hasta</ion-label>
+          <ion-datetime displayFormat="YYYY/MM/DD" min="2016" placeholder="AAAA/MM/DD"  [formControl]="authForm.controls['fechaFinal']"></ion-datetime>
+        </ion-item>
+        <div style="color:#FF0000" class="error-box" *ngIf="authForm.controls['fechaFinal'].hasError('required') && authForm.controls['fechaFinal'].touched">* Fecha inicio requerida!</div>
+
+    </form>
+
+    <button ion-button type="submit" block (click)="consultarMediciones(authForm.value)" [disabled]="!authForm.valid" color="login" outline>Consultar</button>
+  </ion-card>
+
+
+  <ion-card>
+    <button ion-button block (click)="consultarHistorialMedico()" color="login" outline>Historial medico</button>
+  </ion-card>
+
+</ion-content>

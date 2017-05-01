@@ -14,6 +14,7 @@ import { Pacientes } from '../pages/pacientes/pacientes';
 import {Autenticacion} from'../pages/autenticacion/autenticacion'
 
 
+
 @Component({
   templateUrl: 'app.html'
 })
