@@ -33,21 +33,40 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class PacienteDetailDTO extends PacienteDTO {
-
-    private MedicoDTO medicoTratante;
     
+    private INivel nivelActual;
+    
+    public void set_nivel(INivel nivel)
+    {
+        nivelActual = nivel;
+    }
+    
+    public void cambiarEstado()
+    {            
+        nivelActual.cambiarEstado(this, mediciones.get(mediciones.size()-1));
+    }
+
+    private String estado = "VERDE";
+    
+    private MedicoDTO medicoTratante;
     private List<MedicoDTO> medicos=new ArrayList<>();
 
     private MarcapasosDTO marcapasos;
 
     private List<ConsejoDTO> consejosRecibidos = new ArrayList<>();
-    
     private List<MedicionDTO> mediciones = new ArrayList<>();
 
+    
+     /**
+     * Constructor por defecto
+     */
     public PacienteDetailDTO() {
-        super();
     }
-
+    
+    public PacienteDetailDTO(String estado) {
+        this.estado = estado;
+    }
+    
     /**
      * Crea un objeto PacienteDetailDTO a partir de un objeto PacienteEntity
      * incluyendo los atributos de PacienteDTO.
@@ -80,6 +99,8 @@ public class PacienteDetailDTO extends PacienteDTO {
            if(entity.getMarcapasos()!=null){
            this.marcapasos=new MarcapasosDTO(entity.getMarcapasos());
            }
+           
+           this.estado = entity.getEstado();
         }
 
     }
@@ -105,7 +126,8 @@ public class PacienteDetailDTO extends PacienteDTO {
         for (MedicionDTO medicion : medicionesDTO) {
             entity.getMediciones().add(medicion.toEntity());
         }
-
+        
+        entity.setEstado(this.getEstado());
 
         return entity;
     }
@@ -149,4 +171,13 @@ public class PacienteDetailDTO extends PacienteDTO {
         this.medicos = medicos;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    
 }

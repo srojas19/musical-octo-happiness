@@ -42,22 +42,9 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class PacienteEntity extends BaseEntity implements Serializable {
 
-    private INivel nivelActual;
     
-    public PacienteEntity()
-    {
-        nivelActual = new INivel.NivelVerde();
-    }
+    private String estado;
     
-    public void set_nivel(INivel nivel)
-    {
-        nivelActual = nivel;
-    }
-    
-    public void cambiar(){
-        nivelActual.cambiar(this, mediciones.get(mediciones.size()-1));
-    }
-
     //Relaciones con Medico
     @ManyToOne 
     private MedicoEntity medicoTratante;
@@ -91,7 +78,7 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     private Date fechaNacimiento;
     private String tipoSanguineo;
     
-
+    
     
         
 
@@ -216,6 +203,16 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     public void setMediciones(List<MedicionEntity> mediciones) {
         this.mediciones = mediciones;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    
 
     
     

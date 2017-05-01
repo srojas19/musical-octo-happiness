@@ -31,6 +31,7 @@ import co.edu.uniandes.rest.corazon.dtos.ConsejoDetailDTO;
 import co.edu.uniandes.rest.corazon.dtos.MedicionDTO;
 import co.edu.uniandes.rest.corazon.dtos.MedicionDetailDTO;
 import co.edu.uniandes.rest.corazon.dtos.PacienteDTO;
+import co.edu.uniandes.rest.corazon.dtos.PacienteDetailDTO;
 import co.edu.uniandes.sisteam.corazon.api.IMedicionLogic;
 import co.edu.uniandes.sisteam.corazon.api.IPacienteLogic;
 import co.edu.uniandes.sisteam.corazon.entities.ConsejoEntity;

@@ -18,7 +18,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class MedicionDTO {
     
     private Long id;
-    private String dictamen;
     private Date fecha;
     private Double frecuenciaCardiaca;
     private Double presionSanguinea;
@@ -36,7 +35,6 @@ public class MedicionDTO {
 
     public MedicionDTO(Long id, String dictamen, Date fecha, Double frecuenciaCardiaca, Double presionSanguinea, int nivelEstres,Long pacienteId) {
         this.id = id;
-        this.dictamen = dictamen;
         this.fecha = fecha;
         this.frecuenciaCardiaca = frecuenciaCardiaca;
         this.presionSanguinea = presionSanguinea;
@@ -48,7 +46,6 @@ public class MedicionDTO {
         if (entity != null) {
             this.id = entity.getId();
             this.fecha = entity.getFecha();
-            this.dictamen = entity.getDictamen();
             this.frecuenciaCardiaca = entity.getFrecuenciaCardiaca();
             this.presionSanguinea = entity.getPresionSanguinea();
             this.nivelEstres = entity.getNivelEstres();
@@ -65,7 +62,6 @@ public class MedicionDTO {
     public MedicionEntity toEntity() {
         MedicionEntity entity = new MedicionEntity();
         entity.setId(this.getId());
-        entity.setDictamen(this.getDictamen());
         entity.setFecha(this.getFecha());
         entity.setFrecuenciaCardiaca(this.getFrecuenciaCardiaca());
         entity.setPresionSanguinea(this.getPresionSanguinea());
@@ -79,14 +75,6 @@ public class MedicionDTO {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getDictamen() {
-        return dictamen;
-    }
-
-    public void setDictamen(String dictamen) {
-        this.dictamen = dictamen;
     }
 
     public Date getFecha() {
