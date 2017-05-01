@@ -19,16 +19,18 @@ import {DetallePaciente} from'../detalle-paciente/detalle-paciente'
 export class Pacientes {
 
   pacientes:any;
+  idMedico:any;
 
   constructor(public storage:Storage,public navCtrl: NavController, public navParams: NavParams
      ,public rest:CorazonRest) {
     this.storage.get('medico').then((medico=>{
-      console.log(medico.pacientes);
-      console.log("buscando pacientes");
-      console.log(this.pacientes);
+
       if(medico!==undefined){
         this.pacientes=medico.pacientes;
+        this.idMedico=medico.id;
       }
+      console.log('id medico');
+      console.log(this.idMedico);
     }));
 
   }
@@ -38,12 +40,13 @@ export class Pacientes {
     this.storage.get('medico').then((medico=>{
       if(medico!==undefined){
         this.pacientes=medico.pacientes;
+        this.idMedico=medico.id;
       }
     }));
   }
 
   verDetallePaciente(paciente){
-    this.navCtrl.push(DetallePaciente,{paciente:paciente})
+    this.navCtrl.push(DetallePaciente,{paciente:paciente,idMedico:this.idMedico})
   }
 
 }

@@ -37,21 +37,21 @@ Ionic pages and navigation.
 
   <ion-card>
     <ion-card-header>
-      Consultar mediciones paciente
+      <B>Consultar mediciones paciente</B>
     </ion-card-header>
 
     <form [formGroup]="authForm">
 
-        <ion-item>
-          <ion-label >Desde</ion-label>
-          <ion-datetime displayFormat="YYYY/MM/DD" min="2016" placeholder="AAAA/MM/DD" [formControl]="authForm.controls['fechaInicio']"></ion-datetime>
-        </ion-item>
-        <div style="color:#FF0000" class="error-box" *ngIf="authForm.controls['fechaInicio'].hasError('required') && authForm.controls['fechaInicio'].touched">* Fecha final requerida!</div>
-        <ion-item>
-          <ion-label >Hasta</ion-label>
-          <ion-datetime displayFormat="YYYY/MM/DD" min="2016" placeholder="AAAA/MM/DD"  [formControl]="authForm.controls['fechaFinal']"></ion-datetime>
-        </ion-item>
-        <div style="color:#FF0000" class="error-box" *ngIf="authForm.controls['fechaFinal'].hasError('required') && authForm.controls['fechaFinal'].touched">* Fecha inicio requerida!</div>
+      <ion-item>
+        <ion-label >Desde</ion-label>
+        <ion-datetime displayFormat="YYYY/MM/DD" min="2016" placeholder="AAAA/MM/DD" [formControl]="authForm.controls['fechaInicio']"></ion-datetime>
+      </ion-item>
+      <div style="color:#FF0000" class="error-box" *ngIf="authForm.controls['fechaInicio'].hasError('required') && authForm.controls['fechaInicio'].touched">* Fecha final requerida!</div>
+      <ion-item>
+        <ion-label >Hasta</ion-label>
+        <ion-datetime displayFormat="YYYY/MM/DD" min="2016" placeholder="AAAA/MM/DD"  [formControl]="authForm.controls['fechaFinal']"></ion-datetime>
+      </ion-item>
+      <div style="color:#FF0000" class="error-box" *ngIf="authForm.controls['fechaFinal'].hasError('required') && authForm.controls['fechaFinal'].touched">* Fecha inicio requerida!</div>
 
     </form>
 
@@ -60,7 +60,17 @@ Ionic pages and navigation.
 
 
   <ion-card>
-    <button ion-button block (click)="consultarHistorialMedico()" color="login" outline>Historial medico</button>
+    <ion-card-header>
+      <B>Consejos paciente</B>
+    </ion-card-header>
+    <button ion-button block (click)="consultarConsejos()" color="login" outline>Consultar consejos</button>
+    <button ion-button block (click)="enviarConsejos()" color="login" outline>Enviar consejo</button>
   </ion-card>
 
+  <ion-card>
+  <ion-card-header>
+    <B>Historia clinica</B>
+  </ion-card-header>
+  <button ion-button block (click)="consultarHistorialMedico()" color="login" outline>Historial medico</button>
+</ion-card>
 </ion-content>

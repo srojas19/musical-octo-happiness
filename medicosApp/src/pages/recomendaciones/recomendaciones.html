@@ -1,0 +1,46 @@
+<!--
+  Generated template for the Recomendaciones page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Recomendaciones</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card *ngFor="let recomendacion of recomendaciones">
+    <ion-card-title>
+      Tipo: {{recomendacion.tipo}}
+    </ion-card-title>
+    <ion-card-content>
+      <h1>{{recomendacion.descripcion}}</h1>
+    </ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+        <B>  Fecha recomendación</B>
+        </ion-col>
+        <ion-col>
+          <B>Realizado por el profesional</B>
+        </ion-col>
+      </ion-row>
+      <ion-row  >
+        <ion-col>
+          {{recomendacion.fecha}}
+        </ion-col>
+        <ion-col>
+          {{recomendacion.medico.nombres}} {{recomendacion.medico.apellidos}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-card>
+
+</ion-content>

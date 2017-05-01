@@ -7,9 +7,11 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { Pacientes } from '../pages/pacientes/pacientes';
 import { Autenticacion} from '../pages/autenticacion/autenticacion';
+import { Recomendaciones} from '../pages/recomendaciones/recomendaciones';
 
 import { DetallePaciente} from '../pages/detalle-paciente/detalle-paciente';
 import {DetalleMediciones} from'../pages/detalle-mediciones/detalle-mediciones';
+import {EnviarConsejo} from'../pages/enviar-consejo/enviar-consejo';
 
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -27,7 +29,9 @@ import { HttpModule } from '@angular/http';
     Pacientes,
     Autenticacion,
     DetallePaciente,
-    DetalleMediciones
+    DetalleMediciones,
+    Recomendaciones,
+    EnviarConsejo
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,9 @@ import { HttpModule } from '@angular/http';
     Pacientes,
     Autenticacion,
     DetallePaciente,
-    DetalleMediciones
+    DetalleMediciones,
+    Recomendaciones,
+    EnviarConsejo
   ],
   providers: [
     StatusBar,
