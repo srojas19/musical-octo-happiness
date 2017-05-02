@@ -30,9 +30,11 @@ export class Pacientes {
         this.pacientes=medico.pacientes;
         this.idMedico=medico.id;
         this.especialista=medico.especialista;
+        console.log(medico);
       }
       console.log('id medico');
       console.log(this.idMedico);
+      console.log(this.pacientes);
     }));
 
   }

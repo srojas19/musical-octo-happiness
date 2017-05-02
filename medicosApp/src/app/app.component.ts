@@ -7,7 +7,7 @@ import { AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+
 import { Pacientes } from '../pages/pacientes/pacientes';
 
 

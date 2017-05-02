@@ -123,6 +123,7 @@ Ionic pages and navigation.
     </form>
     <button ion-button type="submit" block (click)="consultarMediciones(authForm.value)" [disabled]="!authForm.valid" color="login" outline>Consultar</button>
     <button ion-button  block (click)="configurarMarcapados()" [hidden]="!especialista" color="login" outline>Configuración marcapasos</button>
+    <button ion-button  block (click)="configurarMarcapados()" [hidden]="especialista" color="login" outline>Datos Marcapasos</button>
   </ion-card>
 
   <ion-card>
