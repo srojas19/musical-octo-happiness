@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Historia Clínica</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-list>
+      <ion-list>
+        <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+          <ion-icon name="{{item.icon}}" item-left></ion-icon>
+          {{item.title}}
+        </button>
+      </ion-list>
+    </ion-list>
+  </ion-card>
+</ion-content>

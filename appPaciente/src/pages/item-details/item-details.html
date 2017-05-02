@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Detalles</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="selectedItem">
+    <ion-card-content *ngIf="tipo=='Mediciones'">
+      <ion-card-title>
+        {{selectedItem.dictamen}}
+        </ion-card-title>
+      <h3>Fecha: {{selectedItem.fecha}}</h3>
+      <h3>Frecuencia Cardiaca: {{selectedItem.frecuenciaCardiaca}}</h3>
+      <h3>Presion Sanguinea: {{selectedItem.presionSanguinea}}</h3>
+      <h3>Nivel de Estres: {{selectedItem.nivelEstres}}</h3>
+    </ion-card-content>
+    <ion-card-content *ngIf="tipo=='Tratamientos'||tipo=='Diagnosticos'||tipo=='Examenes'">
+      <ion-card-title>
+        {{selectedItem.fecha}}
+        </ion-card-title>
+      <p>{{selectedItem.descripcion}}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
