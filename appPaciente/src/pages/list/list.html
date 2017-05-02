@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title  *ngIf="selectedItem">{{selectedItem.title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+      <div ng-if="selectedItem.title=='Mediciones'">
+        {{item.dictamen}}
+        <div class="item-note" item-right>
+          {{item.fecha}}
+        </div>
+      </div>
+      <div ng-if="selectedItem.title=='Tratamientos'">
+        {{item.id}}
+        <div class="item-note" item-right>
+          {{item.fecha}}
+        </div>
+      </div>
+      <div ng-if="selectedItem.title=='Diagnosticos'">
+        {{item.id}}
+        <div class="item-note" item-right>
+          {{item.fecha}}
+        </div>
+      </div>
+      <div ng-if="selectedItem.title=='Examenes'">
+        {{item.id}}
+        <div class="item-note" item-right>
+          {{item.fecha}}
+        </div>
+      </div>
+      <!-- <ion-icon name="{{item.icon}}" item-left></ion-icon>
+      {{item.title}}
+      <div class="item-note" item-right>
+        {{item.note}}
+      </div> -->
+    </button>
+  </ion-list>
+</ion-content>
