@@ -6,7 +6,7 @@ import { Storage } from '@ionic/storage';
 import { AlertController } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
-import {CorazonRest} from'../../providers/corazon-rest'
+import {CorazonRest} from'../../providers/corazon-rest';
 
 /**
 * Generated class for the Autenticacion page.

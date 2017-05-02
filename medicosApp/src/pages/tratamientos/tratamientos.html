@@ -7,12 +7,55 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>tratamientos</ion-title>
+    <ion-title>Tratamientos</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-card [hidden]="generarDiagnostico">
+    <ion-card-header>
+      <B>Generar tratamiento</B>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="authForm" (ngSubmit)="submitForm(authForm.value)">
+        <ion-item>
+          <ion-label >Desripción</ion-label>
+          <ion-textarea class="textoArea" placeholder="Escriba diagnostico..." value="" [formControl]="authForm.controls['descripcion']" ></ion-textarea>
+        </ion-item><br/>
+        <div class="error-box" *ngIf="authForm.controls['descripcion'].hasError('required') && authForm.controls['descripcion'].touched">* Descripción requerida!</div>
+      </form>
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <button type="submit" ion-button full  (click)="mostarForm()" small>Cancelar</button>
+            </ion-col>
+            <ion-col>
+              <button type="submit" ion-button full [disabled]="!authForm.valid" (click)="submitForm()" small>Generar diagnóstico</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let diagnostico of historia.tratamientos">
+    <ion-card-title>
+      Fecha: {{diagnostico.fecha}}
+    </ion-card-title>
+    <ion-card-content>
+      <h1>{{diagnostico.descripcion}}</h1>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab right bottom>
+
+    <button ion-fab  icon-only (click)="mostarForm()" [hidden]="!generarDiagnostico">
+      <ion-icon name="create"></ion-icon>
+    </button>
+
+  </ion-fab>
 
 </ion-content>

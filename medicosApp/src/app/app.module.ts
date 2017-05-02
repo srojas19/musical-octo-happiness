@@ -9,6 +9,12 @@ import { Pacientes } from '../pages/pacientes/pacientes';
 import { Autenticacion} from '../pages/autenticacion/autenticacion';
 import { Recomendaciones} from '../pages/recomendaciones/recomendaciones';
 
+import { Diagnosticos } from '../pages/diagnosticos/diagnosticos';
+import { Examenes } from '../pages/examenes/examenes';
+import { Tratamientos } from '../pages/tratamientos/tratamientos';
+
+import { Marcapasos } from '../pages/marcapasos/marcapasos';
+
 import { DetallePaciente} from '../pages/detalle-paciente/detalle-paciente';
 import {DetalleMediciones} from'../pages/detalle-mediciones/detalle-mediciones';
 import {EnviarConsejo} from'../pages/enviar-consejo/enviar-consejo';
@@ -31,7 +37,11 @@ import { HttpModule } from '@angular/http';
     DetallePaciente,
     DetalleMediciones,
     Recomendaciones,
-    EnviarConsejo
+    EnviarConsejo,
+    Diagnosticos,
+    Examenes,
+    Tratamientos,
+    Marcapasos
   ],
   imports: [
     BrowserModule,
@@ -49,7 +59,11 @@ import { HttpModule } from '@angular/http';
     DetallePaciente,
     DetalleMediciones,
     Recomendaciones,
-    EnviarConsejo
+    EnviarConsejo,
+    Diagnosticos,
+    Examenes,
+    Tratamientos,
+    Marcapasos
   ],
   providers: [
     StatusBar,

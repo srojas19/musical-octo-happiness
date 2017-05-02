@@ -1,0 +1,101 @@
+<!--
+Generated template for the Marcapasos page.
+
+See http://ionicframework.com/docs/components/#navigation for more info on
+Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Datos marcapasos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <B>Fecha implante</B>
+      </ion-col>
+      <ion-col>
+        <p>{{fechaImplante}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <B>Fecha fin vida útil</B>
+      </ion-col>
+      <ion-col>
+        <p>{{finVidaUtil}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <B>Modelo</B>
+      </ion-col>
+      <ion-col>
+        <p>{{marcapasos.modelo}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <B>Número serie</B>
+      </ion-col>
+      <ion-col>
+        <p>{{marcapasos.numeroSerie}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid [hidden]="especialista">
+    <ion-row>
+      <ion-col>
+        <B>Voltaje</B>
+      </ion-col>
+      <ion-col>
+        <p>{{marcapasos.voltaje}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <B>Frecuencia eléctrica</B>
+      </ion-col>
+      <ion-col>
+        <p>{{marcapasos.frecuenciaElectrica}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card [hidden]="!especialista">
+    <ion-card-header>
+      <B>Configuración marcapasos</B>
+    </ion-card-header>
+    <ion-card-content>
+      <form>
+        <ion-item>
+          <ion-label  color="login" >Voltaje</ion-label>
+          <ion-input type="number" value="{{marcapasos.voltaje}}" [formControl]="authForm.controls['voltaje']" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" [disabled]="!editar"></ion-input>
+        </ion-item>
+        <div style="color:#FF0000" class="error-box" *ngIf="authForm.controls['voltaje'].hasError('required') && authForm.controls['voltaje'].touched">*Voltaje requerido!</div>
+        <ion-item>
+          <ion-label color="login">Frecuencia eléctrica</ion-label>
+          <ion-input type="number" value="{{marcapasos.frecuenciaElectrica}}" [formControl]="authForm.controls['frecuenciaElectrica']" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" [disabled]="!editar"></ion-input>
+        </ion-item>
+        <div style="color:#FF0000" class="error-box" *ngIf="authForm.controls['frecuenciaElectrica'].hasError('required') && authForm.controls['frecuenciaElectrica'].touched">* Frecuencia Electrica requerida!</div>
+
+      </form>
+      <button ion-button small  type="submit" ion-button [disabled]="!authForm.valid" (click)="submitForm()" color="login" [hidden]="!editar">Enviar cambios</button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab right bottom>
+
+    <button ion-fab  icon-only (click)="editarCongiguracion()" [hidden]="!especialista">
+      <ion-icon name="cog"></ion-icon>
+    </button>
+
+  </ion-fab>
+
+</ion-content>

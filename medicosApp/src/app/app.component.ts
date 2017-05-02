@@ -11,6 +11,8 @@ import { ListPage } from '../pages/list/list';
 import { Pacientes } from '../pages/pacientes/pacientes';
 
 
+
+
 import {Autenticacion} from'../pages/autenticacion/autenticacion'
 
 
@@ -32,8 +34,7 @@ export class MyApp {
       // used for an example of ngFor and navigation
       this.pages = [
         { title: 'Inicio', component: HomePage },
-        { title: 'Pacientes', component:Pacientes },
-        { title: 'List', component: ListPage }
+        { title: 'Todos los pacientes', component:Pacientes }
       ];
 
     }

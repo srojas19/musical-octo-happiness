@@ -8,19 +8,22 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Buen día Doctor {{medico?.nombres}}</h3>
+  <h3>Buen día {{titulo}} {{medico?.nombres}} {{medico?.apellidos}}</h3>
 
   <ion-list>
     <ion-list-header>
       Pacientes en observación
     </ion-list-header>
-    <ion-item *ngFor="let paciente of pacientesCuidado" >
-      {{paciente.nombres}}  {{paciente.apellidos}}
-      <button ion-button item-right  icon-only (click)="verDetallePaciente(favorito.id)">
-        Ver detalle
-        <ion-icon name="open"></ion-icon>
-      </button>
-    </ion-item>
+
+    <ion-card *ngFor="let paciente of pacientesCuidado">
+        <ion-item >
+          {{paciente.nombres}}  {{paciente.apellidos}}
+          <button ion-button item-right color="login" icon-only (click)="verDetallePaciente(paciente)">
+            Ver detalle
+            <ion-icon name="open"></ion-icon>
+          </button>
+        </ion-item>
+    </ion-card>
   </ion-list><br/>
 
 </ion-content>

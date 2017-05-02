@@ -32,7 +32,7 @@ Ionic pages and navigation.
       <ion-item>
         <ion-label>Tipo consejo</ion-label>
         <ion-select [formControl]="authForm.controls['tipo']">
-          <ion-option value="Actividad fisica">Actividad fisica</ion-option>
+          <ion-option value="Actividad fisica">Actividad física</ion-option>
           <ion-option value="Dieta">Dieta</ion-option>
           <ion-option value="Toma de medicamento">Toma de medicamento</ion-option>
           <ion-option value="Asistencia a citas médica">Asistencia a citas médica</ion-option>
@@ -41,7 +41,7 @@ Ionic pages and navigation.
     </ion-list><br/>
 
     <ion-item>
-      <ion-label >Desripcion</ion-label>
+      <ion-label >Desripción</ion-label>
       <ion-textarea class="textoArea" placeholder="Escriba consejo..." value="" [formControl]="authForm.controls['descripcion']" ></ion-textarea >
     </ion-item><br/>
     <div class="error-box" *ngIf="authForm.controls['descripcion'].hasError('required') && authForm.controls['descripcion'].touched">* Descripcion requerida!</div>

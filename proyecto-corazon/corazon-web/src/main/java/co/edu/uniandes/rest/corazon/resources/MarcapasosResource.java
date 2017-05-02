@@ -55,7 +55,7 @@ public class MarcapasosResource {
     }
 
     @GET
-    public MarcapasosDetailDTO getMarcapasosPaciente(@PathParam("idPaciente") Long idPaciente) {
+    public MarcapasosDTO getMarcapasosPaciente(@PathParam("idPaciente") Long idPaciente) {
         MarcapasosRealEntity entity = marcapasosLogic.getMarcapasosPaciente(idPaciente);
         if (entity == null) {
             throw new WebApplicationException(404);
@@ -93,11 +93,13 @@ public class MarcapasosResource {
      * @throws MarcapasosLogicException
      */
     @PUT
-    public MarcapasosDetailDTO updateMarcapasos(MarcapasosDetailDTO dto, @PathParam("idPaciente") Long idPaciente) throws MarcapasosLogicException {
+    public MarcapasosDetailDTO updateMarcapasos(MarcapasosDTO dto, @PathParam("idPaciente") Long idPaciente) throws MarcapasosLogicException {
         MarcapasosRealEntity entity = dto.toEntity();
         try 
         {
+            System.out.println("llego este marcapasos "+entity);
             return new MarcapasosDetailDTO(marcapasosLogic.updateMarcapasos(entity, idPaciente));
+            
         } 
         catch (BusinessLogicException ex) 
         {
