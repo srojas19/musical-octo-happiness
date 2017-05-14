@@ -5,6 +5,7 @@ import co.edu.uniandes.sisteam.corazon.entities.HistoriaClinicaEntity;
 import co.edu.uniandes.sisteam.corazon.entities.PacienteEntity;
 import co.edu.uniandes.sisteam.corazon.exceptions.BusinessLogicException;
 import co.edu.uniandes.sisteam.corazon.persistence.HistoriaClinicaPersistence;
+import co.edu.uniandes.sisteam.corazon.persistence.MarcapasosPersistence;
 import co.edu.uniandes.sisteam.corazon.persistence.PacientePersistence;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -18,6 +19,9 @@ public class PacienteLogic implements IPacienteLogic {
     private PacientePersistence persistence;
     @Inject
     private HistoriaClinicaPersistence persistenceHC;
+    
+    @Inject
+    private MarcapasosPersistence persistenceMc;
 
     /**
      * Obtiene la lista de los registros de Paciente.
@@ -40,7 +44,9 @@ public class PacienteLogic implements IPacienteLogic {
      */
     @Override
     public PacienteEntity getPaciente(Long id) {
-        return persistence.find(id);
+        PacienteEntity d=persistence.find(id);   
+        d.setMarcapasos(persistenceMc.getMarcapasosPaciente(id));
+        return d;
     }
 
     /**
@@ -94,7 +100,10 @@ public class PacienteLogic implements IPacienteLogic {
 
     @Override
     public PacienteEntity getPacienteByCedula(int cedula) {
-        return persistence.findByCedula(cedula);
+        
+        PacienteEntity d=persistence.findByCedula(cedula);   
+        d.setMarcapasos(persistenceMc.getMarcapasosPaciente(d.getId()));
+        return d;
     }
 
     @Override

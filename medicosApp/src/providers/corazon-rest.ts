@@ -12,7 +12,7 @@ for more info on providers and Angular 2 DI.
 @Injectable()
 export class CorazonRest {
 
-  ip='192.168.0.4';
+  ip='157.253.156.33';
 
 
   constructor(public http: Http,public storage:Storage) {

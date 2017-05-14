@@ -61,6 +61,7 @@ public class PacienteDetailDTO extends PacienteDTO {
      * Constructor por defecto
      */
     public PacienteDetailDTO() {
+             super();
     }
     
     public PacienteDetailDTO(String estado) {

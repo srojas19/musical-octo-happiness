@@ -73,8 +73,8 @@ public class PacienteDTO {
             this.direccionResidencia = entity.getDireccionResidencia();
             this.entidadPrestadoraSalud = entity.getEntidadPrestadoraSalud();
             this.fechaNacimiento = entity.getFechaNacimiento();
-            this.tipoSanguineo = entity.getTipoSanguineo();
-            
+         
+            this.tipoSanguineo = entity.getTipoSanguineo();         
         }
     }
 

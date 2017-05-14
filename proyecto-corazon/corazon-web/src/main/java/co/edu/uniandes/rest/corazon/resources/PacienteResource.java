@@ -95,6 +95,15 @@ public class PacienteResource {
         PacienteDetailDTO paciente = new PacienteDetailDTO(pacienteLogic.getPaciente(id));
         return paciente;
     }
+    
+    @GET
+    @Path("c/{id: \\d+}")
+    public PacienteDTO getPacienteCC(@PathParam("id") int id) {
+ 
+        PacienteEntity ss= pacienteLogic.getPacienteByCedula(id);
+        PacienteDTO paciente = new PacienteDTO(ss);
+        return paciente;
+    }
 
 //    /**
 //     * Obtiene los datos de una instancia de Paciente a partir de su ID
