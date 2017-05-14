@@ -15,10 +15,10 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">20</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1000</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <stringProp name="ThreadGroup.num_threads">50</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1/20</stringProp>
         <longProp name="ThreadGroup.start_time">1489360004000</longProp>
         <longProp name="ThreadGroup.end_time">1489360004000</longProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
@@ -26,15 +26,21 @@
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="postEmergencia" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="postMedicion" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{
-  &quot;latitud&quot;: 234,
-  &quot;longitud&quot;: 234,
-  &quot;medicionId&quot;: 1
+    &quot;dictamen&quot;: &quot;amarillo&quot;,
+    &quot;fecha&quot;: &quot;2017-02-16&quot;,
+    &quot;frecuenciaCardiaca&quot;: 112,
+    &quot;nivelEstres&quot;: 5,
+    &quot;emergencia&quot;:
+    {
+    	&quot;latitud&quot;: 234,
+    	&quot;longitud&quot;: 234
+    }
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
@@ -47,7 +53,7 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">corazon-web/api/pacientes/1/mediciones/1/emergencia</stringProp>
+          <stringProp name="HTTPSampler.path">corazon-web/api/pacientes/1/mediciones/</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -64,6 +70,10 @@
           <elementProp name="" elementType="Header">
             <stringProp name="Header.name">Content-Type</stringProp>
             <stringProp name="Header.value">application/json</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">x_rest_user</stringProp>
+            <stringProp name="Header.value">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IkJ1aXRyYWdvIiwicGFzc3dvcmQiOiJCdWl0cmFnbzI3IiwibGV2ZWxBY2Nlc3MiOiJ1c2VyIn0.Bh6_BjImaskzYYk_MOgeIHVeUKs-_Lm7tx8KorDhl5I</stringProp>
           </elementProp>
         </collectionProp>
       </HeaderManager>
