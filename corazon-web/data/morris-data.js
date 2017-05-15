@@ -3,55 +3,55 @@ $(function () {
     Morris.Line({
         element: 'morris-area-chart',
         data: [{
-                period: '2010 Q1',
-                FecuenciaCardiaca: 2666,
-                NivelEstres: null,
-                PresionSanguinea: 2647
+                period: '2016-1-1',
+                FecuenciaCardiaca: 300,
+                NivelEstres: 2,
+                PresionSanguinea: 64
             }, {
-                period: '2010 Q2',
-                FecuenciaCardiaca: 2778,
-                NivelEstres: 2294,
-                PresionSanguinea: 2441
+                period: '2016-5-1',
+                FecuenciaCardiaca: 240,
+                NivelEstres: 5,
+                PresionSanguinea: 80
             }, {
-                period: '2010 Q3',
-                FecuenciaCardiaca: 4912,
-                NivelEstres: 1969,
-                PresionSanguinea: 2501
+                period: '2016-11-1',
+                FecuenciaCardiaca: 203,
+                NivelEstres: 1,
+                PresionSanguinea: 86
             }, {
-                period: '2010 Q4',
-                FecuenciaCardiaca: 3767,
-                NivelEstres: 3597,
-                PresionSanguinea: 5689
+                period: '2017-1-1',
+                FecuenciaCardiaca: 150,
+                NivelEstres: 2,
+                PresionSanguinea: 90
             }, {
-                period: '2011 Q1',
-                FecuenciaCardiaca: 6810,
-                NivelEstres: 1914,
-                PresionSanguinea: 2293
+                period: '2016-1-1',
+                FecuenciaCardiaca: 162,
+                NivelEstres: 5,
+                PresionSanguinea: 92
             }, {
-                period: '2011 Q2',
-                FecuenciaCardiaca: 5670,
-                NivelEstres: 4293,
-                PresionSanguinea: 1881
+                period: '2017-2-1',
+                FecuenciaCardiaca: 100,
+                NivelEstres: 4,
+                PresionSanguinea: 95
             }, {
-                period: '2011 Q3',
-                FecuenciaCardiaca: 4820,
-                NivelEstres: 3795,
-                PresionSanguinea: 1588
+                period: '2017-3-2',
+                FecuenciaCardiaca: 210,
+                NivelEstres: 3,
+                PresionSanguinea: 120
             }, {
-                period: '2011 Q4',
-                FecuenciaCardiaca: 15073,
-                NivelEstres: 5967,
-                PresionSanguinea: 5175
+                period: '2017-3-6',
+                FecuenciaCardiaca: 180,
+                NivelEstres: 4,
+                PresionSanguinea: 142
             }, {
-                period: '2012 Q1',
-                FecuenciaCardiaca: 10687,
-                NivelEstres: 4460,
-                PresionSanguinea: 2028
+                period: '2017-3-21',
+                FecuenciaCardiaca: 140,
+                NivelEstres: 2,
+                PresionSanguinea: 60
             }, {
-                period: '2012 Q2',
-                FecuenciaCardiaca: 8432,
-                NivelEstres: 5713,
-                PresionSanguinea: 1791
+                period: '2017-4-11',
+                FecuenciaCardiaca: 90,
+                NivelEstres: 2,
+                PresionSanguinea: 63
             }],
         xkey: 'period',
         ykeys: ['FecuenciaCardiaca', 'NivelEstres', 'PresionSanguinea'],
